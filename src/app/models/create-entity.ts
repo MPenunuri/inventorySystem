@@ -1,3 +1,3 @@
 export interface CreateEntityI<T> {
-  id?: string;
+  id?: number;
 }

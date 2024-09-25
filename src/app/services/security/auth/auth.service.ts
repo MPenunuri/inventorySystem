@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import {
   UserCredentials,
   UserCredentialsI,
-} from '../../models/user/user-credentials';
+} from '../../../models/user/user-credentials';
 import { HttpClient } from '@angular/common/http';
-import { catchError, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',

@@ -6,8 +6,8 @@ import {
   HttpTestingController,
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
-import { User } from '../../models/user/user';
-import { UserEntity, UserEntityI } from '../../models/user/user-entity';
+import { User } from '../../../models/user/user';
+import { UserEntity, UserEntityI } from '../../../models/user/user-entity';
 
 describe('SignupService', () => {
   let service: SignupService;
