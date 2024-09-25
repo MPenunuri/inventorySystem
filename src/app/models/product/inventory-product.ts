@@ -4,7 +4,7 @@ import { StockI } from '../stock/stock';
 import { SubcategoryI } from '../subcategory/subcategory';
 import { SupplierI } from '../supplier/supplier';
 
-export interface InventoryProduct {
+export interface InventoryProductI {
   id: number;
   name: string;
   subcategory: SubcategoryI;

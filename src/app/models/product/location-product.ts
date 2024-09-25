@@ -1,6 +1,6 @@
 import { StandardProductI } from './standard-product';
 
-export interface LocationProduct extends StandardProductI {
+export interface LocationProductI extends StandardProductI {
   stockLocationId: number;
   stockLocationName: string;
   stockLocationAddress: string;
