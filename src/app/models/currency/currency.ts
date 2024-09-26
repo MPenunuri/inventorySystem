@@ -21,6 +21,12 @@ export class NewCurrency implements CreateEntityI<CurrencyI> {
   get name() {
     return this._name;
   }
+
+  toObject() {
+    return {
+      name: this._name,
+    };
+  }
 }
 
 export class CurrencyUpdate implements CurrencyI {
@@ -38,5 +44,12 @@ export class CurrencyUpdate implements CurrencyI {
 
   get name() {
     return this._name;
+  }
+
+  toObject() {
+    return {
+      id: this._id,
+      name: this._name,
+    };
   }
 }

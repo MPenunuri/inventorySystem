@@ -31,4 +31,8 @@ export class CreateEntryAdjustment extends MovementCreate {
       transactionCurrencyId
     );
   }
+
+  override toObject() {
+    return super.toObject();
+  }
 }

@@ -13,26 +13,16 @@ import { LocationEntityI } from '../../models/location/location-entity';
   providedIn: 'root',
 })
 export class LocationService {
-  private locationUpdate?: LocationI;
-  private newLocation?: CreateEntityI<LocationI>;
-
   constructor(private http: HttpClient) {}
 
-  setLocationUpdate(id: number, name: string, address?: string) {
-    this.locationUpdate = new LocationUpdate(id, name, address);
-  }
-
-  setNewLocation(name: string, address?: string) {
-    this.newLocation = new NewLocation(name, address);
-  }
-
-  registerLocation(): Observable<LocationEntityI> {
-    if (this.newLocation == undefined) {
-      throw new Error('Undefined location data');
-    }
+  registerLocation(
+    name: string,
+    address?: string
+  ): Observable<LocationEntityI> {
+    const newLocation = new NewLocation(name, address);
     return this.http.post<LocationEntityI>(
       '/api/secure/location',
-      this.newLocation
+      newLocation.toObject()
     );
   }
 
@@ -44,23 +34,24 @@ export class LocationService {
     return this.http.get<LocationI>('/api/secure/location/' + id);
   }
 
-  renameLocation(): Observable<LocationEntityI> {
-    if (this.locationUpdate == undefined) {
-      throw new Error('Undefined location data');
-    }
+  renameLocation(id: number, name: string): Observable<LocationEntityI> {
+    const locationUpdate = new LocationUpdate(id);
+    locationUpdate.name = name;
     return this.http.patch<LocationEntityI>(
       '/api/secure/location/name',
-      this.locationUpdate
+      locationUpdate.toObject()
     );
   }
 
-  updateLocationAdress(): Observable<LocationEntityI> {
-    if (this.locationUpdate == undefined) {
-      throw new Error('Undefined location data');
-    }
+  updateLocationAdress(
+    id: number,
+    address: string
+  ): Observable<LocationEntityI> {
+    const locationUpdate = new LocationUpdate(id);
+    locationUpdate.address = address;
     return this.http.patch<LocationEntityI>(
       '/api/secure/location/address',
-      this.locationUpdate
+      locationUpdate.toObject()
     );
   }
 

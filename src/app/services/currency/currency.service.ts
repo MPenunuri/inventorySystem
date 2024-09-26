@@ -13,26 +13,13 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class CurrencyService {
-  private currencyUpdate?: CurrencyI;
-  private newCurrency?: CreateEntityI<CurrencyI>;
-
   constructor(private http: HttpClient) {}
 
-  setCurrencyUpdate(id: number, name: string) {
-    this.currencyUpdate = new CurrencyUpdate(id, name);
-  }
-
-  setNewCurrency(name: string) {
-    this.newCurrency = new NewCurrency(name);
-  }
-
-  registerCurrency(): Observable<CurrencyEntityI> {
-    if (this.newCurrency == undefined) {
-      throw new Error('Undefined currency data');
-    }
+  registerCurrency(name: string): Observable<CurrencyEntityI> {
+    const newCurrency = new NewCurrency(name);
     return this.http.post<CurrencyEntityI>(
       '/api/secure/currency',
-      this.newCurrency
+      newCurrency.toObject()
     );
   }
 
@@ -40,13 +27,11 @@ export class CurrencyService {
     return this.http.get<CurrencyEntityI[]>('/api/secure/currency');
   }
 
-  renameCurrency(): Observable<CurrencyEntityI> {
-    if (this.currencyUpdate == undefined) {
-      throw new Error('Undefined currency data');
-    }
+  renameCurrency(id: number, name: string): Observable<CurrencyEntityI> {
+    const currencyUpdate = new CurrencyUpdate(id, name);
     return this.http.patch<CurrencyEntityI>(
       '/api/secure/currency',
-      this.currencyUpdate
+      currencyUpdate.toObject()
     );
   }
 

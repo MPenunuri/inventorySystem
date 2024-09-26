@@ -35,4 +35,8 @@ export class CreateCustomerReturn extends MovementCreate {
       transactionCurrencyId
     );
   }
+
+  override toObject() {
+    return super.toObject();
+  }
 }

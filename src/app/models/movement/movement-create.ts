@@ -51,6 +51,42 @@ export class MovementCreate implements MovementCreateI {
     this._transactionCurrencyId = transactionCurrencyId;
   }
 
+  toObject() {
+    const obj: any = {
+      productId: this._productId,
+      dateTime: this._dateTime,
+      reason: this._reason,
+      comment: this._comment,
+      quantity: this._quantity,
+    };
+
+    if (this._supplierId !== undefined) {
+      obj.supplierId = this._supplierId;
+    }
+
+    if (this._fromLocationId !== undefined) {
+      obj.fromLocationId = this._fromLocationId;
+    }
+
+    if (this._toLocationId !== undefined) {
+      obj.toLocationId = this._toLocationId;
+    }
+
+    if (this._transactionSubtype !== undefined) {
+      obj.transactionSubtype = this._transactionSubtype;
+    }
+
+    if (this._transactionValue !== undefined) {
+      obj.transactionValue = this._transactionValue;
+    }
+
+    if (this._transactionCurrencyId !== undefined) {
+      obj.transactionCurrencyId = this._transactionCurrencyId;
+    }
+
+    return obj;
+  }
+
   get productId() {
     return this._productId;
   }

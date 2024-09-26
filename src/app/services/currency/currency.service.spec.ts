@@ -13,8 +13,6 @@ describe('CurrencyService', () => {
   let service: CurrencyService;
   let httpTesting: HttpTestingController;
 
-  const mockNewCurrency = new NewCurrency('MXN');
-  const mockCurrencyUpdate = new CurrencyUpdate(1, 'MXN');
   const mockCurrencyEntity = new CurrencyEntity(1, 1, 'MXN');
   const mockCurrencyEntityArray = [mockCurrencyEntity];
 
@@ -35,8 +33,7 @@ describe('CurrencyService', () => {
   });
 
   it('should register currency', (done) => {
-    service.setNewCurrency(mockCurrencyEntity.name);
-    service.registerCurrency().subscribe({
+    service.registerCurrency(mockCurrencyEntity.name).subscribe({
       next: (response) => {
         expect(response).toEqual(mockCurrencyEntity);
         done();
@@ -47,7 +44,7 @@ describe('CurrencyService', () => {
     });
     const req = httpTesting.expectOne('/api/secure/currency');
     expect(req.request.method).toBe('POST');
-    expect(req.request.body).toEqual(mockNewCurrency);
+    expect(req.request.body).toEqual({ name: 'MXN' });
     req.flush(mockCurrencyEntity);
   });
 
@@ -67,20 +64,21 @@ describe('CurrencyService', () => {
   });
 
   it('should send correct data when updating currency', (done) => {
-    service.setCurrencyUpdate(mockCurrencyUpdate.id, mockCurrencyUpdate.name);
-    service.renameCurrency().subscribe({
-      next: (response) => {
-        expect(response).toEqual(mockCurrencyEntity);
-        done();
-      },
-      error: () => {
-        fail('The request should not have failed.');
-      },
-    });
+    service
+      .renameCurrency(mockCurrencyEntity.id, mockCurrencyEntity.name)
+      .subscribe({
+        next: (response) => {
+          expect(response).toEqual(mockCurrencyEntity);
+          done();
+        },
+        error: () => {
+          fail('The request should not have failed.');
+        },
+      });
 
     const req = httpTesting.expectOne('/api/secure/currency');
     expect(req.request.method).toBe('PATCH');
-    expect(req.request.body).toEqual(mockCurrencyUpdate);
+    expect(req.request.body).toEqual({ id: 1, name: 'MXN' });
     req.flush(mockCurrencyEntity);
   });
 
@@ -96,17 +94,5 @@ describe('CurrencyService', () => {
     const req = httpTesting.expectOne('/api/secure/currency/1');
     expect(req.request.method).toBe('DELETE');
     req.flush(null);
-  });
-
-  it('should throw error when no currency data is set for update', () => {
-    expect(() => service.renameCurrency()).toThrowError(
-      'Undefined currency data'
-    );
-  });
-
-  it('should throw error when no currency data is set for registry', () => {
-    expect(() => service.registerCurrency()).toThrowError(
-      'Undefined currency data'
-    );
   });
 });

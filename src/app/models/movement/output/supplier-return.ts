@@ -37,4 +37,8 @@ export class CreateSupplierReturn extends MovementCreate {
       transactionCurrencyId
     );
   }
+
+  override toObject() {
+    return super.toObject();
+  }
 }

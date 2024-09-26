@@ -13,8 +13,6 @@ describe('LocationService', () => {
   let service: LocationService;
   let httpTesting: HttpTestingController;
 
-  const mockNewLocation = new NewLocation('Central warehouse');
-  const mockLocationUpdate = new LocationUpdate(1, 'Central warehouse');
   const mockLocationEntity = new LocationEntity(1, 1, 'Central warehouse');
   const mockLocationEntityArray = [mockLocationEntity];
 
@@ -35,8 +33,7 @@ describe('LocationService', () => {
   });
 
   it('should register location', (done) => {
-    service.setNewLocation(mockLocationEntity.name);
-    service.registerLocation().subscribe({
+    service.registerLocation(mockLocationEntity.name).subscribe({
       next: (response) => {
         expect(response).toEqual(mockLocationEntity);
         done();
@@ -47,7 +44,7 @@ describe('LocationService', () => {
     });
     const req = httpTesting.expectOne('/api/secure/location');
     expect(req.request.method).toBe('POST');
-    expect(req.request.body).toEqual(mockNewLocation);
+    expect(req.request.body).toEqual({ name: 'Central warehouse' });
     req.flush(mockLocationEntity);
   });
 
@@ -67,20 +64,21 @@ describe('LocationService', () => {
   });
 
   it('should send correct data when updating location', (done) => {
-    service.setLocationUpdate(mockLocationUpdate.id, mockLocationUpdate.name);
-    service.renameLocation().subscribe({
-      next: (response) => {
-        expect(response).toEqual(mockLocationEntity);
-        done();
-      },
-      error: () => {
-        fail('The request should not have failed.');
-      },
-    });
+    service
+      .renameLocation(mockLocationEntity.id, mockLocationEntity.name)
+      .subscribe({
+        next: (response) => {
+          expect(response).toEqual(mockLocationEntity);
+          done();
+        },
+        error: () => {
+          fail('The request should not have failed.');
+        },
+      });
 
     const req = httpTesting.expectOne('/api/secure/location/name');
     expect(req.request.method).toBe('PATCH');
-    expect(req.request.body).toEqual(mockLocationUpdate);
+    expect(req.request.body).toEqual({ id: 1, name: 'Central warehouse' });
     req.flush(mockLocationEntity);
   });
 
@@ -96,17 +94,5 @@ describe('LocationService', () => {
     const req = httpTesting.expectOne('/api/secure/location/1');
     expect(req.request.method).toBe('DELETE');
     req.flush(null);
-  });
-
-  it('should throw error when no location data is set for update', () => {
-    expect(() => service.renameLocation()).toThrowError(
-      'Undefined location data'
-    );
-  });
-
-  it('should throw error when no location data is set for registry', () => {
-    expect(() => service.registerLocation()).toThrowError(
-      'Undefined location data'
-    );
   });
 });

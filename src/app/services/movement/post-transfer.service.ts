@@ -30,7 +30,7 @@ export class PostTransferService {
     );
     return this.http.post<MovementEntityI>(
       '/api/secure/movement/transfer',
-      transfer
+      transfer.toObject()
     );
   }
 }

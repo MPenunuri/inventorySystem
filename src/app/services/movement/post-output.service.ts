@@ -35,7 +35,10 @@ export class PostOutputService {
       sell,
       sellCurrencyId
     );
-    return this.http.post<MovementEntityI>('/api/secure/movement/sale', sale);
+    return this.http.post<MovementEntityI>(
+      '/api/secure/movement/sale',
+      sale.toObject()
+    );
   }
 
   addSupplierReturn(
@@ -50,7 +53,7 @@ export class PostOutputService {
     sell: number,
     sellCurrencyId: number
   ): Observable<MovementEntityI> {
-    const sale = new CreateSupplierReturn(
+    const supplierReturn = new CreateSupplierReturn(
       productId,
       dateTime,
       reason,
@@ -64,7 +67,7 @@ export class PostOutputService {
     );
     return this.http.post<MovementEntityI>(
       '/api/secure/movement/supplier-return',
-      sale
+      supplierReturn.toObject()
     );
   }
 
@@ -86,7 +89,7 @@ export class PostOutputService {
     );
     return this.http.post<MovementEntityI>(
       '/api/secure/movement/output-adjustment',
-      adjustment
+      adjustment.toObject()
     );
   }
 
@@ -108,7 +111,7 @@ export class PostOutputService {
     );
     return this.http.post<MovementEntityI>(
       '/api/secure/movement/internal-consumption',
-      consumption
+      consumption.toObject()
     );
   }
 }

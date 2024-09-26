@@ -13,26 +13,13 @@ import { CategoryEntityI } from '../../models/category/category-entity';
   providedIn: 'root',
 })
 export class CategoryService {
-  private categoryUpdate?: CategoryI;
-  private newCategory?: CreateEntityI<CategoryI>;
-
   constructor(private http: HttpClient) {}
 
-  setCategoryUpdate(id: number, name: string) {
-    this.categoryUpdate = new CategoryUpdate(id, name);
-  }
-
-  setNewCategory(name: string) {
-    this.newCategory = new NewCategory(name);
-  }
-
-  registerCategory(): Observable<CategoryEntityI> {
-    if (this.newCategory == undefined) {
-      throw new Error('Undefined category data');
-    }
+  registerCategory(name: string): Observable<CategoryEntityI> {
+    const newCategory = new NewCategory(name);
     return this.http.post<CategoryEntityI>(
       '/api/secure/category',
-      this.newCategory
+      newCategory.toObject()
     );
   }
 
@@ -40,13 +27,11 @@ export class CategoryService {
     return this.http.get<CategoryEntityI[]>('/api/secure/category');
   }
 
-  updateCategoryName(): Observable<CategoryEntityI> {
-    if (this.categoryUpdate == undefined) {
-      throw new Error('Undefined category data');
-    }
+  updateCategoryName(id: number, name: string): Observable<CategoryEntityI> {
+    const categoryUpdate = new CategoryUpdate(id, name);
     return this.http.patch<CategoryEntityI>(
       '/api/secure/category',
-      this.categoryUpdate
+      categoryUpdate.toObject()
     );
   }
 

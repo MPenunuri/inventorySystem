@@ -39,7 +39,7 @@ export class PostEntryService {
     );
     return this.http.post<MovementEntityI>(
       '/api/secure/movement/acquisition',
-      acquisition
+      acquisition.toObject()
     );
   }
 
@@ -67,7 +67,7 @@ export class PostEntryService {
     );
     return this.http.post<MovementEntityI>(
       '/api/secure/movement/customer-return',
-      customerReturn
+      customerReturn.toObject()
     );
   }
 
@@ -89,7 +89,7 @@ export class PostEntryService {
     );
     return this.http.post<MovementEntityI>(
       '/api/secure/movement/entry-adjusment',
-      adjustment
+      adjustment.toObject()
     );
   }
 
@@ -117,7 +117,7 @@ export class PostEntryService {
     );
     return this.http.post<MovementEntityI>(
       '/api/secure/movement/production',
-      production
+      production.toObject()
     );
   }
 }

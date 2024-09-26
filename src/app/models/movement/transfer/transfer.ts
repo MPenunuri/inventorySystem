@@ -32,4 +32,8 @@ export class CreateTransfer extends MovementCreate {
       transactionCurrencyId
     );
   }
+
+  override toObject() {
+    return super.toObject();
+  }
 }

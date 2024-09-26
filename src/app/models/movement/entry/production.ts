@@ -35,4 +35,8 @@ export class CreateProduction extends MovementCreate {
       transactionCurrencyId
     );
   }
+
+  override toObject() {
+    return super.toObject();
+  }
 }

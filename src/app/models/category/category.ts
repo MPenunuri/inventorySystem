@@ -21,6 +21,12 @@ export class NewCategory implements CreateEntityI<CategoryI> {
   get name(): string {
     return this._name;
   }
+
+  toObject() {
+    return {
+      name: this._name,
+    };
+  }
 }
 
 export class CategoryUpdate implements CategoryI {
@@ -38,5 +44,12 @@ export class CategoryUpdate implements CategoryI {
 
   get name() {
     return this._name;
+  }
+
+  toObject() {
+    return {
+      id: this._id,
+      name: this._name,
+    };
   }
 }

@@ -31,4 +31,8 @@ export class CreateOutputAdjustment extends MovementCreate {
       transactionCurrencyId
     );
   }
+
+  override toObject() {
+    return super.toObject();
+  }
 }
