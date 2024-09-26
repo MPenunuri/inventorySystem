@@ -9,26 +9,16 @@ import { SubcategoryUpdate } from '../../models/subcategory/subcategory-update';
   providedIn: 'root',
 })
 export class SubcategoryService {
-  private subcategoryUpdate?: SubcategoryUpdate;
-  private newSubcategory?: SubcategoryCreate;
-
   constructor(private http: HttpClient) {}
 
-  setSubcategoryUpdate(id: number, categoryId?: number, name?: string) {
-    this.subcategoryUpdate = new SubcategoryUpdate(id, categoryId, name);
-  }
-
-  setNewSubcategory(categoryId: number, name: string) {
-    this.newSubcategory = new SubcategoryCreate(categoryId, name);
-  }
-
-  registerSubcategory(): Observable<SubcategoryEntityI> {
-    if (this.newSubcategory == undefined) {
-      throw new Error('Undefined subcategory data');
-    }
+  registerSubcategory(
+    categoryId: number,
+    name: string
+  ): Observable<SubcategoryEntityI> {
+    const newSubcategory = new SubcategoryCreate(categoryId, name);
     return this.http.post<SubcategoryEntityI>(
       '/api/secure/subcategory',
-      this.newSubcategory.toObject()
+      newSubcategory.toObject()
     );
   }
 
@@ -42,29 +32,22 @@ export class SubcategoryService {
     return this.http.get<SubcategoryEntityI[]>('/api/secure/subcategory');
   }
 
-  changeSubcategoryCategory(): Observable<SubcategoryEntityI> {
-    if (
-      this.subcategoryUpdate == undefined ||
-      this.subcategoryUpdate.categoryId == undefined
-    ) {
-      throw new Error('Undefined subcategory data');
-    }
+  changeSubcategoryCategory(
+    id: number,
+    categoryId: number
+  ): Observable<SubcategoryEntityI> {
+    const subcategoryUpdate = new SubcategoryUpdate(id, categoryId);
     return this.http.patch<SubcategoryEntityI>(
       '/api/secure/subcategory/category',
-      this.subcategoryUpdate.toObject()
+      subcategoryUpdate.toObject()
     );
   }
 
-  renameSubcategory(): Observable<SubcategoryEntityI> {
-    if (
-      this.subcategoryUpdate == undefined ||
-      this.subcategoryUpdate.name == undefined
-    ) {
-      throw new Error('Undefined subcategory data');
-    }
+  renameSubcategory(id: number, name: string): Observable<SubcategoryEntityI> {
+    const subcategoryUpdate = new SubcategoryUpdate(id, undefined, name);
     return this.http.patch<SubcategoryEntityI>(
       '/api/secure/subcategory',
-      this.subcategoryUpdate.toObject()
+      subcategoryUpdate.toObject()
     );
   }
 

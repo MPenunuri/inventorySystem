@@ -36,9 +36,7 @@ describe('SubcategoryService', () => {
   });
 
   it('should register a subcategory', (done) => {
-    service.setNewSubcategory(1, 'New Subcategory');
-
-    service.registerSubcategory().subscribe({
+    service.registerSubcategory(1, 'New Subcategory').subscribe({
       next: (response) => {
         expect(response).toEqual(mockSubcategoryEntity);
         done();
@@ -55,12 +53,6 @@ describe('SubcategoryService', () => {
       name: 'New Subcategory',
     });
     req.flush(mockSubcategoryEntity);
-  });
-
-  it('should throw error when registering undefined subcategory', () => {
-    expect(() => service.registerSubcategory()).toThrowError(
-      'Undefined subcategory data'
-    );
   });
 
   it('should get all subcategories', (done) => {
@@ -98,9 +90,7 @@ describe('SubcategoryService', () => {
   });
 
   it('should change subcategory category', (done) => {
-    service.setSubcategoryUpdate(1, 2, 'Updated Subcategory');
-
-    service.changeSubcategoryCategory().subscribe({
+    service.changeSubcategoryCategory(1, 2).subscribe({
       next: (response) => {
         expect(response).toEqual(mockSubcategoryEntity);
         done();
@@ -117,21 +107,12 @@ describe('SubcategoryService', () => {
     expect(req.request.body).toEqual({
       id: 1,
       categoryId: 2,
-      name: 'Updated Subcategory',
     });
     req.flush(mockSubcategoryEntity);
   });
 
-  it('should throw error when changing category with undefined data', () => {
-    expect(() => service.changeSubcategoryCategory()).toThrowError(
-      'Undefined subcategory data'
-    );
-  });
-
   it('should rename subcategory', (done) => {
-    service.setSubcategoryUpdate(1, undefined, 'Renamed Subcategory');
-
-    service.renameSubcategory().subscribe({
+    service.renameSubcategory(1, 'Renamed Subcategory').subscribe({
       next: (response) => {
         expect(response).toEqual(mockSubcategoryEntity);
         done();
@@ -148,12 +129,6 @@ describe('SubcategoryService', () => {
       name: 'Renamed Subcategory',
     });
     req.flush(mockSubcategoryEntity);
-  });
-
-  it('should throw error when renaming with undefined data', () => {
-    expect(() => service.renameSubcategory()).toThrowError(
-      'Undefined subcategory data'
-    );
   });
 
   it('should delete subcategory', (done) => {
