@@ -5,7 +5,6 @@ import {
   CategoryI,
 } from '../../models/category/category';
 import { HttpClient } from '@angular/common/http';
-import { CreateEntityI } from '../../models/create-entity';
 import { Observable } from 'rxjs';
 import { CategoryEntityI } from '../../models/category/category-entity';
 

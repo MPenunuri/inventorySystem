@@ -9,6 +9,7 @@ import {
 } from '@angular/common/http';
 import { baseUrlInterceptor } from './interceptors/base-url/base-url.interceptor';
 import { errorInterceptor } from './interceptors/error/error.interceptor';
+import { authInterceptor } from './interceptors/auth/auth.interceptor';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 export const appConfig: ApplicationConfig = {
@@ -17,7 +18,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(
       withFetch(),
-      withInterceptors([baseUrlInterceptor, errorInterceptor])
+      withInterceptors([baseUrlInterceptor, errorInterceptor, authInterceptor])
     ),
   ],
 };

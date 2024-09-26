@@ -6,7 +6,6 @@ import {
   HttpTestingController,
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
-import { throwError } from 'rxjs';
 
 describe('AuthService', () => {
   let service: AuthService;
