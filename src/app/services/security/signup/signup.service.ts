@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User, UserI } from '../../../models/user/user';
+import { User } from '../../../models/user/user';
 import { UserEntityI } from '../../../models/user/user-entity';
 import { Observable } from 'rxjs';
 
@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class SignupService {
-  private user?: UserI;
+  private user?: User;
 
   constructor(private http: HttpClient) {}
 
@@ -20,6 +20,9 @@ export class SignupService {
     if (this.user === undefined) {
       throw new Error('Undefined user data');
     }
-    return this.http.post<UserEntityI>('/api/auth/signup', this.user);
+    return this.http.post<UserEntityI>(
+      '/api/auth/signup',
+      this.user.toObject()
+    );
   }
 }

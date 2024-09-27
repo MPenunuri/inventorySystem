@@ -2,7 +2,6 @@ import {
   HttpErrorResponse,
   HttpEvent,
   HttpHandlerFn,
-  HttpInterceptorFn,
   HttpRequest,
 } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
@@ -14,11 +13,20 @@ export function errorInterceptor(
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
       let errorMessage = 'Unknown error!';
-
       if (error.error instanceof ErrorEvent) {
+        // Client side
         errorMessage = `Error: ${error.error.message}`;
       } else {
-        errorMessage = `Error Code: ${error.status}\nMessage: Something went wrong`;
+        // Server side
+        errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+
+        if (
+          error.error &&
+          typeof error.error === 'object' &&
+          error.error.error
+        ) {
+          errorMessage += `\nServer Message: ${error.error.error}`;
+        }
       }
 
       console.error(errorMessage);

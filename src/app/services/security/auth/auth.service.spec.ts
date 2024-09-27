@@ -39,7 +39,10 @@ describe('AuthService', () => {
       mockUserCredentials.password
     );
 
-    service.login();
+    service.login().subscribe((token) => {
+      expect(token).toBe(mockToken);
+      expect(service.isAuthenticated).toBeTrue();
+    });
 
     const req = httpTesting.expectOne('/api/auth/login');
     expect(req.request.method).toBe('POST');
@@ -51,16 +54,22 @@ describe('AuthService', () => {
       'email@example.com',
       'password123'
     );
+
     service.setUserCredentials(
       mockUserCredentials.email,
       mockUserCredentials.password
     );
 
-    service.login();
+    service.login().subscribe({
+      next: () => fail('Expected an error, not a token'),
+      error: (error) => {
+        expect(error.error).toBe('Login failed');
+        expect(service.isAuthenticated).toBeFalse();
+      },
+    });
 
     const req = httpTesting.expectOne('/api/auth/login');
     req.flush('Login failed', { status: 401, statusText: 'Unauthorized' });
-    expect(service.isAuthenticated).toBeFalse();
   });
 
   it('should throw an error if credentials are undefined', () => {

@@ -14,7 +14,6 @@ export function authInterceptor(
 ): Observable<HttpEvent<unknown>> {
   const authService = inject(AuthService);
 
-  console.log('Interceptor llamado');
   let authReq = req;
   if (authService.token !== undefined) {
     authReq = req.clone({

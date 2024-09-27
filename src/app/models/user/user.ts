@@ -26,4 +26,12 @@ export class User implements UserI {
   get password() {
     return this._password;
   }
+
+  toObject() {
+    return {
+      username: this._username,
+      email: this._email,
+      password: this._password,
+    };
+  }
 }

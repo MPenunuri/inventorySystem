@@ -1,0 +1,9 @@
+@use "../../../../styles.scss" as *;
+
+:host {
+  @include full-view();
+}
+
+a {
+  @include standard-router-link;
+}

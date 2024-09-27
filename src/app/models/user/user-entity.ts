@@ -1,4 +1,4 @@
-import { User, UserI } from './user';
+import { UserI } from './user';
 
 export interface UserEntityI extends UserI {
   id: number;
@@ -44,5 +44,15 @@ export class UserEntity implements UserEntityI {
 
   get roles() {
     return this._roles;
+  }
+
+  toObject() {
+    return {
+      id: this._id,
+      username: this._username,
+      email: this._email,
+      password: this._password,
+      roles: this._roles,
+    };
   }
 }

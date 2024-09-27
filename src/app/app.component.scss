@@ -1,0 +1,10 @@
+@use "../styles.scss" as *;
+
+:host {
+  @include full-view();
+  background-color: $primary-background-color;
+}
+
+router-outlet {
+  display: none;
+}

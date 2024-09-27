@@ -1,0 +1,24 @@
+<app-form
+  [title]="'Start managing your inventory today!'"
+  [formGroup]="signupForm"
+  (ngSubmit)="onSubmit()"
+>
+  <app-text-input
+    formControlName="name"
+    [name]="'name'"
+    [label]="'Name'"
+    [holder]="'Enter your name'"
+  ></app-text-input>
+  <app-email-input formControlName="email"></app-email-input>
+  <app-password-input
+    formControlName="password"
+    [autocomplete]="'new-password'"
+  ></app-password-input>
+  <app-confirm-password-input
+    formControlName="passwordConfirmation"
+  ></app-confirm-password-input>
+  <app-button [name]="'Sign up'"></app-button>
+  <a routerLink="/login"
+    >Already have an account?<span class="highlight">Log in</span></a
+  >
+</app-form>

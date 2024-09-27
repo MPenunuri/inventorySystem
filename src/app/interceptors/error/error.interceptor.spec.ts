@@ -40,7 +40,7 @@ describe('errorInterceptor', () => {
       },
       error: (error) => {
         expect(error.message).toContain(
-          `Error Code: ${errorStatus}\nMessage: ${errorMessage}`
+          `Error Code: ${errorStatus}\nMessage: Http failure response for /api/secure/test: ${errorStatus} Not Found`
         );
         done();
       },

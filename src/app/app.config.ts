@@ -10,7 +10,6 @@ import {
 import { baseUrlInterceptor } from './interceptors/base-url/base-url.interceptor';
 import { errorInterceptor } from './interceptors/error/error.interceptor';
 import { authInterceptor } from './interceptors/auth/auth.interceptor';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 export const appConfig: ApplicationConfig = {
   providers: [

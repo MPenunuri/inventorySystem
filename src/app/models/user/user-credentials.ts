@@ -19,4 +19,11 @@ export class UserCredentials implements UserCredentialsI {
   get password(): string {
     return this._password;
   }
+
+  toObject() {
+    return {
+      email: this._email,
+      password: this._password,
+    };
+  }
 }

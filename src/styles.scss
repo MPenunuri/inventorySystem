@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+@forward "./resets";
+@forward "./variables";
+@forward "./mixins";
+
+@use "./mixins" as *;
+@use "./variables" as *;
+
+body {
+  @include full-view();
+}
+
+@function text-size($font-size) {
+  @return map-get($font-sizes, $font-size);
+}

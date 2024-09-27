@@ -1,0 +1,15 @@
+<app-form
+  [title]="'Welcome back! Please log in to continue'"
+  (ngSubmit)="onSubmit()"
+  [formGroup]="loginForm"
+>
+  <app-email-input formControlName="email"></app-email-input>
+  <app-password-input
+    formControlName="password"
+    [autocomplete]="'current-password'"
+  ></app-password-input>
+  <app-button [name]="'Log in'"></app-button>
+  <a routerLink="/signup"
+    >Don't you have an account?<span class="highlight">Sign up</span></a
+  >
+</app-form>
