@@ -38,6 +38,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('authToken');
+    this.token = undefined;
     this.isAuthenticated = false;
   }
 

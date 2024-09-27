@@ -1,0 +1,5 @@
+<button (click)="onClick()"><img [src]="imageUrl" alt="menu icon" /></button>
+<menu [ngClass]="{ show: showing }">
+  <li routerLink="/workspace/products">Products</li>
+  <li (click)="logout()">Log out</li>
+</menu>

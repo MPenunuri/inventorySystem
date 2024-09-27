@@ -1,0 +1,58 @@
+@use "../../../../../../styles.scss" as *;
+
+:host {
+  width: 50%;
+  @include flex-center();
+  justify-content: flex-end;
+}
+
+button {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  border-style: none;
+  border: 2px solid $primary-background-color;
+
+  &:hover {
+    cursor: pointer;
+    transform: translate(-4px, -4px);
+    box-shadow: 2px 2px 0px $primary-decorative-color;
+    filter: drop-shadow(2px 2px 10px $primary-decorative-color);
+    transition: all 0.5s ease;
+  }
+
+  img {
+    width: 20px;
+  }
+}
+
+menu {
+  z-index: 2;
+  position: absolute;
+  top: 80px;
+  right: 0;
+  @include flex-center(column);
+  align-items: flex-end;
+  padding: 1rem 2rem;
+  background-color: $secondary-background-color;
+  border-radius: 20px;
+  filter: drop-shadow(10px 10px 20px black);
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.5s ease;
+
+  li {
+    font-weight: 600;
+
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+      color: $primary-decorative-color;
+    }
+  }
+
+  &.show {
+    max-height: 500px;
+    opacity: 1;
+  }
+}

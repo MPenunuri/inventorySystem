@@ -1,0 +1,44 @@
+@use "../../../../../styles.scss" as *;
+
+:host {
+  @include flex-center();
+  height: 100px;
+  width: 100%;
+  margin-top: 1rem;
+  padding: 1rem;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+nav {
+  box-sizing: border-box;
+  @include flex-center();
+  justify-content: space-between;
+  height: 100%;
+  width: 90%;
+  max-width: 600px;
+  padding: 2rem;
+  background-color: $secondary-background-color;
+  border-radius: 20px;
+  filter: drop-shadow(4px 4px 10px $secondary-decorative-color);
+
+  img {
+    width: 30px;
+    padding-right: 0.5rem;
+    filter: drop-shadow(1px 1px 10px $primary-background-color);
+  }
+
+  h1 {
+    font-weight: 800;
+    font-size: text-size("regular");
+    flex-shrink: 0;
+
+    filter: drop-shadow(1px 1px 15px $primary-background-color);
+
+    @include mobile() {
+      flex-shrink: 1;
+      font-size: text-size("light");
+      text-align: center;
+    }
+  }
+}
