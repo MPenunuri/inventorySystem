@@ -11,6 +11,7 @@ import { FormComponent } from '../../components/../commons/form/form.component';
 import { PasswordInputComponent } from '../../../components/commons/form/password-input/password-input.component';
 import { RouterLink, Router } from '@angular/router';
 import { AuthService } from '../../../services/security/auth/auth.service';
+import { InputSanitizerService } from '../../../services/input-sanitizer/input-sanitizer.service';
 
 @Component({
   selector: 'app-login',
@@ -32,7 +33,8 @@ export class LoginComponent {
   constructor(
     private authService: AuthService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private sanitizer: InputSanitizerService
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -41,8 +43,8 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    const email = this.loginForm.value.email;
-    const password = this.loginForm.value.password;
+    const email = this.sanitizer.sanitize(this.loginForm.value.email);
+    const password = this.sanitizer.sanitize(this.loginForm.value.password);
     this.authService.setUserCredentials(email, password);
     this.authService.login().subscribe({
       next: (token) => {
