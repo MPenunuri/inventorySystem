@@ -4,6 +4,7 @@
   @include full-view();
   flex-direction: column;
   gap: 4rem;
+  max-width: 98vw;
 }
 
 h1 {

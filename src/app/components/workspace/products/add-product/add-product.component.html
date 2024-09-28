@@ -1,0 +1,18 @@
+<app-button
+  (clicked)="toggleOpen()"
+  [className]="open ? 'regular red' : 'regular alternativeRegular'"
+  [name]="open ? 'Cancel' : 'Add a new product!'"
+></app-button>
+<app-form
+  [ngClass]="{ active: open, inactive: !open }"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+>
+  <app-text-input
+    formControlName="name"
+    [name]="'name'"
+    [label]="'Name'"
+    [holder]="'Enter product name'"
+  ></app-text-input>
+  <app-button [name]="'Register'"></app-button>
+</app-form>

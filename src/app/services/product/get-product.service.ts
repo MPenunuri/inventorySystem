@@ -18,7 +18,7 @@ export class GetProductService {
   }
 
   getAllProducts(): Observable<StandardProductI[]> {
-    return this.http.get<StandardProductI[]>('/api/secure/product');
+    return this.http.get<StandardProductI[]>('/api/secure/product/all');
   }
 
   getProductsByCategoryId(id: number): Observable<StandardProductI[]> {
