@@ -1,1 +1,152 @@
-<p>products works!</p>
+<h2>Products</h2>
+
+<app-add-product (saved)="setProducts()"></app-add-product>
+
+<div
+  class="tableContainer"
+  *ngIf="products && products.length > 0; else noProducts"
+>
+  <table
+    aria-live="polite"
+    aria-label="List of registered products with their respective details"
+  >
+    <thead>
+      <tr>
+        <th scope="col" (click)="sort('productName')">
+          Name
+          <img
+            *ngIf="sortDirection['productName'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortDirection['productName'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('categoryName')">
+          Category
+          <img
+            *ngIf="sortDirection['categoryName'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortDirection['categoryName'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('subcategoryName')">
+          Subcategory
+          <img
+            *ngIf="sortDirection['subcategoryName'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortDirection['subcategoryName'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('productPresentation')">
+          Presentation
+          <img
+            *ngIf="sortDirection['productPresentation'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortDirection['productPresentation'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('minimumStock')">
+          Minimum stock
+          <img
+            *ngIf="sortDirection['minimumStock'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortDirection['minimumStock'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('totalStock')">
+          Current stock
+          <img
+            *ngIf="sortDirection['totalStock'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortDirection['totalStockk'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('retailPrice')">
+          Retail price
+          <img
+            *ngIf="sortDirection['retailPrice'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortDirection['retailPrice'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('wholesalePrice')">
+          Wholesale price
+          <img
+            *ngIf="sortDirection['wholesalePrice'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortDirection['wholesalePrice'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('priceCurrency')">
+          Price currency
+          <img
+            *ngIf="sortDirection['priceCurrency'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortDirection['priceCurrency'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.productName }}</td>
+        <td>{{ product.categoryName }}</td>
+        <td>{{ product.subcategoryName }}</td>
+        <td>{{ product.productPresentation }}</td>
+        <td>{{ product.minimumStock }}</td>
+        <td>{{ product.totalStock }}</td>
+        <td>{{ product.retailPrice | currency : product.priceCurrency }}</td>
+        <td>{{ product.wholesalePrice | currency : product.priceCurrency }}</td>
+        <td>{{ product.priceCurrency }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #noProducts>
+  <p class="noProducts">There are not any products registered yet.</p>
+</ng-template>

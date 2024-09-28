@@ -72,3 +72,89 @@
     cursor: pointer;
   }
 }
+
+@mixin standard-h2 {
+  color: $secondary-text-color;
+  font-size: map-get($font-sizes, "medium");
+  font-weight: 600;
+  background-color: $secondary-background-color;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  min-width: 5px;
+  margin: 2rem;
+  overflow: hidden;
+  box-shadow: 1px 1px 20px 0px $primary-decorative-color,
+    -1px -1px 5px $primary-decorative-color;
+}
+
+@mixin standard-plain-message {
+  font-size: map-get($font-sizes, "regular");
+  color: $primary-text-color;
+  text-align: center;
+  margin: 2rem;
+}
+
+@mixin table-container {
+  margin: 4rem;
+  max-width: 95vw;
+  max-height: 90vh;
+  overflow: auto;
+  border-radius: 20px;
+  box-shadow: 1px 1px 20px 0px $primary-decorative-color,
+    -1px -1px 5px $primary-decorative-color;
+  background-color: $secondary-background-color;
+}
+
+@mixin standard-table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  text-align: center;
+  table-layout: fixed;
+  background-color: $secondary-background-color;
+  @include flex-center(column);
+  align-items: flex-start;
+  gap: 0;
+}
+
+@mixin standard-table-thead {
+  @include flex-center(column);
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+@mixin standard-table-tbody {
+  @include flex-center(column);
+  gap: 0;
+}
+
+@mixin standard-table-tr {
+  @include flex-center();
+  justify-content: center;
+}
+
+@mixin standard-table-th {
+  width: 120px;
+  padding: 0.5rem;
+  font-weight: bold;
+}
+
+@mixin standard-table-td {
+  @include flex-center();
+  width: 120px;
+  padding: 0.5rem;
+}
+
+@mixin sticky-first-column {
+  position: sticky;
+  left: 0px;
+  z-index: 1;
+  background-color: $secondary-background-color;
+  color: var(--main-text-color);
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+}

@@ -25,3 +25,32 @@
     transition: all 0.5s ease;
   }
 }
+
+.alternativeRegular {
+  background-color: $secondary-background-color;
+  color: $secondary-text-color;
+  font-weight: 600;
+  filter: drop-shadow(2px 2px 10px $primary-decorative-color);
+
+  &:hover {
+    cursor: pointer;
+    transform: translate(-4px, -4px);
+    box-shadow: 2px 2px 0px $primary-decorative-color;
+    filter: drop-shadow(2px 2px 10px $secondary-decorative-color);
+    transition: all 0.5s ease;
+  }
+}
+.red {
+  background-color: brown;
+  color: $primary-text-color;
+  font-weight: 600;
+  filter: drop-shadow(4px 4px 10px $secondary-decorative-color);
+
+  &:hover {
+    cursor: pointer;
+    transform: translate(-4px, -4px);
+    box-shadow: 2px 2px 0px $primary-decorative-color;
+    filter: drop-shadow(2px 2px 10px$secondary-background-color);
+    transition: all 0.5s ease;
+  }
+}

@@ -7,6 +7,7 @@ export interface StandardProductI {
   subcategoryName: string;
   productPresentation: string;
   minimumStock: number;
+  totalStock: number;
   retailPrice: number;
   wholesalePrice: number;
   priceCurrency: string;
