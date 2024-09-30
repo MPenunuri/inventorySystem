@@ -4,7 +4,7 @@
   [name]="open ? 'Cancel' : 'Add a new product!'"
 ></app-button>
 <app-form
-  [ngClass]="{ active: open, inactive: !open }"
+  [ngClass]="{ active: open, addDisable: !open }"
   [formGroup]="form"
   (ngSubmit)="onSubmit()"
 >

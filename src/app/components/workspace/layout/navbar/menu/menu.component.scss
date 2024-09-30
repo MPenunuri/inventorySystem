@@ -36,10 +36,7 @@ menu {
   background-color: $secondary-background-color;
   border-radius: 20px;
   filter: drop-shadow(10px 10px 20px black);
-  max-height: 0;
-  opacity: 0;
   overflow: hidden;
-  transition: all 0.5s ease;
 
   li {
     font-weight: 600;
@@ -49,10 +46,5 @@ menu {
       text-decoration: underline;
       color: $primary-decorative-color;
     }
-  }
-
-  &.show {
-    max-height: 500px;
-    opacity: 1;
   }
 }

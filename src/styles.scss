@@ -12,3 +12,48 @@ body {
 @function text-size($font-size) {
   @return map-get($font-sizes, $font-size);
 }
+
+body:not(*.addDisable),
+main:not(*.addDisable),
+section:not(*.addDisable),
+header:not(*.addDisable),
+aside:not(*.addDisable),
+footer:not(*.addDisable),
+form:not(*.addDisable),
+h1:not(*.addDisable),
+menu:not(*.addDisable),
+[class^="app-"]:not(.addDisable) {
+  animation: setVisible 1s ease 0.3s;
+  animation-fill-mode: forwards;
+  transform: scale(0, 0);
+}
+
+@keyframes setVisible {
+  from {
+    transform: scale(0, 0);
+  }
+
+  to {
+    transform: scale(1, 1);
+  }
+}
+
+.addDisable {
+  animation: setInvisible 0.5s ease 0s;
+  animation-fill-mode: forwards;
+  transform: scale(1, 1);
+}
+
+@keyframes setInvisible {
+  0% {
+    transform: scale(1, 1);
+  }
+
+  99.9% {
+    transform: scale(0, 0);
+  }
+
+  100% {
+    display: none;
+  }
+}
