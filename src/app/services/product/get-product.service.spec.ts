@@ -48,6 +48,7 @@ describe('GetProductService', () => {
       subcategoryName: 'Subcategory 1',
       productPresentation: 'Box',
       minimumStock: 50,
+      totalStock: 200,
       retailPrice: 15,
       wholesalePrice: 12,
       priceCurrency: 'USD',
@@ -146,7 +147,7 @@ describe('GetProductService', () => {
       },
     });
 
-    const req = httpTesting.expectOne('/api/secure/product');
+    const req = httpTesting.expectOne('/api/secure/product/all');
     expect(req.request.method).toBe('GET');
     req.flush(mockStandardProducts);
   });
