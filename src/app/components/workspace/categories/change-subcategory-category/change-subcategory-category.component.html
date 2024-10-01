@@ -1,0 +1,13 @@
+<app-form
+  [title]="'Change ' + subcategoryName + ' category'"
+  (ngSubmit)="onSubmit()"
+  [formGroup]="form"
+  ><app-select-input
+    formControlName="categoryId"
+    [name]="'categoryId'"
+    [label]="'Category'"
+    [holder]="'Select category'"
+    [options]="categories"
+  ></app-select-input>
+  <app-button [name]="'Save'"></app-button>
+</app-form>

@@ -1,0 +1,10 @@
+@use "../../../../../styles.scss" as *;
+
+:host {
+  @include full-view();
+  min-height: 0;
+}
+
+app-form {
+  min-height: 0;
+}

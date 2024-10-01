@@ -116,7 +116,10 @@
           <app-small-edit-button
             [spanText]="'Change subcategory category'"
             [editRoute]="
-              '/workspace/subcategory/category/change/' + record.subcategoryId
+              '/workspace/subcategory/category/change/' +
+              record.subcategoryId +
+              '/' +
+              record.subcategoryName
             "
           ></app-small-edit-button>
         </td>
