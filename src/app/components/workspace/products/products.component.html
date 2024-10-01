@@ -15,12 +15,12 @@
         <th scope="col" (click)="sort('productName')">
           Name
           <img
-            *ngIf="sortDirection['productName'] === false"
+            *ngIf="sortService.sortDirection['productName'] === false"
             [src]="arrowDown"
             alt="Sort ascending"
           />
           <img
-            *ngIf="sortDirection['productName'] === true"
+            *ngIf="sortService.sortDirection['productName'] === true"
             [src]="arrowUp"
             alt="Sort descending"
           />
@@ -28,12 +28,12 @@
         <th scope="col" (click)="sort('categoryName')">
           Category
           <img
-            *ngIf="sortDirection['categoryName'] === false"
+            *ngIf="sortService.sortDirection['categoryName'] === false"
             [src]="arrowDown"
             alt="Sort ascending"
           />
           <img
-            *ngIf="sortDirection['categoryName'] === true"
+            *ngIf="sortService.sortDirection['categoryName'] === true"
             [src]="arrowUp"
             alt="Sort descending"
           />
@@ -41,12 +41,12 @@
         <th scope="col" (click)="sort('subcategoryName')">
           Subcategory
           <img
-            *ngIf="sortDirection['subcategoryName'] === false"
+            *ngIf="sortService.sortDirection['subcategoryName'] === false"
             [src]="arrowDown"
             alt="Sort ascending"
           />
           <img
-            *ngIf="sortDirection['subcategoryName'] === true"
+            *ngIf="sortService.sortDirection['subcategoryName'] === true"
             [src]="arrowUp"
             alt="Sort descending"
           />
@@ -54,12 +54,12 @@
         <th scope="col" (click)="sort('productPresentation')">
           Presentation
           <img
-            *ngIf="sortDirection['productPresentation'] === false"
+            *ngIf="sortService.sortDirection['productPresentation'] === false"
             [src]="arrowDown"
             alt="Sort ascending"
           />
           <img
-            *ngIf="sortDirection['productPresentation'] === true"
+            *ngIf="sortService.sortDirection['productPresentation'] === true"
             [src]="arrowUp"
             alt="Sort descending"
           />
@@ -67,12 +67,12 @@
         <th scope="col" (click)="sort('minimumStock')">
           Minimum stock
           <img
-            *ngIf="sortDirection['minimumStock'] === false"
+            *ngIf="sortService.sortDirection['minimumStock'] === false"
             [src]="arrowDown"
             alt="Sort ascending"
           />
           <img
-            *ngIf="sortDirection['minimumStock'] === true"
+            *ngIf="sortService.sortDirection['minimumStock'] === true"
             [src]="arrowUp"
             alt="Sort descending"
           />
@@ -80,12 +80,12 @@
         <th scope="col" (click)="sort('totalStock')">
           Current stock
           <img
-            *ngIf="sortDirection['totalStock'] === false"
+            *ngIf="sortService.sortDirection['totalStock'] === false"
             [src]="arrowDown"
             alt="Sort ascending"
           />
           <img
-            *ngIf="sortDirection['totalStockk'] === true"
+            *ngIf="sortService.sortDirection['totalStockk'] === true"
             [src]="arrowUp"
             alt="Sort descending"
           />
@@ -93,12 +93,12 @@
         <th scope="col" (click)="sort('retailPrice')">
           Retail price
           <img
-            *ngIf="sortDirection['retailPrice'] === false"
+            *ngIf="sortService.sortDirection['retailPrice'] === false"
             [src]="arrowDown"
             alt="Sort ascending"
           />
           <img
-            *ngIf="sortDirection['retailPrice'] === true"
+            *ngIf="sortService.sortDirection['retailPrice'] === true"
             [src]="arrowUp"
             alt="Sort descending"
           />
@@ -106,12 +106,12 @@
         <th scope="col" (click)="sort('wholesalePrice')">
           Wholesale price
           <img
-            *ngIf="sortDirection['wholesalePrice'] === false"
+            *ngIf="sortService.sortDirection['wholesalePrice'] === false"
             [src]="arrowDown"
             alt="Sort ascending"
           />
           <img
-            *ngIf="sortDirection['wholesalePrice'] === true"
+            *ngIf="sortService.sortDirection['wholesalePrice'] === true"
             [src]="arrowUp"
             alt="Sort descending"
           />
@@ -119,12 +119,12 @@
         <th scope="col" (click)="sort('priceCurrency')">
           Price currency
           <img
-            *ngIf="sortDirection['priceCurrency'] === false"
+            *ngIf="sortService.sortDirection['priceCurrency'] === false"
             [src]="arrowDown"
             alt="Sort ascending"
           />
           <img
-            *ngIf="sortDirection['priceCurrency'] === true"
+            *ngIf="sortService.sortDirection['priceCurrency'] === true"
             [src]="arrowUp"
             alt="Sort descending"
           />

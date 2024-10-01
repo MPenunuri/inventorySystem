@@ -1,0 +1,31 @@
+@use "../../../../../styles.scss" as *;
+
+:host {
+  @include flex-center(column);
+  width: 80%;
+  min-width: 300px;
+}
+
+label {
+  @include standard-label();
+}
+
+select {
+  font-family: "Montserrat", sans-serif;
+  font-size: map-get($font-sizes, "small");
+  text-align: center;
+  width: 85%;
+  padding: 0.5rem;
+  border-radius: 20px;
+  border: 1px solid $primary-decorative-color;
+
+  &:focus,
+  &:hover {
+    outline: none;
+    border: 0.5px solid $primary-background-color;
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 1px $primary-decorative-color;
+    filter: drop-shadow(1px 1px 10px $primary-decorative-color);
+    transition: all 0.5s ease;
+  }
+}

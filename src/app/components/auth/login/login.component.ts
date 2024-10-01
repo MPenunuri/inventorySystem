@@ -33,8 +33,7 @@ export class LoginComponent {
   constructor(
     private authService: AuthService,
     private fb: FormBuilder,
-    private router: Router,
-    private sanitizer: InputSanitizerService
+    private router: Router
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -43,8 +42,8 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    const email = this.sanitizer.sanitize(this.loginForm.value.email);
-    const password = this.sanitizer.sanitize(this.loginForm.value.password);
+    const email = this.loginForm.value.email;
+    const password = this.loginForm.value.password;
     this.authService.setUserCredentials(email, password);
     this.authService.login().subscribe({
       next: (token) => {

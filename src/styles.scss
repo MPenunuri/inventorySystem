@@ -13,17 +13,14 @@ body {
   @return map-get($font-sizes, $font-size);
 }
 
-body:not(*.addDisable),
-main:not(*.addDisable),
-section:not(*.addDisable),
-header:not(*.addDisable),
-aside:not(*.addDisable),
-footer:not(*.addDisable),
-form:not(*.addDisable),
-h1:not(*.addDisable),
-menu:not(*.addDisable),
-[class^="app-"]:not(.addDisable) {
-  animation: setVisible 1s ease 0.3s;
+[class^="app-"]:not(.disabled) {
+  animation: setVisible 1s ease 0s;
+  animation-fill-mode: forwards;
+  transform: scale(0, 0);
+}
+
+.outletContainer:not(*.disabled) {
+  animation: setVisible 1.5s ease 0s;
   animation-fill-mode: forwards;
   transform: scale(0, 0);
 }
@@ -38,7 +35,7 @@ menu:not(*.addDisable),
   }
 }
 
-.addDisable {
+.disabled {
   animation: setInvisible 0.5s ease 0s;
   animation-fill-mode: forwards;
   transform: scale(1, 1);

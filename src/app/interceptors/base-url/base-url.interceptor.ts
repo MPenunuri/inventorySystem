@@ -8,6 +8,5 @@ export function baseUrlInterceptor(
   const clonedRequest = req.clone({
     url: `https://inventory-system-production-6a39.up.railway.app${req.url}`,
   });
-
   return next(clonedRequest);
 }

@@ -1,0 +1,79 @@
+<h2>Categories</h2>
+
+<app-add-category (saved)="setCategoriesAndSubcategories()"></app-add-category>
+
+<app-add-subcategory
+  (saved)="setCategoriesAndSubcategories()"
+  *ngIf="categories && categories.length > 0"
+  [categories]="categories"
+></app-add-subcategory>
+
+<div
+  class="tableContainer"
+  *ngIf="
+    categoriesAndSubcategories && categoriesAndSubcategories.length > 0;
+    else noCategories
+  "
+>
+  <table
+    aria-live="polite"
+    aria-label="List of registered categories with their respective details"
+  >
+    <thead>
+      <tr>
+        <th scope="col" (click)="sort('categoryName')">
+          Category name
+          <img
+            *ngIf="sortService.sortDirection['categoryName'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['categoryName'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('subcategoryName')">
+          Subcategory name
+          <img
+            *ngIf="sortService.sortDirection['subcategoryName'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['subcategoryName'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('products')">
+          Products
+          <img
+            *ngIf="sortService.sortDirection['products'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['products'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let record of categoriesAndSubcategories">
+        <td>
+          <input type="text" [value]="record.categoryName" />
+        </td>
+        <td>{{ record.subcategoryName }}</td>
+        <td>{{ record.products }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #noCategories>
+  <p class="noCategories">There are not any categories registered yet.</p>
+</ng-template>

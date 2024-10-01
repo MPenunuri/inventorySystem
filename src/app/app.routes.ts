@@ -4,6 +4,7 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { WorkspaceComponent } from './components/workspace/workspace.component';
 import { authGuard } from './guards/auth.guard';
 import { ProductsComponent } from './components/workspace/products/products.component';
+import { CategoriesComponent } from './components/workspace/categories/categories.component';
 
 export const routes: Routes = [
   { path: 'signup', component: SignupComponent, canActivate: [authGuard] },
@@ -16,6 +17,10 @@ export const routes: Routes = [
       {
         path: 'products',
         component: ProductsComponent,
+      },
+      {
+        path: 'categories',
+        component: CategoriesComponent,
       },
     ],
   },

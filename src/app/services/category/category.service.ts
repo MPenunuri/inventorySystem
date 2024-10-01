@@ -7,6 +7,7 @@ import {
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CategoryEntityI } from '../../models/category/category-entity';
+import { CategorieAndSubcategorie } from '../../models/category/categorieAndsubcategorie';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +25,12 @@ export class CategoryService {
 
   getCategories(): Observable<CategoryEntityI[]> {
     return this.http.get<CategoryEntityI[]>('/api/secure/category');
+  }
+
+  getCategoriesAndSubcategories(): Observable<CategorieAndSubcategorie[]> {
+    return this.http.get<CategorieAndSubcategorie[]>(
+      '/api/secure/category/with-subcategories-info'
+    );
   }
 
   updateCategoryName(id: number, name: string): Observable<CategoryEntityI> {

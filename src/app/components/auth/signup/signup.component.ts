@@ -50,11 +50,9 @@ export class SignupComponent {
 
   onSubmit() {
     const name = this.sanitizer.sanitize(this.signupForm.value.name);
-    const email = this.sanitizer.sanitize(this.signupForm.value.email);
-    const password = this.sanitizer.sanitize(this.signupForm.value.password);
-    const pswConfirmation = this.sanitizer.sanitize(
-      this.signupForm.value.passwordConfirmation
-    );
+    const email = this.signupForm.value.email;
+    const password = this.signupForm.value.password;
+    const pswConfirmation = this.signupForm.value.passwordConfirmation;
     if (password !== pswConfirmation) {
       return alert('Passwords must match');
     }

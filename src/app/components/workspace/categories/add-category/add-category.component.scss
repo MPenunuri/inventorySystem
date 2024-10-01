@@ -2,6 +2,7 @@
 
 :host {
   @include flex-center(column);
+  height: auto;
 }
 
 app-form {

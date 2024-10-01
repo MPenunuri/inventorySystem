@@ -1,0 +1,6 @@
+<input type="text" [readonly]="!isEditing" [ngModel]="text" />
+
+<button (click)="toggleEdit()" class="edit-button">
+  <img *ngIf="!isEditing" src="assets/edit-icon.svg" alt="Edit" />
+  <img *ngIf="isEditing" src="assets/save-icon.svg" alt="Save" />
+</button>

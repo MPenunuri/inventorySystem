@@ -1,0 +1,45 @@
+@use "../../../../../styles.scss" as *;
+
+:host {
+  @include flex-center();
+  width: 100%;
+}
+
+button {
+  @include flex-center();
+  position: relative;
+  padding: 0;
+  width: 30px;
+  height: auto;
+  margin: 0.5rem;
+  font-weight: 400;
+  border-radius: 20px;
+  border: 2px solid $primary-decorative-color;
+  color: $primary-text-color;
+  border-style: none;
+  filter: drop-shadow(4px 4px 10px $secondary-decorative-color);
+
+  &:hover {
+    cursor: pointer;
+    transform: translate(-4px, -4px);
+    box-shadow: 2px 2px 0px $primary-decorative-color;
+    filter: drop-shadow(2px 2px 10px$secondary-background-color);
+    transition: all 0.5s ease;
+    span {
+      opacity: 1;
+    }
+  }
+
+  span {
+    @include standard-span;
+    top: -320%;
+    right: -125%;
+  }
+
+  img {
+    width: 20px;
+    height: auto;
+    filter: brightness(0) saturate(100%) invert(35%) sepia(100%) saturate(700%)
+      hue-rotate(-10deg);
+  }
+}

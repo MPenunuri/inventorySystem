@@ -1,0 +1,21 @@
+<app-button
+  (clicked)="toggleOpen()"
+  [className]="open ? 'regular red' : 'regular alternativeRegular'"
+  [name]="open ? 'Cancel' : 'Add subcategory'"
+></app-button>
+<app-form [ngClass]="{ show: open }" [formGroup]="form" (ngSubmit)="onSubmit()"
+  ><app-select-input
+    formControlName="categoryId"
+    [name]="'categoryId'"
+    [label]="'Category'"
+    [holder]="'Select category'"
+    [options]="categories"
+  ></app-select-input>
+  <app-text-input
+    formControlName="name"
+    [name]="'name'"
+    [label]="'Name'"
+    [holder]="'Enter subcategory name'"
+  ></app-text-input>
+  <app-button [name]="'Register'"></app-button>
+</app-form>

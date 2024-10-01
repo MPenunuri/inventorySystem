@@ -2,6 +2,7 @@
 
 :host {
   @include flex-center(column);
+  height: auto;
 }
 
 app-form {
@@ -11,6 +12,14 @@ app-form {
   transition: height 0.5s ease-in-out;
 
   &.show {
-    height: 200px;
+    height: 280px;
   }
+}
+
+app-select-input {
+  margin-top: 1rem;
+}
+
+app-button {
+  margin-bottom: 1rem;
 }
