@@ -36,6 +36,13 @@ p.noCategories {
           &:first-child {
             @include sticky-first-column;
           }
+          &:first-child,
+          &:nth-child(2) {
+            width: 220px;
+          }
+          &:last-child {
+            width: 200px;
+          }
           img {
             width: 10px;
           }
@@ -54,8 +61,28 @@ p.noCategories {
           &:first-child {
             @include sticky-first-column;
           }
+          &:first-child,
+          &:nth-child(2) {
+            width: 220px;
+          }
+          &:last-child {
+            width: 200px;
+          }
         }
       }
     }
+  }
+}
+
+a {
+  @include standard-anchor-router-link;
+
+  &:hover {
+    span {
+      opacity: 1;
+    }
+  }
+  span {
+    @include standard-span;
   }
 }

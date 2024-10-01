@@ -6,11 +6,24 @@ import { AddCategoryComponent } from './add-category/add-category.component';
 import { CommonModule } from '@angular/common';
 import { AddSubcategoryComponent } from './add-subcategory/add-subcategory.component';
 import { CategorieAndSubcategorie } from '../../../models/category/categorieAndsubcategorie';
+import { EditableTextComponent } from '../../commons/editable/editable-text/editable-text.component';
+import { SubcategoryService } from '../../../services/subcategory/subcategory.service';
+import { RouterLink } from '@angular/router';
+import { SmallDeleteButtonComponent } from '../../commons/button/small-delete-button/small-delete-button.component';
+import { SmallEditButtonComponent } from '../../commons/button/small-edit-button/small-edit-button.component';
 
 @Component({
   selector: 'app-categories',
   standalone: true,
-  imports: [CommonModule, AddCategoryComponent, AddSubcategoryComponent],
+  imports: [
+    CommonModule,
+    AddCategoryComponent,
+    AddSubcategoryComponent,
+    EditableTextComponent,
+    RouterLink,
+    SmallDeleteButtonComponent,
+    SmallEditButtonComponent,
+  ],
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.scss',
 })
@@ -22,7 +35,8 @@ export class CategoriesComponent {
   @Output() saved: EventEmitter<void> = new EventEmitter();
 
   constructor(
-    private service: CategoryService,
+    public service: CategoryService,
+    public subService: SubcategoryService,
     public sortService: SortArrayService
   ) {}
 

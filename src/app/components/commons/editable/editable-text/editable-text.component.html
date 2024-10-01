@@ -1,6 +1,15 @@
-<input type="text" [readonly]="!isEditing" [ngModel]="text" />
+<input
+  type="text"
+  [readonly]="!isEditing"
+  [(ngModel)]="text"
+  [ngClass]="{ editable: editable, onEdit: isEditing }"
+/>
 
-<button (click)="toggleEdit()" class="edit-button">
-  <img *ngIf="!isEditing" src="assets/edit-icon.svg" alt="Edit" />
-  <img *ngIf="isEditing" src="assets/save-icon.svg" alt="Save" />
+<button
+  (click)="toggleEdit()"
+  [ngClass]="{ editable: editable, onEdit: isEditing }"
+  [attr.aria-label]="isEditing ? 'Save changes' : 'Edit text'"
+>
+  <img *ngIf="!isEditing" src="assets/create-outline.svg" alt="Edit" />
+  <img *ngIf="isEditing" src="assets/save-outline.svg" alt="Save" />
 </button>

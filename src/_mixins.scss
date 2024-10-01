@@ -94,6 +94,27 @@
   margin: 2rem;
 }
 
+@mixin standard-anchor-router-link {
+  position: relative;
+}
+
+@mixin standard-span {
+  width: 80px;
+  height: auto;
+  position: absolute;
+  opacity: 0;
+  transition: all 0.5s ease;
+  top: -350%;
+  right: -500%;
+  text-align: center;
+  font-size: map-get($font-sizes, "light");
+  background-color: $primary-background-color;
+  color: $primary-text-color;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  pointer-events: none;
+}
+
 @mixin table-container {
   margin: 1rem;
   max-width: 95vw;
@@ -122,7 +143,7 @@
   @include flex-center(column);
   position: sticky;
   top: 0;
-  z-index: 2;
+  z-index: 1;
   font-weight: 400;
   font-size: 1rem;
 }
@@ -138,14 +159,14 @@
 }
 
 @mixin standard-table-th {
-  width: 120px;
+  width: 150px;
   padding: 0.5rem;
   font-weight: bold;
 }
 
 @mixin standard-table-td {
   @include flex-center();
-  width: 120px;
+  width: 150px;
   padding: 0.5rem;
 }
 

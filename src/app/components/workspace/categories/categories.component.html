@@ -60,15 +60,66 @@
             alt="Sort descending"
           />
         </th>
+        <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let record of categoriesAndSubcategories">
         <td>
-          <input type="text" [value]="record.categoryName" />
+          <app-editable-text
+            [id]="record.categoryId"
+            [text]="record.categoryName"
+            [action]="service.updateCategoryName.bind(service)"
+          ></app-editable-text>
         </td>
-        <td>{{ record.subcategoryName }}</td>
-        <td>{{ record.products }}</td>
+        <td>
+          <app-editable-text
+            [id]="record.subcategoryId"
+            [text]="record.subcategoryName"
+            [action]="subService.renameSubcategory.bind(subService)"
+          ></app-editable-text>
+        </td>
+        <td>
+          <ng-container *ngIf="record.products === 0; else showLink">
+            {{ record.products }}
+          </ng-container>
+          <ng-template #showLink>
+            <a
+              [routerLink]="[
+                '/workspace/categories/subcategory/' +
+                  record.subcategoryId +
+                  '/products'
+              ]"
+            >
+              {{ record.products }}
+              <span class="tooltip">Show subcategory products</span>
+            </a>
+          </ng-template>
+        </td>
+        <td>
+          <ng-container *ngIf="record.subcategoryId; else deleteCategory">
+            <app-small-delete-button
+              [spanText]="'Delete subcategory'"
+              [id]="record.subcategoryId"
+              [deleteFn]="subService.deleteSubcategory.bind(subService)"
+              (clicked)="setCategoriesAndSubcategories()"
+            ></app-small-delete-button>
+          </ng-container>
+          <ng-template #deleteCategory>
+            <app-small-delete-button
+              [spanText]="'Delete category'"
+              [id]="record.categoryId"
+              [deleteFn]="service.deleteCategory.bind(service)"
+              (clicked)="setCategoriesAndSubcategories()"
+            ></app-small-delete-button>
+          </ng-template>
+          <app-small-edit-button
+            [spanText]="'Change subcategory category'"
+            [editRoute]="
+              '/workspace/subcategory/category/change/' + record.subcategoryId
+            "
+          ></app-small-edit-button>
+        </td>
       </tr>
     </tbody>
   </table>
