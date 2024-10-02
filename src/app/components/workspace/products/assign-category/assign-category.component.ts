@@ -56,7 +56,7 @@ export class AssignCategoryComponent {
   ngOnInit(): void {
     const paramProductId = this.route.snapshot.paramMap.get('productId');
     const paramProductName = this.route.snapshot.paramMap.get('productName');
-    const paramCurrenctSubcategoryId = this.route.snapshot.paramMap.get(
+    const paramCurrentSubcategoryId = this.route.snapshot.paramMap.get(
       'currentSubcategoryId'
     );
 
@@ -75,15 +75,15 @@ export class AssignCategoryComponent {
         }
       },
       error: () => {
-        alert('No categories to assign');
+        alert('No categories to assign. Go to categories and register one.');
       },
     });
 
     this.subService.getAllSubcategories().subscribe({
       next: (data) => {
         this.subcategories = data;
-        if (paramCurrenctSubcategoryId !== null) {
-          this.currentSubcategoryId = parseInt(paramCurrenctSubcategoryId);
+        if (paramCurrentSubcategoryId !== null) {
+          this.currentSubcategoryId = parseInt(paramCurrentSubcategoryId);
           const currentSubcategory = this.subcategories.find(
             (i) => i.id === this.currentSubcategoryId
           );
@@ -97,7 +97,7 @@ export class AssignCategoryComponent {
         }
       },
       error: () => {
-        alert('No subcategories to assign');
+        alert('No subcategories to assign. Go to categories and register one.');
       },
     });
 

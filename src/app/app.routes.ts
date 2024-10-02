@@ -8,6 +8,7 @@ import { CategoriesComponent } from './components/workspace/categories/categorie
 import { ChangeSubcategoryCategoryComponent } from './components/workspace/categories/change-subcategory-category/change-subcategory-category.component';
 import { AssignCategoryComponent } from './components/workspace/products/assign-category/assign-category.component';
 import { CurrenciesComponent } from './components/workspace/currencies/currencies.component';
+import { AssignCurrencyComponent } from './components/workspace/products/assign-currency/assign-currency.component';
 
 export const routes: Routes = [
   { path: 'signup', component: SignupComponent, canActivate: [authGuard] },
@@ -28,6 +29,14 @@ export const routes: Routes = [
       {
         path: 'product/:productId/:productName/assign-subcategory/:currentSubcategoryId',
         component: AssignCategoryComponent,
+      },
+      {
+        path: 'product/:productId/:productName/assign-currency',
+        component: AssignCurrencyComponent,
+      },
+      {
+        path: 'product/:productId/:productName/assign-currency/:currentCurrencyId',
+        component: AssignCurrencyComponent,
       },
       {
         path: 'categories',

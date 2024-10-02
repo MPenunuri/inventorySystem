@@ -1,0 +1,15 @@
+<app-form
+  [title]="'Assign a currency for ' + productName + ' selling prices'"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+>
+  <app-select-input
+    [defaultOption]="currentCurrencyId?.toString() || ''"
+    formControlName="currencyId"
+    [name]="'currencyId'"
+    [label]="'Currency'"
+    [holder]="'Select currency'"
+    [options]="currencies"
+  ></app-select-input>
+  <app-button [name]="'Save'"></app-button>
+</app-form>

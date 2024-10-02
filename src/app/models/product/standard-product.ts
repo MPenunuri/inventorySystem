@@ -10,5 +10,6 @@ export interface StandardProductI {
   totalStock: number;
   retailPrice: number;
   wholesalePrice: number;
+  priceCurrencyId: number;
   priceCurrency: string;
 }

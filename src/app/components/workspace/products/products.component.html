@@ -194,7 +194,20 @@
             [action]="patchService.updateWholesalePrice.bind(patchService)"
           ></app-editable-number>
         </td>
-        <td>{{ product.priceCurrency }}</td>
+        <td>
+          <app-editable-nav
+            [text]="product.priceCurrency"
+            [spanText]="'Set product currency'"
+            [editRoute]="
+              'workspace/product/' +
+              product.productId +
+              '/' +
+              product.productName +
+              '/assign-currency' +
+              (product.priceCurrencyId ? '/' + product.priceCurrencyId : '')
+            "
+          ></app-editable-nav>
+        </td>
       </tr>
     </tbody>
   </table>
