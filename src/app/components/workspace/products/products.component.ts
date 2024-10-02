@@ -7,6 +7,7 @@ import { SortArrayService } from '../../../services/utils/sort-array.service';
 import { EditableNavComponent } from '../../commons/editable/editable-nav/editable-nav.component';
 import { EditableTextComponent } from '../../commons/editable/editable-text/editable-text.component';
 import { PatchProductService } from '../../../services/product/patch-product.service';
+import { EditableNumberComponent } from '../../commons/editable/editable-number/editable-number.component';
 
 @Component({
   selector: 'app-products',
@@ -16,6 +17,7 @@ import { PatchProductService } from '../../../services/product/patch-product.ser
     AddProductComponent,
     EditableNavComponent,
     EditableTextComponent,
+    EditableNumberComponent,
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',

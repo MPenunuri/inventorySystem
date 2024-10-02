@@ -1,0 +1,97 @@
+@use "../../../../../styles.scss" as *;
+
+:host {
+  @include flex-center();
+  width: 100%;
+
+  &:hover,
+  &:focus {
+    button.editable {
+      opacity: 1;
+    }
+  }
+}
+
+input {
+  cursor: default;
+  font-family: "Montserrat", sans-serif;
+  font-size: map-get($font-sizes, "small");
+  border: 0px solid $primary-decorative-color;
+  text-align: center;
+  width: 90%;
+  border-radius: 20px;
+  padding: 0.25rem;
+
+  &:focus.editable,
+  &:hover.editable {
+    cursor: pointer;
+    outline: none;
+  }
+
+  &.editable.onEdit {
+    cursor: text;
+    outline: none;
+    border: 1px solid $primary-background-color;
+    transform: translate(-1px, -1px);
+    box-shadow: 1px 1px 1px $primary-decorative-color;
+    filter: drop-shadow(1px 1px 10px $primary-decorative-color);
+    transition: all 0.5s ease;
+    border: 1px solid $primary-decorative-color;
+  }
+}
+
+button {
+  opacity: 0;
+  width: 22px;
+  gap: 0;
+  border: none;
+  background-color: transparent;
+  color: none;
+  text-align: center;
+  padding: 0;
+
+  img {
+    width: 20px;
+    object-fit: contain;
+  }
+
+  &.editable.onEdit {
+    opacity: 1;
+    box-shadow: 2px 2px 5px $primary-decorative-color;
+    background-color: $primary-background-color;
+    border: 1px solid $primary-decorative-color;
+    border-radius: 4px;
+
+    &:hover,
+    &:focus {
+      cursor: pointer;
+      transform: translate(-2px, -2px);
+      transition: all 1s ease;
+
+      img {
+        filter: invert(100%) brightness(100%) contrast(100%);
+      }
+    }
+
+    img {
+      filter: invert(100%) brightness(100%) contrast(100%);
+
+      &:hover {
+        transform: translate(-1px, -1px);
+        transition: all 0.5s ease;
+      }
+    }
+  }
+
+  &:hover.editable,
+  &:focus.editable {
+    cursor: pointer;
+    transform: translate(-2px, -2px);
+    transition: all 1s ease;
+
+    img {
+      filter: brightness(0) saturate(100%) invert(20%) sepia(100%)
+        saturate(1000%) hue-rotate(200deg) brightness(1.1) contrast(1.1);
+    }
+  }
+}

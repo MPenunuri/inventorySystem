@@ -169,10 +169,31 @@
             [action]="patchService.updateProductPresentation.bind(patchService)"
           ></app-editable-text>
         </td>
-        <td>{{ product.minimumStock }}</td>
+        <td>
+          <app-editable-number
+            [decimals]="0"
+            [id]="product.productId"
+            [text]="product.minimumStock.toString()"
+            [action]="patchService.updateMinimumStock.bind(patchService)"
+          ></app-editable-number>
+        </td>
         <td>{{ product.totalStock }}</td>
-        <td>{{ product.retailPrice }}</td>
-        <td>{{ product.wholesalePrice }}</td>
+        <td>
+          <app-editable-number
+            [decimals]="2"
+            [id]="product.productId"
+            [text]="product.retailPrice.toString()"
+            [action]="patchService.updateRetailPrice.bind(patchService)"
+          ></app-editable-number>
+        </td>
+        <td>
+          <app-editable-number
+            [decimals]="2"
+            [id]="product.productId"
+            [text]="product.wholesalePrice.toString()"
+            [action]="patchService.updateWholesalePrice.bind(patchService)"
+          ></app-editable-number>
+        </td>
         <td>{{ product.priceCurrency }}</td>
       </tr>
     </tbody>
