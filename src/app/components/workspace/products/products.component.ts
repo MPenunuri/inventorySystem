@@ -8,6 +8,7 @@ import { EditableNavComponent } from '../../commons/editable/editable-nav/editab
 import { EditableTextComponent } from '../../commons/editable/editable-text/editable-text.component';
 import { PatchProductService } from '../../../services/product/patch-product.service';
 import { EditableNumberComponent } from '../../commons/editable/editable-number/editable-number.component';
+import { EditableTextAreaComponent } from '../../commons/editable/editable-text-area/editable-text-area.component';
 
 @Component({
   selector: 'app-products',
@@ -18,6 +19,7 @@ import { EditableNumberComponent } from '../../commons/editable/editable-number/
     EditableNavComponent,
     EditableTextComponent,
     EditableNumberComponent,
+    EditableTextAreaComponent,
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',

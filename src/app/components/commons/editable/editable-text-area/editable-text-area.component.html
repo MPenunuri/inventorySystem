@@ -1,0 +1,14 @@
+<textarea
+  [readonly]="!isEditing"
+  [(ngModel)]="text"
+  [ngClass]="{ editable: editable, onEdit: isEditing }"
+></textarea>
+
+<button
+  (click)="toggleEdit()"
+  [ngClass]="{ editable: editable, onEdit: isEditing }"
+  [attr.aria-label]="isEditing ? 'Save changes' : 'Edit text'"
+>
+  <img *ngIf="!isEditing" src="assets/create-outline.svg" alt="Edit" />
+  <img *ngIf="isEditing" src="assets/save-outline.svg" alt="Save" />
+</button>

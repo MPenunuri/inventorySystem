@@ -52,7 +52,7 @@
           />
         </th>
         <th scope="col" (click)="sort('productPresentation')">
-          Presentation
+          Description
           <img
             *ngIf="sortService.sortDirection['productPresentation'] === false"
             [src]="arrowDown"
@@ -163,11 +163,11 @@
           ></app-editable-nav>
         </td>
         <td>
-          <app-editable-text
+          <app-editable-text-area
             [id]="product.productId"
             [text]="product.productPresentation"
             [action]="patchService.updateProductPresentation.bind(patchService)"
-          ></app-editable-text>
+          ></app-editable-text-area>
         </td>
         <td>
           <app-editable-number
