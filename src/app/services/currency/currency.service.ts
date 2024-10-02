@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CreateEntityI } from '../../models/create-entity';
-import {
-  CurrencyI,
-  CurrencyUpdate,
-  NewCurrency,
-} from '../../models/currency/currency';
+import { CurrencyUpdate, NewCurrency } from '../../models/currency/currency';
 import { HttpClient } from '@angular/common/http';
 import { CurrencyEntityI } from '../../models/currency/currency-entity';
 import { Observable } from 'rxjs';

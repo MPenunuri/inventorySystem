@@ -1,0 +1,17 @@
+@use "../../../../../styles.scss" as *;
+
+:host {
+  @include flex-center(column);
+  height: auto;
+}
+
+app-form {
+  min-height: 0;
+  height: 0;
+  overflow: hidden;
+  transition: height 0.5s ease-in-out;
+
+  &.show {
+    height: 200px;
+  }
+}

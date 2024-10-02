@@ -1,0 +1,15 @@
+<app-button
+  (clicked)="toggleOpen()"
+  [className]="open ? 'regular red' : 'regular alternativeRegular'"
+  [name]="open ? 'Cancel' : 'Add currency'"
+></app-button>
+<app-form [ngClass]="{ show: open }" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <app-select-input
+    formControlName="name"
+    [name]="'currency'"
+    [label]="'Currency'"
+    [holder]="'Select currency'"
+    [options]="currencies"
+  ></app-select-input>
+  <app-button [name]="'Register'"></app-button>
+</app-form>

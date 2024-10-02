@@ -1,0 +1,48 @@
+<h2>Currencies</h2>
+
+<app-add-currency (saved)="setCurrencies()"></app-add-currency>
+
+<div
+  class="tableContainer"
+  *ngIf="currencies && currencies.length > 0; else noCurrencies"
+>
+  <table aria-live="polite" aria-label="List of registered currencies">
+    <thead>
+      <tr>
+        <th scope="col" (click)="sort('name')">
+          Currency name
+          <img
+            *ngIf="sortService.sortDirection['name'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['name'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let record of currencies">
+        <td>
+          {{ record.name }}
+        </td>
+        <td>
+          <app-small-delete-button
+            [spanText]="'Delete currency'"
+            [id]="record.id"
+            [deleteFn]="service.deleteCurrency.bind(service)"
+            (clicked)="setCurrencies()"
+          ></app-small-delete-button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #noCurrencies>
+  <p class="noCurrencies">There are not any currencies registered yet.</p>
+</ng-template>

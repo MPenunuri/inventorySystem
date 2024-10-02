@@ -18,6 +18,7 @@ select {
   padding: 0.5rem;
   border-radius: 20px;
   border: 1px solid $primary-decorative-color;
+  white-space: nowrap;
 
   &:focus,
   &:hover {
@@ -27,5 +28,13 @@ select {
     box-shadow: 1px 1px 1px $primary-decorative-color;
     filter: drop-shadow(1px 1px 10px $primary-decorative-color);
     transition: all 0.5s ease;
+  }
+
+  option {
+    text-align: left;
+    white-space: normal;
+    width: 50%;
+    max-width: 50%;
+    overflow-wrap: break-word;
   }
 }

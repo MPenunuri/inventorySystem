@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { CategoryService } from '../../../services/category/category.service';
 import { CategoryEntityI } from '../../../models/category/category-entity';
 import { SortArrayService } from '../../../services/utils/sort-array.service';
@@ -32,7 +32,6 @@ export class CategoriesComponent {
   categoriesAndSubcategories?: CategorieAndSubcategorie[];
   arrowDown = 'assets/arrow-down-outline.svg';
   arrowUp = 'assets/arrow-up-outline.svg';
-  @Output() saved: EventEmitter<void> = new EventEmitter();
 
   constructor(
     public service: CategoryService,
@@ -45,7 +44,6 @@ export class CategoriesComponent {
       next: (data: CategoryEntityI[]) => {
         this.categories = data;
         this.sortService.sort(this.categories, 'name');
-        this.saved.emit();
       },
     });
   }
