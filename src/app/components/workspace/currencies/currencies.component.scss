@@ -54,6 +54,9 @@ p.noCurrencies {
           &:first-child {
             @include sticky-first-column;
           }
+          span {
+            font-size: map-get($font-sizes, "light");
+          }
         }
       }
     }

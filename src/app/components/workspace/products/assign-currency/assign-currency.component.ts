@@ -13,6 +13,7 @@ import { PatchProductService } from '../../../../services/product/patch-product.
 import { ButtonComponent } from '../../../commons/button/button.component';
 import { FormComponent } from '../../../commons/form/form.component';
 import { SelectInputComponent } from '../../../commons/form/select-input/select-input.component';
+import { SelectOption } from '../../../../models/select-option/select-option';
 
 @Component({
   selector: 'app-assign-currency',
@@ -31,7 +32,7 @@ export class AssignCurrencyComponent {
   private productId?: number;
   public productName?: string;
   public currentCurrencyId?: number;
-  @Input() currencies: CurrencyEntityI[] = [];
+  @Input() currencies: SelectOption[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -61,7 +62,10 @@ export class AssignCurrencyComponent {
 
     this.currencyService.getCurrencies().subscribe({
       next: (data) => {
-        this.currencies = data;
+        this.currencies = data.map((currency) => ({
+          id: currency.currencyId,
+          name: currency.currencyName,
+        }));
         if (paramCurrenctCurrencyId) {
           this.form.get('currencyId')?.setValue(paramCurrenctCurrencyId);
         }

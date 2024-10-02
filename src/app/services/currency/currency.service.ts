@@ -4,6 +4,7 @@ import { CurrencyUpdate, NewCurrency } from '../../models/currency/currency';
 import { HttpClient } from '@angular/common/http';
 import { CurrencyEntityI } from '../../models/currency/currency-entity';
 import { Observable } from 'rxjs';
+import { FullCurrencyI } from '../../models/currency/fullCurrency';
 
 @Injectable({
   providedIn: 'root',
@@ -19,8 +20,8 @@ export class CurrencyService {
     );
   }
 
-  getCurrencies(): Observable<CurrencyEntityI[]> {
-    return this.http.get<CurrencyEntityI[]>('/api/secure/currency');
+  getCurrencies(): Observable<FullCurrencyI[]> {
+    return this.http.get<FullCurrencyI[]>('/api/secure/currency');
   }
 
   renameCurrency(id: number, name: string): Observable<CurrencyEntityI> {

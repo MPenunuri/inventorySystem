@@ -9,15 +9,41 @@
   <table aria-live="polite" aria-label="List of registered currencies">
     <thead>
       <tr>
-        <th scope="col" (click)="sort('name')">
+        <th scope="col" (click)="sort('currencyName')">
           Currency name
           <img
-            *ngIf="sortService.sortDirection['name'] === false"
+            *ngIf="sortService.sortDirection['currencyName'] === false"
             [src]="arrowDown"
             alt="Sort ascending"
           />
           <img
-            *ngIf="sortService.sortDirection['name'] === true"
+            *ngIf="sortService.sortDirection['currencyName'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('products')">
+          Related products
+          <img
+            *ngIf="sortService.sortDirection['products'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['products'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('movements')">
+          Related movements
+          <img
+            *ngIf="sortService.sortDirection['movements'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['movements'] === true"
             [src]="arrowUp"
             alt="Sort descending"
           />
@@ -28,15 +54,31 @@
     <tbody>
       <tr *ngFor="let record of currencies">
         <td>
-          {{ record.name }}
+          {{ record.currencyName }}
         </td>
         <td>
-          <app-small-delete-button
-            [spanText]="'Delete currency'"
-            [id]="record.id"
-            [deleteFn]="service.deleteCurrency.bind(service)"
-            (clicked)="setCurrencies()"
-          ></app-small-delete-button>
+          {{ record.products }}
+        </td>
+        <td>
+          {{ record.movements }}
+        </td>
+        <td>
+          <ng-container
+            *ngIf="
+              record.products === 0 && record.movements === 0;
+              else noDeletion
+            "
+          >
+            <app-small-delete-button
+              [spanText]="'Delete currency'"
+              [id]="record.currencyId"
+              [deleteFn]="service.deleteCurrency.bind(service)"
+              (clicked)="setCurrencies()"
+            ></app-small-delete-button>
+          </ng-container>
+          <ng-template #noDeletion>
+            <span>No deletion available</span>
+          </ng-template>
         </td>
       </tr>
     </tbody>

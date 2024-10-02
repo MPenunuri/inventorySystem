@@ -1,11 +1,10 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { AddCurrencyComponent } from './add-currency/add-currency.component';
-import { CurrencyEntityI } from '../../../models/currency/currency-entity';
 import { SortArrayService } from '../../../services/utils/sort-array.service';
 import { CurrencyService } from '../../../services/currency/currency.service';
 import { CommonModule } from '@angular/common';
-import { EditableTextComponent } from '../../commons/editable/editable-text/editable-text.component';
 import { SmallDeleteButtonComponent } from '../../commons/button/small-delete-button/small-delete-button.component';
+import { FullCurrencyI } from '../../../models/currency/fullCurrency';
 
 @Component({
   selector: 'app-currencies',
@@ -15,7 +14,7 @@ import { SmallDeleteButtonComponent } from '../../commons/button/small-delete-bu
   styleUrl: './currencies.component.scss',
 })
 export class CurrenciesComponent {
-  currencies?: CurrencyEntityI[];
+  currencies?: FullCurrencyI[];
   arrowDown = 'assets/arrow-down-outline.svg';
   arrowUp = 'assets/arrow-up-outline.svg';
 
@@ -28,7 +27,7 @@ export class CurrenciesComponent {
     this.service.getCurrencies().subscribe({
       next: (data) => {
         this.currencies = data;
-        this.sort('name');
+        this.sort('currencyName');
       },
       error: () => {
         this.currencies = undefined;
@@ -40,7 +39,7 @@ export class CurrenciesComponent {
     this.setCurrencies();
   }
 
-  sort(column: keyof CurrencyEntityI) {
+  sort(column: keyof FullCurrencyI) {
     if (this.currencies !== undefined) {
       this.currencies = this.sortService.sort(this.currencies, column);
     }
