@@ -3,6 +3,8 @@
 :host {
   @include flex-center();
   width: 100%;
+  position: relative;
+  z-index: 5;
 }
 
 button {
