@@ -1,0 +1,23 @@
+<app-form
+  [title]="'Assign category and subcategory to ' + productName"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+>
+  <app-select-input
+    [defaultOption]="currentCategoryId?.toString() || ''"
+    formControlName="categoryId"
+    [name]="'categoryId'"
+    [label]="'Category'"
+    [holder]="'Select category'"
+    [options]="categories"
+  ></app-select-input>
+  <app-select-input
+    [defaultOption]="currentSubcategoryId?.toString() || ''"
+    formControlName="subcategoryId"
+    [name]="'subcategoryId'"
+    [label]="'Subcategory'"
+    [holder]="'Select category'"
+    [options]="filteredSubcategories"
+  ></app-select-input>
+  <app-button [name]="'Register'"></app-button>
+</app-form>

@@ -18,7 +18,7 @@ export class PatchProductService {
     productUpdate.name = name;
     return this.http.patch<ProductEntityI>(
       '/api/secure/product/name',
-      productUpdate
+      productUpdate.toObject()
     );
   }
 
@@ -30,7 +30,7 @@ export class PatchProductService {
     productUpdate.subcategoryId = subcategoryId;
     return this.http.patch<ProductEntityI>(
       '/api/secure/product/subcategory',
-      productUpdate
+      productUpdate.toObject()
     );
   }
 
@@ -42,7 +42,7 @@ export class PatchProductService {
     productUpdate.productPresentation = productPresentation;
     return this.http.patch<ProductEntityI>(
       '/api/secure/product/presentation',
-      productUpdate
+      productUpdate.toObject()
     );
   }
 
@@ -54,7 +54,7 @@ export class PatchProductService {
     productUpdate.minimumStock = stock;
     return this.http.patch<ProductEntityI>(
       '/api/secure/product/minimumStock',
-      productUpdate
+      productUpdate.toObject()
     );
   }
 
@@ -66,7 +66,7 @@ export class PatchProductService {
     productUpdate.retailPrice = price;
     return this.http.patch<ProductEntityI>(
       '/api/secure/product/retailprice',
-      productUpdate
+      productUpdate.toObject()
     );
   }
 
@@ -78,7 +78,7 @@ export class PatchProductService {
     productUpdate.wholesalePrice = price;
     return this.http.patch<ProductEntityI>(
       '/api/secure/product/wholesale',
-      productUpdate
+      productUpdate.toObject()
     );
   }
 
@@ -90,7 +90,7 @@ export class PatchProductService {
     productUpdate.priceCurrencyId = currencyId;
     return this.http.patch<ProductEntityI>(
       '/api/secure/product/currency',
-      productUpdate
+      productUpdate.toObject()
     );
   }
 }

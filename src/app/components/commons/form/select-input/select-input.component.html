@@ -1,5 +1,10 @@
 <label [for]="name">{{ label }}</label>
-<select [name]="name" [id]="'select' + name" (change)="onInputChange($event)">
+<select
+  [name]="name"
+  [id]="'select' + name"
+  (change)="onInputChange($event)"
+  [ngModel]="value"
+>
   <option value="">-</option>
   <option *ngFor="let option of options" [value]="option.id">
     {{ option.name }}

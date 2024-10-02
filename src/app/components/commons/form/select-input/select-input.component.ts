@@ -1,12 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { Component, forwardRef, Input } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { Component, forwardRef, Input, SimpleChanges } from '@angular/core';
+import {
+  NG_VALUE_ACCESSOR,
+  ControlValueAccessor,
+  FormsModule,
+} from '@angular/forms';
 import { SelectOption } from '../../../../models/select-option/select-option';
 
 @Component({
   selector: 'app-select-input',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './select-input.component.html',
   styleUrl: './select-input.component.scss',
   providers: [
@@ -24,12 +28,22 @@ export class SelectInputComponent<T extends SelectOption>
   @Input() name: string = '';
   @Input() holder: string = '';
   @Input() options: T[] = [];
+  @Input() defaultOption: string = '';
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['defaultOption'] && changes['defaultOption'].currentValue) {
+      this.value = changes['defaultOption'].currentValue;
+      this.onChange(this.value);
+    }
+  }
+
   value: string = '';
   onChange = (value: string) => {};
   onTouched = () => {};
 
   writeValue(value: string): void {
-    this.value = value;
+    this.value = value !== null ? value : this.defaultOption;
+    this.onChange(this.value);
   }
   registerOnChange(fn: (value: string) => void): void {
     this.onChange = fn;
@@ -39,8 +53,9 @@ export class SelectInputComponent<T extends SelectOption>
   }
 
   onInputChange(event: Event) {
-    const inputElement = event.target as HTMLInputElement;
-    this.onChange(inputElement.value);
+    const selectElement = event.target as HTMLSelectElement;
+    this.value = selectElement.value;
+    this.onChange(selectElement.value);
     this.onTouched();
   }
 }

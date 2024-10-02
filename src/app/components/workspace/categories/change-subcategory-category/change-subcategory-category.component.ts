@@ -59,7 +59,7 @@ export class ChangeSubcategoryCategoryComponent {
         this.categories = data;
       },
       error: (error) => {
-        alert('No categories no assing');
+        alert('No categories to assing');
       },
     });
   }

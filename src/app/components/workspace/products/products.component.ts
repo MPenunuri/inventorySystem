@@ -4,11 +4,19 @@ import { StandardProductI } from '../../../models/product/standard-product';
 import { CommonModule } from '@angular/common';
 import { AddProductComponent } from './add-product/add-product.component';
 import { SortArrayService } from '../../../services/utils/sort-array.service';
+import { EditableNavComponent } from '../../commons/editable/editable-nav/editable-nav.component';
+import { EditableTextComponent } from '../../commons/editable/editable-text/editable-text.component';
+import { PatchProductService } from '../../../services/product/patch-product.service';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule, AddProductComponent],
+  imports: [
+    CommonModule,
+    AddProductComponent,
+    EditableNavComponent,
+    EditableTextComponent,
+  ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',
 })
@@ -19,6 +27,7 @@ export class ProductsComponent implements OnInit {
 
   constructor(
     private getService: GetProductService,
+    public patchService: PatchProductService,
     public sortService: SortArrayService
   ) {}
 

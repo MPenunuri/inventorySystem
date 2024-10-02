@@ -1,0 +1,17 @@
+<ng-container *ngIf="showingLink; else buttonTemplate">
+  <a (click)="handleClick()">
+    {{ text }}
+    <span class="tooltip">{{ spanText }}</span>
+  </a>
+</ng-container>
+
+<ng-template #buttonTemplate>
+  <button
+    (click)="handleClick()"
+    [ariaLabel]="spanText"
+    [ngClass]="{ showing: !showingLink }"
+  >
+    <span>{{ spanText }}</span>
+    <img src="/assets/create-outline.svg" alt="delete" />
+  </button>
+</ng-template>

@@ -134,13 +134,45 @@
     <tbody>
       <tr *ngFor="let product of products">
         <td>{{ product.productName }}</td>
-        <td>{{ product.categoryName }}</td>
-        <td>{{ product.subcategoryName }}</td>
-        <td>{{ product.productPresentation }}</td>
+        <td>
+          <app-editable-nav
+            [text]="product.categoryName"
+            [spanText]="'Set product category'"
+            [editRoute]="
+              'workspace/product/' +
+              product.productId +
+              '/' +
+              product.productName +
+              '/assign-subcategory' +
+              (product.subcategoryId ? '/' + product.subcategoryId : '')
+            "
+          ></app-editable-nav>
+        </td>
+        <td>
+          <app-editable-nav
+            [text]="product.subcategoryName"
+            [spanText]="'Set product category'"
+            [editRoute]="
+              'workspace/product/' +
+              product.productId +
+              '/' +
+              product.productName +
+              '/assign-subcategory' +
+              (product.subcategoryId ? '/' + product.subcategoryId : '')
+            "
+          ></app-editable-nav>
+        </td>
+        <td>
+          <app-editable-text
+            [id]="product.productId"
+            [text]="product.productPresentation"
+            [action]="patchService.updateProductPresentation.bind(patchService)"
+          ></app-editable-text>
+        </td>
         <td>{{ product.minimumStock }}</td>
         <td>{{ product.totalStock }}</td>
-        <td>{{ product.retailPrice | currency : product.priceCurrency }}</td>
-        <td>{{ product.wholesalePrice | currency : product.priceCurrency }}</td>
+        <td>{{ product.retailPrice }}</td>
+        <td>{{ product.wholesalePrice }}</td>
         <td>{{ product.priceCurrency }}</td>
       </tr>
     </tbody>

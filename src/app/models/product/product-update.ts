@@ -82,4 +82,30 @@ export class ProductUpdate implements ProductUpdateI {
   set priceCurrencyId(value: number) {
     this._priceCurrencyId = value;
   }
+
+  toObject(): Record<string, any> {
+    const obj: Record<string, any> = {
+      id: this._id,
+      ...(this._name !== undefined && { name: this._name }),
+      ...(this._subcategoryId !== undefined && {
+        subcategoryId: this._subcategoryId,
+      }),
+      ...(this._productPresentation !== undefined && {
+        productPresentation: this._productPresentation,
+      }),
+      ...(this._minimumStock !== undefined && {
+        minimumStock: this._minimumStock,
+      }),
+      ...(this._retailPrice !== undefined && {
+        retailPrice: this._retailPrice,
+      }),
+      ...(this._wholesalePrice !== undefined && {
+        wholesalePrice: this._wholesalePrice,
+      }),
+      ...(this._priceCurrencyId !== undefined && {
+        priceCurrencyId: this._priceCurrencyId,
+      }),
+    };
+    return obj;
+  }
 }

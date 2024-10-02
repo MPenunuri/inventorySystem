@@ -96,6 +96,7 @@
 
 @mixin standard-anchor-router-link {
   position: relative;
+  @include flex-center(column);
 }
 
 @mixin standard-span {
@@ -104,8 +105,8 @@
   position: absolute;
   opacity: 0;
   transition: all 0.5s ease;
-  top: -350%;
-  right: -500%;
+  top: -50px;
+  right: 10%;
   text-align: center;
   font-size: map-get($font-sizes, "light");
   background-color: $primary-background-color;

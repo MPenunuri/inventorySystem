@@ -1,0 +1,18 @@
+@use "../../../../../styles.scss" as *;
+
+:host {
+  @include flex-center(column);
+  min-height: 0;
+}
+
+app-form {
+  min-height: 0;
+}
+
+app-select-input {
+  margin-top: 1rem;
+}
+
+app-button {
+  margin-bottom: 1rem;
+}
