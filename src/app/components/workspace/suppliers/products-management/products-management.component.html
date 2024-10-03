@@ -1,0 +1,59 @@
+<h2>Products related to supplier {{ supplierName }}</h2>
+
+<app-add-product-relation
+  [refreshProducts]="refreshNotRelatedProducts"
+  [supplierId]="supplierId"
+  (saved)="setRelatedProducts()"
+></app-add-product-relation>
+
+<div
+  class="tableContainer"
+  *ngIf="relatedProducts && relatedProducts.length > 0; else noProducts"
+>
+  <table aria-live="polite" aria-label="List of registered products">
+    <thead>
+      <tr>
+        <th scope="col" (click)="sort('productName')">
+          Product name
+          <img
+            *ngIf="sortService.sortDirection['productName'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['productName'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let record of relatedProducts">
+        <td>
+          <app-editable-text
+            [id]="record.productId"
+            [text]="record.productName"
+            [action]="patchService.updateProductName.bind(patchService)"
+          ></app-editable-text>
+        </td>
+        <td>
+          <app-small-delete-button
+            [spanText]="'Delete supplier relation'"
+            [id]="record.productId"
+            [id2]="supplierId"
+            [deleteFn2]="
+              deleteService.deleteProductSupplierRelation.bind(deleteService)
+            "
+            (clicked)="setRelatedProducts()"
+          ></app-small-delete-button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #noProducts>
+  <p class="noProducts">There are not any products registered yet.</p>
+</ng-template>

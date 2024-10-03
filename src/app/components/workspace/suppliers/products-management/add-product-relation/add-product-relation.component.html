@@ -1,0 +1,102 @@
+<app-button
+  *ngIf="notRelatedProducts && notRelatedProducts.length > 0"
+  (clicked)="toggleOpen()"
+  [className]="open ? 'regular red' : 'regular alternativeRegular'"
+  [name]="open ? 'Cancel' : 'Link a product'"
+></app-button>
+<app-form
+  [ngClass]="{ show: !open }"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+>
+  <div>
+    <label for="">Filter by name</label>
+    <input name="filter" type="text" />
+  </div>
+  <div class="tableContainer">
+    <table aria-live="polite" aria-label="List of registered products">
+      <thead>
+        <tr>
+          <th scope="col" (click)="sort('productName')">
+            Product name
+            <img
+              *ngIf="sortService.sortDirection['productName'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['productName'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </th>
+          <th scope="col">Link product</th>
+          <th scope="col" (click)="sort('categoryName')">
+            Category name
+            <img
+              *ngIf="sortService.sortDirection['categoryName'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['pcategoryName'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </th>
+          <th scope="col" (click)="sort('subcategoryName')">
+            Subcategory name
+            <img
+              *ngIf="sortService.sortDirection['subcategoryName'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['subcategoryName'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </th>
+          <th scope="col" (click)="sort('productPresentation')">
+            Description
+            <img
+              *ngIf="sortService.sortDirection['productPresentation'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['productPresentation'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let record of notRelatedProducts">
+          <td>
+            {{ record.productName }}
+          </td>
+          <td>
+            <input
+              type="radio"
+              [id]="'radio' + record.productId"
+              formControlName="productId"
+              [value]="record.productId"
+            />
+          </td>
+          <td>
+            {{ record.categoryName }}
+          </td>
+          <td>
+            {{ record.subcategoryName }}
+          </td>
+          <td>
+            {{ record.productPresentation }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <app-button [name]="'Link product'"></app-button>
+</app-form>

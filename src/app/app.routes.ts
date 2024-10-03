@@ -11,6 +11,7 @@ import { CurrenciesComponent } from './components/workspace/currencies/currencie
 import { AssignCurrencyComponent } from './components/workspace/products/assign-currency/assign-currency.component';
 import { LocationsComponent } from './components/workspace/locations/locations.component';
 import { SuppliersComponent } from './components/workspace/suppliers/suppliers.component';
+import { ProductsManagementComponent } from './components/workspace/suppliers/products-management/products-management.component';
 
 export const routes: Routes = [
   { path: 'signup', component: SignupComponent, canActivate: [authGuard] },
@@ -55,6 +56,10 @@ export const routes: Routes = [
       {
         path: 'suppliers',
         component: SuppliersComponent,
+      },
+      {
+        path: 'suppliers/products/:supplierId/:supplierName',
+        component: ProductsManagementComponent,
       },
       {
         path: 'currencies',

@@ -39,6 +39,14 @@ export class GetProductService {
     );
   }
 
+  getProductsWithNoSupplierRelation(
+    id: number
+  ): Observable<StandardProductI[]> {
+    return this.http.get<StandardProductI[]>(
+      '/api/secure/product/no-supplier/' + id
+    );
+  }
+
   getProductsByLocationId(id: number): Observable<LocationProductI[]> {
     return this.http.get<LocationProductI[]>(
       '/api/secure/product/location/' + id

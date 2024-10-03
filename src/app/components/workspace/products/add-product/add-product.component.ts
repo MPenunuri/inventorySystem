@@ -45,6 +45,8 @@ export class AddProductComponent {
     this.postService.registerProduct(name).subscribe({
       next: (entity) => {
         this.saved.emit();
+        this.open = !this.open;
+        this.form.reset();
       },
       error: (error) => {
         alert('An error occurred during product registry. Please try again.');
@@ -54,9 +56,5 @@ export class AddProductComponent {
 
   toggleOpen() {
     this.open = !this.open;
-  }
-
-  get buttonName() {
-    return this.open ? 'Close' : 'Add a new product';
   }
 }

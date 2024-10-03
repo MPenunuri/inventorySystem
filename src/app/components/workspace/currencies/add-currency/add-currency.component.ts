@@ -62,8 +62,4 @@ export class AddCurrencyComponent {
   toggleOpen() {
     this.open = !this.open;
   }
-
-  get buttonName() {
-    return this.open ? 'Close' : 'Add a new currency';
-  }
 }

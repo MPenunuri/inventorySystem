@@ -175,7 +175,7 @@
 @mixin sticky-first-column {
   position: sticky;
   left: 0px;
-  z-index: 1;
+  z-index: 6;
   background-color: $secondary-background-color;
   color: var(--main-text-color);
   font-weight: bold;

@@ -6,6 +6,7 @@ import { SortArrayService } from '../../../services/utils/sort-array.service';
 import { SmallDeleteButtonComponent } from '../../commons/button/small-delete-button/small-delete-button.component';
 import { EditableTextComponent } from '../../commons/editable/editable-text/editable-text.component';
 import { FullSupplierI } from '../../../models/supplier/fullSupplier';
+import { EditableNavComponent } from '../../commons/editable/editable-nav/editable-nav.component';
 
 @Component({
   selector: 'app-suppliers',
@@ -15,6 +16,7 @@ import { FullSupplierI } from '../../../models/supplier/fullSupplier';
     SmallDeleteButtonComponent,
     AddSupplierComponent,
     EditableTextComponent,
+    EditableNavComponent,
   ],
   templateUrl: './suppliers.component.html',
   styleUrl: './suppliers.component.scss',

@@ -58,8 +58,4 @@ export class AddSupplierComponent {
   toggleOpen() {
     this.open = !this.open;
   }
-
-  get buttonName() {
-    return this.open ? 'Close' : 'Add a new supplier';
-  }
 }

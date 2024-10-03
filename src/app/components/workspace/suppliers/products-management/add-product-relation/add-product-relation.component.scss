@@ -1,0 +1,86 @@
+@use "../../../../../../styles.scss" as *;
+
+:host {
+  @include flex-center(column);
+  height: auto;
+  width: 100%;
+}
+
+app-form {
+  min-height: 0;
+  height: 0;
+  overflow: hidden;
+  width: 100%;
+  max-width: 90vw;
+  border-radius: 60px;
+  opacity: 0;
+  transition: all 1s ease;
+
+  ::ng-deep form {
+    width: 90%;
+    max-width: 90vw;
+  }
+
+  &.show {
+    opacity: 1;
+    height: auto;
+  }
+
+  &.fade-out {
+    opacity: 0;
+  }
+}
+
+p.noProducts {
+  @include standard-plain-message;
+}
+
+.tableContainer {
+  @include table-container;
+  margin: 0 2rem;
+  width: 98%;
+  table {
+    @include standard-table;
+    thead {
+      @include standard-table-thead;
+      tr {
+        @include standard-table-tr;
+        th {
+          @include standard-table-th;
+          width: 100px;
+          &:hover {
+            cursor: pointer;
+          }
+          &:first-child {
+            @include sticky-first-column;
+          }
+          &:last-child {
+            width: 200px;
+          }
+          img {
+            width: 10px;
+          }
+        }
+      }
+
+      border-bottom: 1px solid $primary-decorative-color;
+    }
+    tbody {
+      @include standard-table-tbody;
+      tr {
+        @include standard-table-tr;
+        border-bottom: 1px solid $primary-decorative-color;
+        td {
+          @include standard-table-td;
+          width: 100px;
+          &:first-child {
+            @include sticky-first-column;
+          }
+          &:last-child {
+            width: 200px;
+          }
+        }
+      }
+    }
+  }
+}

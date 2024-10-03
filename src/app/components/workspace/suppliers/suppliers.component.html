@@ -23,7 +23,7 @@
           />
         </th>
         <th scope="col" (click)="sort('products')">
-          Related products
+          Linked products
           <img
             *ngIf="sortService.sortDirection['products'] === false"
             [src]="arrowDown"
@@ -36,7 +36,7 @@
           />
         </th>
         <th scope="col" (click)="sort('movements')">
-          Related movements
+          Linked movements
           <img
             *ngIf="sortService.sortDirection['movements'] === false"
             [src]="arrowDown"
@@ -61,7 +61,16 @@
           ></app-editable-text>
         </td>
         <td>
-          {{ record.products }}
+          <app-editable-nav
+            [text]="record.products.toString()"
+            [spanText]="'Manage supplier relations'"
+            [editRoute]="
+              'workspace/suppliers/products/' +
+              record.supplierId +
+              '/' +
+              record.supplierName
+            "
+          ></app-editable-nav>
         </td>
         <td>
           {{ record.movements }}

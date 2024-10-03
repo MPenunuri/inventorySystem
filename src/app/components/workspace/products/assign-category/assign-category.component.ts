@@ -34,9 +34,9 @@ export class AssignCategoryComponent {
   public productName?: string;
   public currentCategoryId?: number;
   public currentSubcategoryId?: number;
-  @Input() categories: CategoryEntityI[] = [];
-  @Input() subcategories: SubcategoryEntityI[] = [];
-  @Input() filteredSubcategories: SubcategoryEntityI[] = [];
+  categories: CategoryEntityI[] = [];
+  subcategories: SubcategoryEntityI[] = [];
+  filteredSubcategories: SubcategoryEntityI[] = [];
 
   constructor(
     private route: ActivatedRoute,
