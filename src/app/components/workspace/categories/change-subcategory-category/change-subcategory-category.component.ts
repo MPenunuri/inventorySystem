@@ -29,6 +29,7 @@ import { SelectInputComponent } from '../../../commons/form/select-input/select-
 export class ChangeSubcategoryCategoryComponent {
   id?: number;
   subcategoryName?: string;
+  currentCategoryId?: number;
   categories: CategoryEntityI[] = [];
   form: FormGroup;
 
@@ -46,17 +47,26 @@ export class ChangeSubcategoryCategoryComponent {
   }
 
   ngOnInit(): void {
-    const paramId = this.route.snapshot.paramMap.get('id');
-    const paramName = this.route.snapshot.paramMap.get('name');
+    const paramId = this.route.snapshot.paramMap.get('subcategoryId');
+    const paramName = this.route.snapshot.paramMap.get('subcategoryName');
+    const paramCatId = this.route.snapshot.paramMap.get('currentCategoryId');
     if (paramId !== null) {
       this.id = parseInt(paramId);
     }
     if (paramName !== null) {
       this.subcategoryName = paramName;
     }
+    if (paramCatId !== null) {
+      this.currentCategoryId = parseInt(paramCatId);
+    }
     this.catService.getCategories().subscribe({
       next: (data) => {
         this.categories = data;
+        if (this.currentCategoryId) {
+          this.form
+            .get('categoryId')
+            ?.setValue(this.currentCategoryId.toString());
+        }
       },
       error: (error) => {
         alert('No categories to assing');

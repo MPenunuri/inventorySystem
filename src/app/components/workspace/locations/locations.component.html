@@ -1,0 +1,110 @@
+<h2>locations</h2>
+
+<app-add-location (saved)="setLocations()"> </app-add-location>
+
+<div
+  class="tableContainer"
+  *ngIf="locations && locations.length > 0; else noLocations"
+>
+  <table aria-live="polite" aria-label="List of registered locations">
+    <thead>
+      <tr>
+        <th scope="col" (click)="sort('locationName')">
+          Location name
+          <img
+            *ngIf="sortService.sortDirection['locationName'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['locationName'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('locationAddress')">
+          Location address
+          <img
+            *ngIf="sortService.sortDirection['locationAddress'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['locationAddresse'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('products')">
+          Related products
+          <img
+            *ngIf="sortService.sortDirection['products'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['products'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('movements')">
+          Related movements
+          <img
+            *ngIf="sortService.sortDirection['movements'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['movements'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let record of locations">
+        <td>
+          {{ record.locationName }}
+        </td>
+        <td>
+          <app-editable-text-area
+            [id]="record.locationId"
+            [text]="record.locationAddress || ''"
+            [action]="service.updateLocationAdress.bind(service)"
+          ></app-editable-text-area>
+        </td>
+        <td>
+          {{ record.products }}
+        </td>
+        <td>
+          {{ record.movements }}
+        </td>
+        <td>
+          <ng-container
+            *ngIf="
+              record.products === 0 && record.movements === 0;
+              else noDeletion
+            "
+          >
+            <app-small-delete-button
+              [spanText]="'Delete location'"
+              [id]="record.locationId"
+              [deleteFn]="service.deleteLocation.bind(service)"
+              (clicked)="setLocations()"
+            ></app-small-delete-button>
+          </ng-container>
+          <ng-template #noDeletion>
+            <span>No deletion available</span>
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #noLocations>
+  <p class="noLocations">There are not any locations registered yet.</p>
+</ng-template>

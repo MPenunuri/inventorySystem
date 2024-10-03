@@ -3,6 +3,7 @@
   (ngSubmit)="onSubmit()"
   [formGroup]="form"
   ><app-select-input
+    [defaultOption]="currentCategoryId?.toString() || ''"
     formControlName="categoryId"
     [name]="'categoryId'"
     [label]="'Category'"

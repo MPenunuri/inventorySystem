@@ -1,0 +1,17 @@
+@use "../../../../../styles.scss" as *;
+
+:host {
+  @include flex-center(column);
+  width: 80%;
+  min-width: 300px;
+}
+
+label {
+  @include standard-label();
+}
+
+textarea {
+  @include standard-input();
+  min-height: 100px;
+  resize: vertical;
+}

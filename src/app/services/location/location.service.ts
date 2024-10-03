@@ -7,6 +7,7 @@ import {
   NewLocation,
 } from '../../models/location/location';
 import { LocationEntityI } from '../../models/location/location-entity';
+import { FullLocationI } from '../../models/location/fullLocation';
 
 @Injectable({
   providedIn: 'root',
@@ -25,8 +26,8 @@ export class LocationService {
     );
   }
 
-  getLocations(): Observable<LocationEntityI[]> {
-    return this.http.get<LocationEntityI[]>('/api/secure/location');
+  getLocations(): Observable<FullLocationI[]> {
+    return this.http.get<FullLocationI[]>('/api/secure/location');
   }
 
   findLocationById(id: number): Observable<LocationI> {

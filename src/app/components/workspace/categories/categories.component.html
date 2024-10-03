@@ -98,12 +98,17 @@
         </td>
         <td>
           <ng-container *ngIf="record.subcategoryId; else deleteCategory">
-            <app-small-delete-button
-              [spanText]="'Delete subcategory'"
-              [id]="record.subcategoryId"
-              [deleteFn]="subService.deleteSubcategory.bind(subService)"
-              (clicked)="setCategoriesAndSubcategories()"
-            ></app-small-delete-button>
+            <ng-container *ngIf="record.products === 0; else noDeletion">
+              <app-small-delete-button
+                [spanText]="'Delete subcategory'"
+                [id]="record.subcategoryId"
+                [deleteFn]="subService.deleteSubcategory.bind(subService)"
+                (clicked)="setCategoriesAndSubcategories()"
+              ></app-small-delete-button>
+            </ng-container>
+            <ng-template #noDeletion>
+              <span>No deletion available</span>
+            </ng-template>
           </ng-container>
           <ng-template #deleteCategory>
             <app-small-delete-button
@@ -119,7 +124,9 @@
               '/workspace/subcategory/category/change/' +
               record.subcategoryId +
               '/' +
-              record.subcategoryName
+              record.subcategoryName +
+              '/' +
+              record.categoryId
             "
           ></app-small-edit-button>
         </td>

@@ -16,7 +16,7 @@ h2 {
   text-align: center;
 }
 
-p.noCategories {
+p.noLocations {
   @include standard-plain-message;
 }
 
@@ -36,12 +36,8 @@ p.noCategories {
           &:first-child {
             @include sticky-first-column;
           }
-          &:first-child,
           &:nth-child(2) {
-            width: 220px;
-          }
-          &:last-child {
-            width: 200px;
+            width: 250px;
           }
           img {
             width: 10px;
@@ -61,16 +57,11 @@ p.noCategories {
           &:first-child {
             @include sticky-first-column;
           }
-          &:first-child,
           &:nth-child(2) {
-            width: 220px;
+            width: 250px;
           }
-          &:last-child {
-            width: 200px;
-            span {
-              font-size: map-get($font-sizes, "light");
-              width: 100%;
-            }
+          span {
+            font-size: map-get($font-sizes, "light");
           }
         }
       }

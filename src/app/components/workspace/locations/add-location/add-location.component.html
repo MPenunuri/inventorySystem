@@ -1,0 +1,21 @@
+<app-button
+  (clicked)="toggleOpen()"
+  [className]="open ? 'regular red' : 'regular alternativeRegular'"
+  [name]="open ? 'Cancel' : 'Add location'"
+></app-button>
+<app-form [ngClass]="{ show: open }" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <app-text-input
+    formControlName="name"
+    [name]="'name'"
+    [label]="'Name'"
+    [holder]="'Enter location name'"
+  ></app-text-input>
+  <app-text-area
+    formControlName="address"
+    [name]="'address'"
+    [label]="'Adress'"
+    [holder]="'Enter address'"
+  >
+  </app-text-area>
+  <app-button [name]="'Register'"></app-button>
+</app-form>

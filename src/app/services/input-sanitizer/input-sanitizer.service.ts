@@ -16,7 +16,7 @@ export class InputSanitizerService {
       )
       .replace(/<[^>]*>/g, '')
       .replace(/\s+/g, ' ')
-      .replace(/[^\w\sáéíóúÁÉÍÓÚñÑ]/g, '')
+      .replace(/[^\w\sáéíóúÁÉÍÓÚñÑ,]/g, '')
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;')
