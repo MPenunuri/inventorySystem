@@ -75,7 +75,8 @@ export class AssignCategoryComponent {
         }
       },
       error: () => {
-        alert('No categories to assign. Go to categories and register one.');
+        alert('No categories to assign. Register one.');
+        this.router.navigate(['/workspace/categories']);
       },
     });
 
@@ -97,7 +98,8 @@ export class AssignCategoryComponent {
         }
       },
       error: () => {
-        alert('No subcategories to assign. Go to categories and register one.');
+        alert('No subcategories to assign. Register one.');
+        this.router.navigate(['/workspace/categories']);
       },
     });
 

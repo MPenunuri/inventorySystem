@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SupplierEntityI } from '../../models/supplier/supplier-entity';
+import { FullSupplierI } from '../../models/supplier/fullSupplier';
 
 @Injectable({
   providedIn: 'root',
@@ -13,8 +14,8 @@ export class SupplierService {
     return this.http.post<SupplierEntityI>('/api/secure/supplier', { name });
   }
 
-  getSuppliers(): Observable<SupplierEntityI[]> {
-    return this.http.get<SupplierEntityI[]>('/api/secure/supplier');
+  getSuppliers(): Observable<FullSupplierI[]> {
+    return this.http.get<FullSupplierI[]>('/api/secure/supplier');
   }
 
   renameSupplier(id: number, name: string): Observable<SupplierEntityI> {

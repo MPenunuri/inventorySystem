@@ -4,18 +4,18 @@ import { CommonModule } from '@angular/common';
 import { FullLocationI } from '../../../models/location/fullLocation';
 import { SortArrayService } from '../../../services/utils/sort-array.service';
 import { SmallDeleteButtonComponent } from '../../commons/button/small-delete-button/small-delete-button.component';
-import { AddProductComponent } from '../products/add-product/add-product.component';
 import { AddLocationComponent } from './add-location/add-location.component';
 import { EditableTextAreaComponent } from '../../commons/editable/editable-text-area/editable-text-area.component';
+import { EditableTextComponent } from '../../commons/editable/editable-text/editable-text.component';
 
 @Component({
   selector: 'app-locations',
   standalone: true,
   imports: [
     CommonModule,
-    AddProductComponent,
     SmallDeleteButtonComponent,
     AddLocationComponent,
+    EditableTextComponent,
     EditableTextAreaComponent,
   ],
   templateUrl: './locations.component.html',

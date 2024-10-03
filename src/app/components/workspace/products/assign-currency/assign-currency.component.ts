@@ -71,7 +71,8 @@ export class AssignCurrencyComponent {
         }
       },
       error: () => {
-        alert('No currencies to assign. Go to currencies and register one.');
+        alert('No currencies to assign. Register one.');
+        this.router.navigate(['/workspace/currencies']);
       },
     });
   }

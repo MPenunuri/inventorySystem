@@ -1,36 +1,23 @@
-<h2>Locations</h2>
+<h2>Suppliers</h2>
 
-<app-add-location (saved)="setLocations()"> </app-add-location>
+<app-add-supplier (saved)="setSuppliers()"> </app-add-supplier>
 
 <div
   class="tableContainer"
-  *ngIf="locations && locations.length > 0; else noLocations"
+  *ngIf="suppliers && suppliers.length > 0; else noSuppliers"
 >
-  <table aria-live="polite" aria-label="List of registered locations">
+  <table aria-live="polite" aria-label="List of registered suppliers">
     <thead>
       <tr>
-        <th scope="col" (click)="sort('locationName')">
-          Location name
+        <th scope="col" (click)="sort('supplierName')">
+          Supplier name
           <img
-            *ngIf="sortService.sortDirection['locationName'] === false"
+            *ngIf="sortService.sortDirection['supplierName'] === false"
             [src]="arrowDown"
             alt="Sort ascending"
           />
           <img
-            *ngIf="sortService.sortDirection['locationName'] === true"
-            [src]="arrowUp"
-            alt="Sort descending"
-          />
-        </th>
-        <th scope="col" (click)="sort('locationAddress')">
-          Location address
-          <img
-            *ngIf="sortService.sortDirection['locationAddress'] === false"
-            [src]="arrowDown"
-            alt="Sort ascending"
-          />
-          <img
-            *ngIf="sortService.sortDirection['locationAddresse'] === true"
+            *ngIf="sortService.sortDirection['supplierName'] === true"
             [src]="arrowUp"
             alt="Sort descending"
           />
@@ -65,20 +52,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let record of locations">
+      <tr *ngFor="let record of suppliers">
         <td>
           <app-editable-text
-            [id]="record.locationId"
-            [text]="record.locationName"
-            [action]="service.renameLocation.bind(service)"
+            [id]="record.supplierId"
+            [text]="record.supplierName"
+            [action]="service.renameSupplier.bind(service)"
           ></app-editable-text>
-        </td>
-        <td>
-          <app-editable-text-area
-            [id]="record.locationId"
-            [text]="record.locationAddress || ''"
-            [action]="service.updateLocationAdress.bind(service)"
-          ></app-editable-text-area>
         </td>
         <td>
           {{ record.products }}
@@ -94,10 +74,10 @@
             "
           >
             <app-small-delete-button
-              [spanText]="'Delete location'"
-              [id]="record.locationId"
-              [deleteFn]="service.deleteLocation.bind(service)"
-              (clicked)="setLocations()"
+              [spanText]="'Delete supplier'"
+              [id]="record.supplierId"
+              [deleteFn]="service.deleteSupplier.bind(service)"
+              (clicked)="setSuppliers()"
             ></app-small-delete-button>
           </ng-container>
           <ng-template #noDeletion>
@@ -109,6 +89,6 @@
   </table>
 </div>
 
-<ng-template #noLocations>
-  <p class="noLocations">There are not any locations registered yet.</p>
+<ng-template #noSuppliers>
+  <p class="noSuppliers">There are not any suppliers registered yet.</p>
 </ng-template>
