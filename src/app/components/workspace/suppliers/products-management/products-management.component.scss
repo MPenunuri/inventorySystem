@@ -36,6 +36,9 @@ p.noProducts {
           &:first-child {
             @include sticky-first-column;
           }
+          &:nth-child(4) {
+            width: 250px;
+          }
           img {
             width: 10px;
           }
@@ -53,6 +56,9 @@ p.noProducts {
           @include standard-table-td;
           &:first-child {
             @include sticky-first-column;
+          }
+          &:nth-child(4) {
+            width: 250px;
           }
           span {
             font-size: map-get($font-sizes, "light");

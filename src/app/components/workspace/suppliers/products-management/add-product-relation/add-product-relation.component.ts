@@ -17,19 +17,12 @@ import { EditableTextComponent } from '../../../../commons/editable/editable-tex
 import { PatchProductService } from '../../../../../services/product/patch-product.service';
 import { EditableNavComponent } from '../../../../commons/editable/editable-nav/editable-nav.component';
 import { EditableTextAreaComponent } from '../../../../commons/editable/editable-text-area/editable-text-area.component';
+import { Subject, debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-add-product-relation',
   standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    FormComponent,
-    ButtonComponent,
-    EditableTextComponent,
-    EditableNavComponent,
-    EditableTextAreaComponent,
-  ],
+  imports: [CommonModule, ReactiveFormsModule, FormComponent, ButtonComponent],
   templateUrl: './add-product-relation.component.html',
   styleUrl: './add-product-relation.component.scss',
 })
@@ -39,9 +32,12 @@ export class AddProductRelationComponent {
   form: FormGroup;
   open: boolean;
   notRelatedProducts?: NoSupplierProductI[];
+  filteredProducts?: NoSupplierProductI[];
   @Output() saved: EventEmitter<void> = new EventEmitter();
   arrowDown = 'assets/arrow-down-outline.svg';
   arrowUp = 'assets/arrow-up-outline.svg';
+
+  filterSubject: Subject<string> = new Subject<string>();
 
   constructor(
     private fb: FormBuilder,
@@ -54,7 +50,14 @@ export class AddProductRelationComponent {
     this.open = false;
     this.form = this.fb.group({
       productId: ['', [Validators.required, Validators.maxLength(255)], []],
+      filter: [''],
     });
+
+    this.filterSubject
+      .pipe(debounceTime(300)) // Evitar llamadas frecuentes
+      .subscribe((filterText) => {
+        this.applyFilter(filterText);
+      });
   }
 
   ngOnChanges() {
@@ -70,10 +73,12 @@ export class AddProductRelationComponent {
         .subscribe({
           next: (data) => {
             this.notRelatedProducts = data;
+            this.filteredProducts = [...data];
             this.sort('productName');
           },
           error: () => {
             this.notRelatedProducts = undefined;
+            this.filteredProducts = undefined;
           },
         });
     }
@@ -124,11 +129,29 @@ export class AddProductRelationComponent {
   }
 
   sort(column: keyof NoSupplierProductI) {
-    if (this.notRelatedProducts !== undefined) {
-      this.notRelatedProducts = this.sortService.sort(
-        this.notRelatedProducts,
+    if (this.filteredProducts !== undefined) {
+      this.filteredProducts = this.sortService.sort(
+        this.filteredProducts,
         column
       );
     }
+  }
+
+  applyFilter(filterText: string) {
+    if (this.notRelatedProducts) {
+      if (!filterText) {
+        this.filteredProducts = [...this.notRelatedProducts];
+      } else {
+        const regex = new RegExp(filterText, 'i');
+        this.filteredProducts = this.notRelatedProducts.filter((product) =>
+          regex.test(product.productName)
+        );
+      }
+    }
+  }
+
+  onFilterChange(event: Event) {
+    const input = event.target as HTMLInputElement;
+    this.filterSubject.next(input.value);
   }
 }

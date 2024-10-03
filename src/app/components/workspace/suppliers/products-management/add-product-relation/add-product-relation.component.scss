@@ -14,7 +14,7 @@ app-form {
   max-width: 90vw;
   border-radius: 60px;
   opacity: 0;
-  transition: all 1s ease;
+  transition: opacity 1s ease;
 
   ::ng-deep form {
     width: 90%;
@@ -35,10 +35,24 @@ p.noProducts {
   @include standard-plain-message;
 }
 
+.filter {
+  @include flex-center(column);
+
+  label {
+    @include standard-label();
+    font-weight: 600;
+  }
+
+  input {
+    @include standard-input();
+  }
+}
+
 .tableContainer {
   @include table-container;
   margin: 0 2rem;
-  width: 98%;
+  width: auto;
+  max-width: 95%;
   table {
     @include standard-table;
     thead {

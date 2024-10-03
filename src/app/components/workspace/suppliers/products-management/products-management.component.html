@@ -26,6 +26,45 @@
             alt="Sort descending"
           />
         </th>
+        <th scope="col" (click)="sort('categoryName')">
+          Category name
+          <img
+            *ngIf="sortService.sortDirection['categoryName'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['pcategoryName'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('subcategoryName')">
+          Subcategory name
+          <img
+            *ngIf="sortService.sortDirection['subcategoryName'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['subcategoryName'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('productPresentation')">
+          Description
+          <img
+            *ngIf="sortService.sortDirection['productPresentation'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['productPresentation'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
@@ -37,6 +76,41 @@
             [text]="record.productName"
             [action]="patchService.updateProductName.bind(patchService)"
           ></app-editable-text>
+        </td>
+        <td>
+          <app-editable-nav
+            [text]="record.categoryName"
+            [spanText]="'Set product category'"
+            [editRoute]="
+              'workspace/product/' +
+              record.productId +
+              '/' +
+              record.productName +
+              '/assign-subcategory' +
+              (record.subcategoryId ? '/' + record.subcategoryId : '')
+            "
+          ></app-editable-nav>
+        </td>
+        <td>
+          <app-editable-nav
+            [text]="record.subcategoryName"
+            [spanText]="'Set product category'"
+            [editRoute]="
+              'workspace/product/' +
+              record.productId +
+              '/' +
+              record.productName +
+              '/assign-subcategory' +
+              (record.subcategoryId ? '/' + record.subcategoryId : '')
+            "
+          ></app-editable-nav>
+        </td>
+        <td>
+          <app-editable-text-area
+            [id]="record.productId"
+            [text]="record.productPresentation"
+            [action]="patchService.updateProductPresentation.bind(patchService)"
+          ></app-editable-text-area>
         </td>
         <td>
           <app-small-delete-button

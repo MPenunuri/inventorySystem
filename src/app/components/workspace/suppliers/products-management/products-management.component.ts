@@ -9,6 +9,8 @@ import { PatchProductService } from '../../../../services/product/patch-product.
 import { SupplierService } from '../../../../services/supplier/supplier.service';
 import { AddProductRelationComponent } from './add-product-relation/add-product-relation.component';
 import { SupplierProductI } from '../../../../models/product/supplier-product';
+import { EditableNavComponent } from '../../../commons/editable/editable-nav/editable-nav.component';
+import { EditableTextAreaComponent } from '../../../commons/editable/editable-text-area/editable-text-area.component';
 
 @Component({
   selector: 'app-products-management',
@@ -18,6 +20,8 @@ import { SupplierProductI } from '../../../../models/product/supplier-product';
     AddProductRelationComponent,
     SmallDeleteButtonComponent,
     EditableTextComponent,
+    EditableNavComponent,
+    EditableTextAreaComponent,
   ],
   templateUrl: './products-management.component.html',
   styleUrl: './products-management.component.scss',
