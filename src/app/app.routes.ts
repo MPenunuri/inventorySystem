@@ -84,39 +84,39 @@ export const routes: Routes = [
         component: CurrenciesComponent,
       },
       {
-        path: 'movement/add-acquisition/:productId',
+        path: 'movement/add-acquisition/:productId/:productName',
         component: AddAcquisitionComponent,
       },
       {
-        path: 'movement/add-production/:productId',
+        path: 'movement/add-production/:productId/:productName',
         component: AddProductComponent,
       },
       {
-        path: 'movement/add-customer-return/:productId',
+        path: 'movement/add-customer-return/:productId/:productName',
         component: AddCustomerReturnComponent,
       },
       {
-        path: 'movement/add-entry-adjustment/:productId',
+        path: 'movement/add-entry-adjustment/:productId/:productName',
         component: AddEntryAdjustmentComponent,
       },
       {
-        path: 'movement/add-sale/:productId',
+        path: 'movement/add-sale/:productId/:productName',
         component: AddSaleComponent,
       },
       {
-        path: 'movement/add-internal-consumption/:productId',
+        path: 'movement/add-internal-consumption/:productId/:productName',
         component: AddInternalConsumptionComponent,
       },
       {
-        path: 'movement/add-supplier-return/:productId',
+        path: 'movement/add-supplier-return/:productId/:productName',
         component: AddSupplierReturnComponent,
       },
       {
-        path: 'movement/output-adjustment/:productId',
+        path: 'movement/output-adjustment/:productId/:productName',
         component: AddOutputAdjustmentComponent,
       },
       {
-        path: 'movement/add-transfer/:productId',
+        path: 'movement/add-transfer/:productId/:productName',
         component: AddTransferComponent,
       },
     ],
