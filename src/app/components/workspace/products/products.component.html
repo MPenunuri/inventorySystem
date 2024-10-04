@@ -133,7 +133,18 @@
     </thead>
     <tbody>
       <tr *ngFor="let product of products">
-        <td>{{ product.productName }}</td>
+        <td>
+          <app-editable-nav
+            [text]="product.productName"
+            [spanText]="'View product details'"
+            [editRoute]="
+              'workspace/product/' +
+              product.productId +
+              (product.priceCurrencyId ? '/' + product.priceCurrencyId : '')
+            "
+          ></app-editable-nav>
+        </td>
+
         <td>
           <app-editable-nav
             [text]="product.categoryName"

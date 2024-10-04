@@ -37,7 +37,7 @@ export class EditableTextAreaComponent {
   }
 
   saveChanges(): void {
-    if (this.id && this.action) {
+    if (this.id && this.action && this.text.length > 0) {
       this.action(this.id, this.text).subscribe({
         next: (response) => {},
         error: (err) => {

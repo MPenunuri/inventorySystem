@@ -47,16 +47,33 @@ export class AddLocationComponent {
   onSubmit() {
     const name = this.sanitizer.sanitize(this.form.value.name);
     const address = this.sanitizer.sanitize(this.form.value.address);
-    this.service.registerLocation(name, address).subscribe({
-      next: (entity) => {
-        this.saved.emit();
-        this.open = !this.open;
-        this.form.reset();
-      },
-      error: (error) => {
-        alert('An error occurred during location registry. Please try again.');
-      },
-    });
+    if (address) {
+      this.service.registerLocation(name, address).subscribe({
+        next: (entity) => {
+          this.saved.emit();
+          this.open = !this.open;
+          this.form.reset();
+        },
+        error: (error) => {
+          alert(
+            'An error occurred during location registry. Please try again.'
+          );
+        },
+      });
+    } else {
+      this.service.registerLocation(name).subscribe({
+        next: (entity) => {
+          this.saved.emit();
+          this.open = !this.open;
+          this.form.reset();
+        },
+        error: (error) => {
+          alert(
+            'An error occurred during location registry. Please try again.'
+          );
+        },
+      });
+    }
   }
 
   toggleOpen() {

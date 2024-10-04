@@ -12,6 +12,16 @@ import { AssignCurrencyComponent } from './components/workspace/products/assign-
 import { LocationsComponent } from './components/workspace/locations/locations.component';
 import { SuppliersComponent } from './components/workspace/suppliers/suppliers.component';
 import { ProductsManagementComponent } from './components/workspace/suppliers/products-management/products-management.component';
+import { ProductComponent } from './components/workspace/products/product/product.component';
+import { AddAcquisitionComponent } from './components/workspace/movements/add-movement/add-entry/add-acquisition/add-acquisition.component';
+import { AddTransferComponent } from './components/workspace/movements/add-movement/add-transfer/add-transfer.component';
+import { AddProductComponent } from './components/workspace/products/add-product/add-product.component';
+import { AddCustomerReturnComponent } from './components/workspace/movements/add-movement/add-entry/add-customer-return/add-customer-return.component';
+import { AddEntryAdjustmentComponent } from './components/workspace/movements/add-movement/add-entry/add-entry-adjustment/add-entry-adjustment.component';
+import { AddSaleComponent } from './components/workspace/movements/add-movement/add-output/add-sale/add-sale.component';
+import { AddInternalConsumptionComponent } from './components/workspace/movements/add-movement/add-output/add-internal-consumption/add-internal-consumption.component';
+import { AddSupplierReturnComponent } from './components/workspace/movements/add-movement/add-output/add-supplier-return/add-supplier-return.component';
+import { AddOutputAdjustmentComponent } from './components/workspace/movements/add-movement/add-output/add-output-adjustment/add-output-adjustment.component';
 
 export const routes: Routes = [
   { path: 'signup', component: SignupComponent, canActivate: [authGuard] },
@@ -24,6 +34,14 @@ export const routes: Routes = [
       {
         path: 'products',
         component: ProductsComponent,
+      },
+      {
+        path: 'product/:productId',
+        component: ProductComponent,
+      },
+      {
+        path: 'product/:productId/:currencyId',
+        component: ProductComponent,
       },
       {
         path: 'product/:productId/:productName/assign-subcategory',
@@ -64,6 +82,42 @@ export const routes: Routes = [
       {
         path: 'currencies',
         component: CurrenciesComponent,
+      },
+      {
+        path: 'movement/add-acquisition/:productId',
+        component: AddAcquisitionComponent,
+      },
+      {
+        path: 'movement/add-production/:productId',
+        component: AddProductComponent,
+      },
+      {
+        path: 'movement/add-customer-return/:productId',
+        component: AddCustomerReturnComponent,
+      },
+      {
+        path: 'movement/add-entry-adjustment/:productId',
+        component: AddEntryAdjustmentComponent,
+      },
+      {
+        path: 'movement/add-sale/:productId',
+        component: AddSaleComponent,
+      },
+      {
+        path: 'movement/add-internal-consumption/:productId',
+        component: AddInternalConsumptionComponent,
+      },
+      {
+        path: 'movement/add-supplier-return/:productId',
+        component: AddSupplierReturnComponent,
+      },
+      {
+        path: 'movement/output-adjustment/:productId',
+        component: AddOutputAdjustmentComponent,
+      },
+      {
+        path: 'movement/add-transfer/:productId',
+        component: AddTransferComponent,
       },
     ],
   },

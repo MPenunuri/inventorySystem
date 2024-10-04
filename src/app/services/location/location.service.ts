@@ -58,4 +58,16 @@ export class LocationService {
   deleteLocation(id: number): Observable<void> {
     return this.http.delete<void>('/api/secure/location/' + id);
   }
+
+  removeProductStockInLocation(
+    locationId: number,
+    productId: number
+  ): Observable<boolean> {
+    return this.http.delete<boolean>(
+      '/api/secure/location/stock?locationId=' +
+        locationId +
+        '&productId=' +
+        productId
+    );
+  }
 }

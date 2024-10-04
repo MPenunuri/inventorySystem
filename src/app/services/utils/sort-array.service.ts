@@ -8,7 +8,7 @@ export class SortArrayService {
 
   constructor() {}
 
-  sort<T>(array: T[], column: keyof T): T[] {
+  sort<T>(array: T[], column: keyof T | string): T[] {
     if (this.sortDirection[column as string] === undefined) {
       this.sortDirection[column as string] = true;
     } else {
@@ -19,13 +19,20 @@ export class SortArrayService {
     const isAscending = this.sortDirection[column as string];
 
     return array.sort((a, b) => {
-      if (a[column] < b[column]) {
+      const aValue = this.getValueByPath(a, column as string);
+      const bValue = this.getValueByPath(b, column as string);
+
+      if (aValue < bValue) {
         return isAscending ? -1 : 1;
       }
-      if (a[column] > b[column]) {
+      if (aValue > bValue) {
         return isAscending ? 1 : -1;
       }
       return 0;
     });
+  }
+
+  private getValueByPath(obj: any, path: string): any {
+    return path.split('.').reduce((o, p) => (o ? o[p] : undefined), obj);
   }
 }

@@ -1,0 +1,110 @@
+<h3>Stock on locations</h3>
+
+<div
+  class="tableContainer"
+  *ngIf="stockList && stockList.length > 0; else noLocations"
+>
+  <table aria-live="polite" aria-label="List of registered stock on locations">
+    <thead>
+      <tr>
+        <th scope="col" (click)="sortStockList('location.name')">
+          Location name
+          <img
+            *ngIf="sortService.sortDirection['location.name'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['location.name'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sortStockList('quantity')">
+          Stock
+          <img
+            *ngIf="sortService.sortDirection['quantity'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['quantity'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sortStockList('maximumStorage')">
+          Maximum storage
+          <img
+            *ngIf="sortService.sortDirection['maximumStorage'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['maximumStorage'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sortStockList('location.address')">
+          Location address
+          <img
+            *ngIf="sortService.sortDirection['locationAddress'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['locationAddresse'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let record of stockList">
+        <td>
+          <app-editable-text
+            [id]="record.location.id"
+            [text]="record.location.name"
+            [action]="service.renameLocation.bind(service)"
+          ></app-editable-text>
+        </td>
+        <td>
+          {{ record.quantity }}
+        </td>
+        <td>
+          {{ record.maximumStorage }}
+        </td>
+        <td>
+          <app-editable-text-area
+            [id]="record.location.id"
+            [text]="record.location.address || ''"
+            [action]="service.updateLocationAdress.bind(service)"
+          ></app-editable-text-area>
+        </td>
+        <td>
+          <ng-container *ngIf="record.quantity === 0; else noDeletion">
+            <app-small-delete-button
+              [spanText]="'Delete location'"
+              [id]="record.location.id"
+              [id2]="productId"
+              [deleteFn2]="service.removeProductStockInLocation.bind(service)"
+              (clicked)="stockRemovedEmit()"
+            ></app-small-delete-button>
+          </ng-container>
+          <ng-template #noDeletion>
+            <span>No deletion available</span>
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #noLocations>
+  <p class="noLocations">
+    There are not any stock on any location registered yet.
+  </p>
+</ng-template>

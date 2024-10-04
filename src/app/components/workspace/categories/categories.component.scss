@@ -88,5 +88,6 @@ a {
   }
   span {
     @include standard-span;
+    right: -50px;
   }
 }

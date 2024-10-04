@@ -1,0 +1,120 @@
+<h2>{{ product?.name }} product</h2>
+
+<section *ngIf="product">
+  <h3>General information</h3>
+  <div aria-label="product name and description container">
+    <div aria-label="product editable name container">
+      <h4 class="irregularh4">Name &nbsp;</h4>
+      <app-editable-text
+        [id]="productId"
+        [text]="product.name"
+        [action]="patchService.updateProductName"
+      ></app-editable-text>
+    </div>
+    <div>
+      <h4>Description</h4>
+      <app-editable-text-area
+        [id]="productId"
+        [text]="product.productPresentation"
+        [action]="patchService.updateProductPresentation"
+      ></app-editable-text-area>
+    </div>
+  </div>
+  <div aria-label="product category and subcategory container">
+    <div aria-label="product editable category container">
+      <h4>Category</h4>
+      <app-editable-nav
+        [text]="product.subcategory.category.name"
+        [spanText]="'Set product category'"
+        [editRoute]="
+          'workspace/product/' +
+          productId +
+          '/' +
+          product.name +
+          '/assign-subcategory' +
+          (product.subcategory.id ? '/' + product.subcategory.id : '')
+        "
+      ></app-editable-nav>
+    </div>
+    <div aria-label="product editable subcategory container">
+      <h4>Subcategory</h4>
+      <app-editable-nav
+        [text]="product.subcategory.name"
+        [spanText]="'Set product category'"
+        [editRoute]="
+          'workspace/product/' +
+          productId +
+          '/' +
+          product.name +
+          '/assign-subcategory' +
+          (product.subcategory.id ? '/' + product.subcategory.id : '')
+        "
+      ></app-editable-nav>
+    </div>
+  </div>
+  <div aria-label="product minimum stock and currency container">
+    <div aria-label="product editable minimum stock container">
+      <h4>Minimum stock</h4>
+      <app-editable-number
+        [id]="productId"
+        [text]="product.minimumStock.toString()"
+        [action]="patchService.updateMinimumStock"
+      >
+      </app-editable-number>
+    </div>
+    <div aria-label="product currency container">
+      <h4>Currency</h4>
+      <app-editable-nav
+        [text]="product.sellingPrice.currency"
+        [spanText]="'Set product currency'"
+        [editRoute]="
+          'workspace/product/' +
+          productId +
+          '/' +
+          product.name +
+          '/assign-currency' +
+          (currencyId ? '/' + currencyId : '')
+        "
+      ></app-editable-nav>
+    </div>
+  </div>
+  <div aria-label="product retail price and wholesale price container">
+    <div aria-label="product editable retail price container">
+      <h4>Retail price</h4>
+      <app-editable-number
+        [id]="productId"
+        [text]="product.sellingPrice.retail.toString()"
+        [action]="patchService.updateRetailPrice"
+      >
+      </app-editable-number>
+    </div>
+    <div aria-label="product editable  price container">
+      <h4>Wholesale Price</h4>
+      <app-editable-number
+        [id]="productId"
+        [text]="product.sellingPrice.wholesale.toString()"
+        [action]="patchService.updateWholesalePrice"
+      >
+      </app-editable-number>
+    </div>
+  </div>
+</section>
+<app-locations
+  [productId]="productId"
+  [stockList]="stockList"
+  (stockRemoved)="setProduct()"
+></app-locations>
+
+<app-add-movement *ngIf="product" [product]="product"></app-add-movement>
+
+<app-suppliers
+  [productId]="productId"
+  [suppliers]="suppliers"
+  (supplierRemoved)="setProduct()"
+></app-suppliers>
+
+<app-add-supplier
+  [productId]="productId"
+  [refreshSuppliers]="refreshNotRelatedSuppliers"
+  (saved)="setProduct()"
+></app-add-supplier>

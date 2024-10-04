@@ -1,0 +1,31 @@
+@use "../../../../../../styles.scss" as *;
+
+:host {
+  @include flex-center(column);
+  height: auto;
+  width: 100%;
+}
+
+section {
+  margin-top: 1rem;
+  min-height: 0;
+  max-height: 0;
+  overflow: hidden;
+  width: 100%;
+  transition: max-height 0.5s ease-in-out;
+
+  &.show {
+    max-height: 250px;
+    min-height: 100px;
+  }
+
+  div {
+    @include flex-center();
+    height: 100%;
+    min-height: 83.33px;
+  }
+
+  div:first-child {
+    min-height: 60px;
+  }
+}

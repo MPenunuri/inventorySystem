@@ -13,10 +13,6 @@ import { SortArrayService } from '../../../../../services/utils/sort-array.servi
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../../../../commons/button/button.component';
 import { FormComponent } from '../../../../commons/form/form.component';
-import { EditableTextComponent } from '../../../../commons/editable/editable-text/editable-text.component';
-import { PatchProductService } from '../../../../../services/product/patch-product.service';
-import { EditableNavComponent } from '../../../../commons/editable/editable-nav/editable-nav.component';
-import { EditableTextAreaComponent } from '../../../../commons/editable/editable-text-area/editable-text-area.component';
 import { Subject, debounceTime } from 'rxjs';
 
 @Component({
@@ -43,7 +39,6 @@ export class AddProductRelationComponent {
     private fb: FormBuilder,
     private getService: GetProductService,
     private postService: SupplierService,
-    public patchService: PatchProductService,
     private sanitizer: InputSanitizerService,
     public sortService: SortArrayService
   ) {
@@ -53,11 +48,9 @@ export class AddProductRelationComponent {
       filter: [''],
     });
 
-    this.filterSubject
-      .pipe(debounceTime(300)) // Evitar llamadas frecuentes
-      .subscribe((filterText) => {
-        this.applyFilter(filterText);
-      });
+    this.filterSubject.pipe(debounceTime(300)).subscribe((filterText) => {
+      this.applyFilter(filterText);
+    });
   }
 
   ngOnChanges() {

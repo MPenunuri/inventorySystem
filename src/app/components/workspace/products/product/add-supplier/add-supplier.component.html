@@ -1,0 +1,50 @@
+<app-button
+  *ngIf="filteredSuppliers && filteredSuppliers.length > 0"
+  (clicked)="toggleOpen()"
+  [className]="open ? 'regular red' : 'regular alternativeRegular'"
+  [name]="open ? 'Cancel' : 'Link a supplier'"
+></app-button>
+<app-form [ngClass]="{ show: open }" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="filter">
+    <label for="">Filter suppliers by name</label>
+    <input name="filter" type="text" (input)="onFilterChange($event)" />
+  </div>
+  <div class="tableContainer">
+    <table aria-live="polite" aria-label="List of registered suppliers">
+      <thead>
+        <tr>
+          <th scope="col" (click)="sort('name')">
+            Supplier name
+            <img
+              *ngIf="sortService.sortDirection['name'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['namee'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </th>
+          <th scope="col">Link supplier</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let record of filteredSuppliers">
+          <td>
+            {{ record.name }}
+          </td>
+          <td>
+            <input
+              type="radio"
+              [id]="'radio' + record.id"
+              formControlName="supplierId"
+              [value]="record.id"
+            />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <app-button [name]="'Link supplier'"></app-button>
+</app-form>

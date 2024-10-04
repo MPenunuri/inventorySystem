@@ -1,0 +1,52 @@
+<h3>Suppliers</h3>
+
+<div
+  class="tableContainer"
+  *ngIf="suppliers && suppliers.length > 0; else noSuppliers"
+>
+  <table aria-live="polite" aria-label="List of registered suppliers">
+    <thead>
+      <tr>
+        <th scope="col" (click)="sort('name')">
+          Supplier name
+          <img
+            *ngIf="sortService.sortDirection['name'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['name'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let record of suppliers">
+        <td>
+          <app-editable-text
+            [id]="record.id"
+            [text]="record.name"
+            [action]="service.renameSupplier.bind(service)"
+          ></app-editable-text>
+        </td>
+        <td>
+          <app-small-delete-button
+            [spanText]="'Delete location'"
+            [id]="productId"
+            [id2]="record.id"
+            [deleteFn2]="service.deleteProductSupplierRelation.bind(service)"
+            (clicked)="supplierRemovedEmit()"
+          ></app-small-delete-button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #noSuppliers>
+  <p class="noSuppliers">There are not any suppliers registered yet.</p>
+</ng-template>

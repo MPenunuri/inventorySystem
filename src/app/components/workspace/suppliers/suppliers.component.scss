@@ -54,24 +54,8 @@ p.noSuppliers {
           &:first-child {
             @include sticky-first-column;
           }
-          span {
-            font-size: map-get($font-sizes, "light");
-          }
         }
       }
     }
-  }
-}
-
-a {
-  @include standard-anchor-router-link;
-
-  &:hover {
-    span {
-      opacity: 1;
-    }
-  }
-  span {
-    @include standard-span;
   }
 }

@@ -56,9 +56,25 @@ p.noProducts {
           @include standard-table-td;
           &:first-child {
             @include sticky-first-column;
+            app-editable-nav {
+              ::ng-deep a {
+                color: black;
+                ::ng-deep span {
+                  top: -70px;
+                }
+              }
+            }
           }
           &:nth-child(4) {
             width: 250px;
+          }
+
+          app-editable-nav {
+            ::ng-deep a {
+              ::ng-deep span {
+                top: -50px;
+              }
+            }
           }
         }
       }
