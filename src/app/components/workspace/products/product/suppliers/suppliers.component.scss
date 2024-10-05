@@ -3,6 +3,7 @@
 :host {
   @include flex-center(column);
   gap: 0;
+  max-width: 98vw;
 }
 
 h3 {

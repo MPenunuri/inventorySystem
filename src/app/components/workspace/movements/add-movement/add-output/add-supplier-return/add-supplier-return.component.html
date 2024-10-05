@@ -1,1 +1,59 @@
-<p>add-supplier-return works!</p>
+<app-form
+  [title]="'Sale for ' + productName"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+>
+  <app-date-input
+    formControlName="dateTime"
+    [name]="'dateTime'"
+    [label]="'Date'"
+  >
+  </app-date-input>
+  <app-text-input
+    formControlName="reason"
+    [name]="'reason'"
+    [label]="'Reason'"
+  ></app-text-input>
+  <app-text-area
+    formControlName="comment"
+    [name]="'comment'"
+    [label]="'Comment'"
+  ></app-text-area>
+  <app-number-input
+    formControlName="quantity"
+    [name]="'quantity'"
+    [label]="'Quantity'"
+    [decimals]="0"
+  ></app-number-input>
+  <app-select-input
+    formControlName="supplierId"
+    [name]="'supplierId'"
+    [label]="'Supplier'"
+    [options]="suppliers"
+  ></app-select-input>
+  <app-select-input
+    formControlName="fromLocationId"
+    [name]="'fromLocationId'"
+    [label]="'Location'"
+    [options]="locations"
+  ></app-select-input>
+  <app-select-input
+    formControlName="transactionSubtype"
+    [name]="'returnType'"
+    [label]="'Return type'"
+    [options]="sellTypes"
+  ></app-select-input>
+  <app-number-input
+    formControlName="transactionValue"
+    [name]="'sell'"
+    [label]="'Return value'"
+    [decimals]="2"
+  ></app-number-input>
+  <app-select-input
+    formControlName="transactionCurrencyId"
+    [name]="'returnCurrency'"
+    [label]="'Return currency'"
+    [options]="currencies"
+  ></app-select-input>
+  <app-button [name]="'Make movement'"></app-button>
+</app-form>

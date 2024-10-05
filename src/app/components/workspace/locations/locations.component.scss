@@ -35,7 +35,7 @@ p.noLocations {
           }
           &:first-child {
             @include sticky-first-column;
-            width: 200px;
+            width: 250px;
           }
           &:nth-child(2) {
             width: 250px;
@@ -57,7 +57,7 @@ p.noLocations {
           @include standard-table-td;
           &:first-child {
             @include sticky-first-column;
-            width: 200px;
+            width: 250px;
           }
           &:nth-child(2) {
             width: 250px;

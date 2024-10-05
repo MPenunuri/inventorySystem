@@ -37,25 +37,44 @@ export class NumberInputComponent implements ControlValueAccessor {
     const inputElement = event.target as HTMLInputElement;
     let value = inputElement.value;
 
-    if (this.decimals === 0) {
-      value = value.replace(/\D/g, '');
-    } else if (this.decimals > 0) {
-      value = value.replace(/[^0-9.]/g, '');
-      const decimalIndex = value.indexOf('.');
-      if (decimalIndex >= 0) {
-        value =
-          value.slice(0, decimalIndex + 1) +
-          value.slice(decimalIndex + 1).replace(/\./g, '');
-        const decimalPart = value.split('.')[1];
-        if (decimalPart?.length > this.decimals) {
-          value = value.slice(0, decimalIndex + 1 + this.decimals);
-        }
-      }
+    // Save the original cursor position and count commas before formatting
+    const selectionStart = inputElement.selectionStart || 0;
+    const originalCommasBeforeCursor = this.countCommas(value, selectionStart);
+
+    // Remove invalid characters (except numbers and decimal point)
+    value = value.replace(/[^0-9.]/g, '');
+
+    // Apply formatting
+    const formattedValue = this.formatNumber(value);
+
+    // Store the formatted value
+    this.value = formattedValue;
+    inputElement.value = formattedValue;
+    this.onChange(this.value.replace(/,/g, ''));
+
+    // Count the new commas after formatting
+    const newCommasBeforeCursor = this.countCommas(
+      formattedValue,
+      selectionStart
+    );
+
+    // Calculate the necessary cursor adjustment
+    let cursorPositionAdjustment =
+      newCommasBeforeCursor - originalCommasBeforeCursor;
+
+    // If the cursor is after the decimal point, do not adjust for commas
+    const decimalIndex = formattedValue.indexOf('.');
+    if (decimalIndex !== -1 && selectionStart > decimalIndex) {
+      cursorPositionAdjustment = 0;
     }
 
-    this.value = this.formatNumber(value);
-    inputElement.value = this.value;
-    this.onChange(this.value.replace(/,/g, ''));
+    // Calculate the new cursor position
+    const newCursorPosition = selectionStart + cursorPositionAdjustment;
+
+    // Move the cursor to the correct position
+    setTimeout(() => {
+      inputElement.setSelectionRange(newCursorPosition, newCursorPosition);
+    }, 0);
   }
 
   formatNumber(value: string): string {
@@ -67,5 +86,9 @@ export class NumberInputComponent implements ControlValueAccessor {
       });
     }
     return '';
+  }
+
+  countCommas(value: string, limit: number): number {
+    return (value.slice(0, limit).match(/,/g) || []).length;
   }
 }

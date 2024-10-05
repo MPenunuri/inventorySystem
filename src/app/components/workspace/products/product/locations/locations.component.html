@@ -75,7 +75,14 @@
           {{ record.quantity }}
         </td>
         <td>
-          {{ record.maximumStorage }}
+          <app-editable-number
+            [decimals]="0"
+            [id]="record.location.id"
+            [id2]="productId"
+            [text]="record.maximumStorage.toString()"
+            [action2]="service.setMaximumStorageInLocation.bind(service)"
+          >
+          </app-editable-number>
         </td>
         <td>
           <app-editable-text-area

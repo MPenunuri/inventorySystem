@@ -21,6 +21,7 @@ import { NumberInputComponent } from '../../../../../commons/form/number-input/n
 import { SupplierService } from '../../../../../../services/supplier/supplier.service';
 import { CurrencyService } from '../../../../../../services/currency/currency.service';
 import { costTypes } from '../costTypes';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-acquisition',
@@ -132,8 +133,19 @@ export class AddAcquisitionComponent {
             this.form.reset();
             this.location.back();
           },
-          error: (error) => {
-            alert('An error occurred during registry. Please try again.');
+          error: (error: HttpErrorResponse) => {
+            if (
+              error.status === 400 &&
+              error.error.error ===
+                'Cannot increase quantity beyond the maximum storage limit.'
+            ) {
+              return alert(
+                'Cannot increase quantity quantity in stock beyond the maximum storage limit.'
+              );
+            }
+            return alert(
+              'An error occurred during registry. Please try again.'
+            );
           },
         });
     }

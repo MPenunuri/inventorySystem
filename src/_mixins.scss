@@ -187,4 +187,7 @@
   color: var(--main-text-color);
   font-weight: bold;
   padding: 0.5rem 1rem;
+  @include mobile() {
+    position: relative;
+  }
 }

@@ -6,6 +6,7 @@ import { EditableTextAreaComponent } from '../../../../commons/editable/editable
 import { EditableTextComponent } from '../../../../commons/editable/editable-text/editable-text.component';
 import { CommonModule } from '@angular/common';
 import { SmallDeleteButtonComponent } from '../../../../commons/button/small-delete-button/small-delete-button.component';
+import { EditableNumberComponent } from '../../../../commons/editable/editable-number/editable-number.component';
 
 @Component({
   selector: 'app-locations',
@@ -14,6 +15,7 @@ import { SmallDeleteButtonComponent } from '../../../../commons/button/small-del
     CommonModule,
     EditableTextComponent,
     EditableTextAreaComponent,
+    EditableNumberComponent,
     SmallDeleteButtonComponent,
   ],
   templateUrl: './locations.component.html',

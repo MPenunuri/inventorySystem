@@ -15,13 +15,13 @@ import { ProductsManagementComponent } from './components/workspace/suppliers/pr
 import { ProductComponent } from './components/workspace/products/product/product.component';
 import { AddAcquisitionComponent } from './components/workspace/movements/add-movement/add-entry/add-acquisition/add-acquisition.component';
 import { AddTransferComponent } from './components/workspace/movements/add-movement/add-transfer/add-transfer.component';
-import { AddProductComponent } from './components/workspace/products/add-product/add-product.component';
 import { AddCustomerReturnComponent } from './components/workspace/movements/add-movement/add-entry/add-customer-return/add-customer-return.component';
 import { AddEntryAdjustmentComponent } from './components/workspace/movements/add-movement/add-entry/add-entry-adjustment/add-entry-adjustment.component';
 import { AddSaleComponent } from './components/workspace/movements/add-movement/add-output/add-sale/add-sale.component';
 import { AddInternalConsumptionComponent } from './components/workspace/movements/add-movement/add-output/add-internal-consumption/add-internal-consumption.component';
 import { AddSupplierReturnComponent } from './components/workspace/movements/add-movement/add-output/add-supplier-return/add-supplier-return.component';
 import { AddOutputAdjustmentComponent } from './components/workspace/movements/add-movement/add-output/add-output-adjustment/add-output-adjustment.component';
+import { AddProductionComponent } from './components/workspace/movements/add-movement/add-entry/add-production/add-production.component';
 
 export const routes: Routes = [
   { path: 'signup', component: SignupComponent, canActivate: [authGuard] },
@@ -89,7 +89,7 @@ export const routes: Routes = [
       },
       {
         path: 'movement/add-production/:productId/:productName',
-        component: AddProductComponent,
+        component: AddProductionComponent,
       },
       {
         path: 'movement/add-customer-return/:productId/:productName',

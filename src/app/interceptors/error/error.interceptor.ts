@@ -12,7 +12,7 @@ export function errorInterceptor(
 ): Observable<HttpEvent<unknown>> {
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
-      let errorMessage = 'Unknown error!';
+      let errorMessage = 'Unknown error';
       if (error.error instanceof ErrorEvent) {
         // Client side
         errorMessage = `Error: ${error.error.message}`;
@@ -30,7 +30,7 @@ export function errorInterceptor(
       }
 
       console.error(errorMessage);
-      return throwError(() => new Error(errorMessage));
+      return throwError(() => error);
     })
   );
 }

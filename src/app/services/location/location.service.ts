@@ -55,6 +55,22 @@ export class LocationService {
     );
   }
 
+  setMaximumStorageInLocation(
+    locationId: number,
+    productId: number,
+    quantity: number
+  ): Observable<boolean> {
+    return this.http.patch<boolean>(
+      '/api/secure/location/maximum-stock/' +
+        locationId +
+        '/' +
+        productId +
+        '/' +
+        quantity,
+      {}
+    );
+  }
+
   deleteLocation(id: number): Observable<void> {
     return this.http.delete<void>('/api/secure/location/' + id);
   }
