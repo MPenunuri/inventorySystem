@@ -8,7 +8,7 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CategoryEntityI } from '../../../../models/category/category-entity';
 import { InputSanitizerService } from '../../../../services/input-sanitizer/input-sanitizer.service';
 import { SubcategoryService } from '../../../../services/subcategory/subcategory.service';
@@ -24,6 +24,7 @@ import { SelectInputComponent } from '../../../commons/form/select-input/select-
     FormComponent,
     SelectInputComponent,
     ButtonComponent,
+    RouterLink,
   ],
   templateUrl: './assign-category.component.html',
   styleUrl: './assign-category.component.scss',

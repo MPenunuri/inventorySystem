@@ -14,11 +14,18 @@ import { SupplierI } from '../../../../../models/supplier/supplier';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../../../../commons/button/button.component';
 import { FormComponent } from '../../../../commons/form/form.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-add-supplier',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormComponent, ButtonComponent],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FormComponent,
+    ButtonComponent,
+    RouterLink,
+  ],
   templateUrl: './add-supplier.component.html',
   styleUrl: './add-supplier.component.scss',
 })

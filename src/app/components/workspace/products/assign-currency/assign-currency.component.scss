@@ -16,3 +16,7 @@ app-select-input {
 app-button {
   margin-bottom: 1rem;
 }
+
+a {
+  @include standard-router-link;
+}

@@ -7,7 +7,7 @@ import {
   FormBuilder,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { InputSanitizerService } from '../../../../services/input-sanitizer/input-sanitizer.service';
 import { PatchProductService } from '../../../../services/product/patch-product.service';
 import { ButtonComponent } from '../../../commons/button/button.component';
@@ -23,6 +23,7 @@ import { SelectOption } from '../../../../models/select-option/select-option';
     FormComponent,
     SelectInputComponent,
     ButtonComponent,
+    RouterLink,
   ],
   templateUrl: './assign-currency.component.html',
   styleUrl: './assign-currency.component.scss',

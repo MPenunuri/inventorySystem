@@ -3,7 +3,7 @@
 <section *ngIf="product; else noProduct">
   <h3>General information</h3>
   <div aria-label="product name and description container">
-    <div aria-label="product editable name container">
+    <div aria-label="product editable name container" class="firstSubcontainer">
       <h4 class="irregularh4">Name &nbsp;</h4>
       <app-editable-text
         [id]="productId"
