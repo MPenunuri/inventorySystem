@@ -15,6 +15,8 @@ import { EditableNavComponent } from '../../../commons/editable/editable-nav/edi
 import { EditableNumberComponent } from '../../../commons/editable/editable-number/editable-number.component';
 import { AddSupplierComponent } from './add-supplier/add-supplier.component';
 import { AddMovementComponent } from './add-movement/add-movement.component';
+import { LoadingComponent } from '../../../commons/loading/loading.component';
+import { DeleteProductComponent } from './delete-product/delete-product.component';
 
 @Component({
   selector: 'app-product',
@@ -29,6 +31,8 @@ import { AddMovementComponent } from './add-movement/add-movement.component';
     AddSupplierComponent,
     AddMovementComponent,
     LocationsComponent,
+    LoadingComponent,
+    DeleteProductComponent,
   ],
   templateUrl: './product.component.html',
   styleUrl: './product.component.scss',

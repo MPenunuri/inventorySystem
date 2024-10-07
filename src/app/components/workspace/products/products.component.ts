@@ -9,6 +9,7 @@ import { EditableTextComponent } from '../../commons/editable/editable-text/edit
 import { PatchProductService } from '../../../services/product/patch-product.service';
 import { EditableNumberComponent } from '../../commons/editable/editable-number/editable-number.component';
 import { EditableTextAreaComponent } from '../../commons/editable/editable-text-area/editable-text-area.component';
+import { LoadingComponent } from '../../commons/loading/loading.component';
 
 @Component({
   selector: 'app-products',
@@ -20,6 +21,7 @@ import { EditableTextAreaComponent } from '../../commons/editable/editable-text-
     EditableTextComponent,
     EditableNumberComponent,
     EditableTextAreaComponent,
+    LoadingComponent,
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',
@@ -40,6 +42,9 @@ export class ProductsComponent implements OnInit {
       next: (data: StandardProductI[]) => {
         this.products = data;
         this.sort('productName');
+      },
+      error: () => {
+        this.products = [];
       },
     });
   }

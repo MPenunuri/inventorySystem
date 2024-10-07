@@ -48,5 +48,14 @@
 </div>
 
 <ng-template #noSuppliers>
-  <p class="noSuppliers">There are not any suppliers registered yet.</p>
+  <p
+    class="noSuppliers"
+    *ngIf="suppliers && suppliers.length === 0; else undefinedSuppliers"
+  >
+    There are not any suppliers registered yet.
+  </p>
+</ng-template>
+
+<ng-template #undefinedSuppliers>
+  <app-loading></app-loading>
 </ng-template>

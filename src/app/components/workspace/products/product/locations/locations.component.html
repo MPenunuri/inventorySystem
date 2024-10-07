@@ -111,7 +111,14 @@
 </div>
 
 <ng-template #noLocations>
-  <p class="noLocations">
+  <p
+    class="noLocations"
+    *ngIf="stockList && stockList.length === 0; else undefinedLocations"
+  >
     There are not any stock on any location registered yet.
   </p>
+</ng-template>
+
+<ng-template #undefinedLocations>
+  <app-loading></app-loading>
 </ng-template>

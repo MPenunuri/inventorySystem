@@ -1,6 +1,6 @@
-<h2>{{ product?.name }} product</h2>
+<h2 *ngIf="product">{{ product.name }} product</h2>
 
-<section *ngIf="product">
+<section *ngIf="product; else noProduct">
   <h3>General information</h3>
   <div aria-label="product name and description container">
     <div aria-label="product editable name container">
@@ -118,3 +118,12 @@
   [refreshSuppliers]="refreshNotRelatedSuppliers"
   (saved)="setProduct()"
 ></app-add-supplier>
+
+<ng-template #noProduct>
+  <app-loading></app-loading>
+</ng-template>
+
+<app-delete-product
+  [productId]="productId"
+  *ngIf="product && product.stockList.length === 0"
+></app-delete-product>

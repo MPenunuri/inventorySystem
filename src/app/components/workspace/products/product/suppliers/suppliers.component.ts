@@ -5,11 +5,17 @@ import { SupplierI } from '../../../../../models/supplier/supplier';
 import { SortArrayService } from '../../../../../services/utils/sort-array.service';
 import { SmallDeleteButtonComponent } from '../../../../commons/button/small-delete-button/small-delete-button.component';
 import { EditableTextComponent } from '../../../../commons/editable/editable-text/editable-text.component';
+import { LoadingComponent } from '../../../../commons/loading/loading.component';
 
 @Component({
   selector: 'app-suppliers',
   standalone: true,
-  imports: [CommonModule, EditableTextComponent, SmallDeleteButtonComponent],
+  imports: [
+    CommonModule,
+    EditableTextComponent,
+    SmallDeleteButtonComponent,
+    LoadingComponent,
+  ],
   templateUrl: './suppliers.component.html',
   styleUrl: './suppliers.component.scss',
 })

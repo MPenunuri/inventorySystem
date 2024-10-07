@@ -1,0 +1,26 @@
+<button
+  (click)="toggleDeleteOperation()"
+  [attr.aria-label]="
+    isDeleteInProgress
+      ? 'Abort deletion of product'
+      : 'Delete product and all related information'
+  "
+  [ngClass]="{
+    alternativeRegular: isDeleteInProgress,
+    red: !isDeleteInProgress
+  }"
+>
+  {{ isDeleteInProgress ? "Abort" : "Delete product" }}
+  <span class="secondary-text" *ngIf="!isDeleteInProgress"
+    >Include all related information</span
+  >
+</button>
+
+<button
+  [disabled]="!isConfirmButtonEnabled"
+  (click)="confirmDeletion()"
+  aria-label="Confirm deletion of the product"
+  [ngClass]="{ red: isDeleteInProgress, noVisible: !isDeleteInProgress }"
+>
+  Confirm deletion
+</button>

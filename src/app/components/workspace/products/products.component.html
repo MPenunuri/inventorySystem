@@ -225,5 +225,14 @@
 </div>
 
 <ng-template #noProducts>
-  <p class="noProducts">There are not any products registered yet.</p>
+  <p
+    class="noProducts"
+    *ngIf="products && products.length === 0; else undefinedProducts"
+  >
+    There are not any products registered yet.
+  </p>
+</ng-template>
+
+<ng-template #undefinedProducts>
+  <app-loading></app-loading>
 </ng-template>
