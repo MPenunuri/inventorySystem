@@ -1,0 +1,73 @@
+<app-button
+  (clicked)="toggleOpen()"
+  [className]="open ? 'regular red' : 'regular alternativeRegular'"
+  [name]="open ? 'Cancel' : 'Manage your inventory!'"
+></app-button>
+
+<section [ngClass]="{ show: open }">
+  <div></div>
+  <div class="entryButtonsContainer">
+    <app-movement-icon
+      [ariaLabel]="'navigation button'"
+      [name]="'Acquisitions'"
+      [productId]="product?.id"
+      [productName]="product?.name"
+    ></app-movement-icon>
+    <app-movement-icon
+      [ariaLabel]="'navigation button'"
+      [name]="'Productions'"
+      [productId]="product?.id"
+      [productName]="product?.name"
+    ></app-movement-icon>
+    <app-movement-icon
+      [ariaLabel]="'navigation button'"
+      [name]="'Customer returns'"
+      [productId]="product?.id"
+      [productName]="product?.name"
+    ></app-movement-icon>
+    <app-movement-icon
+      [ariaLabel]="'navigation button'"
+      [name]="'Entry adjustments'"
+      [productId]="product?.id"
+      [productName]="product?.name"
+    ></app-movement-icon>
+  </div>
+  <div
+    *ngIf="product && product.stockList && product.stockList.length > 0"
+    class="outputButtonsContainer"
+  >
+    <app-movement-icon
+      [ariaLabel]="'navigation button'"
+      [name]="'Sales'"
+      [productId]="product.id"
+      [productName]="product.name"
+    ></app-movement-icon>
+    <app-movement-icon
+      [ariaLabel]="'navigation button'"
+      [name]="'Internal consumptions'"
+      [productId]="product.id"
+      [productName]="product.name"
+    ></app-movement-icon>
+    <app-movement-icon
+      [ariaLabel]="'navigation button'"
+      [name]="'Supplier returns'"
+      [productId]="product.id"
+      [productName]="product.name"
+    ></app-movement-icon>
+    <app-movement-icon
+      [ariaLabel]="'navigation button'"
+      [name]="'Output adjustments'"
+      [productId]="product.id"
+      [productName]="product.name"
+    ></app-movement-icon>
+  </div>
+  <div>
+    <app-movement-icon
+      *ngIf="product && product.stockList && product.stockList.length > 0"
+      [ariaLabel]="'navigation button'"
+      [name]="'Transfers'"
+      [productId]="product.id"
+      [productName]="product.name"
+    ></app-movement-icon>
+  </div>
+</section>

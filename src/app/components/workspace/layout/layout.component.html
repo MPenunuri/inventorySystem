@@ -1,9 +1,4 @@
 <app-navbar></app-navbar>
-<div
-  [ngClass]="{
-    outletContainer: true,
-    disabled: isTransitioning,
-  }"
->
-  <router-outlet (deactivate)="onDeactivate()"></router-outlet>
+<div id="outletContainer" class="invisible">
+  <router-outlet></router-outlet>
 </div>

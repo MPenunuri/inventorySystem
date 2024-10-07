@@ -1,9 +1,9 @@
 <button (click)="onClick()"><img [src]="imageUrl" alt="menu icon" /></button>
 <menu [ngClass]="{ show: showing }">
-  <li routerLink="/workspace/products" (click)="onClick()" n>Products</li>
-  <li routerLink="/workspace/categories" (click)="onClick()">Categories</li>
-  <li routerLink="/workspace/locations" (click)="onClick()">Locations</li>
-  <li routerLink="/workspace/suppliers" (click)="onClick()">Suppliers</li>
-  <li routerLink="/workspace/currencies" (click)="onClick()">Currencies</li>
-  <li (click)="logout()" (click)="onClick()">Log out</li>
+  <li (click)="navigate('/workspace/products')">Products</li>
+  <li (click)="navigate('/workspace/categories')">Categories</li>
+  <li (click)="navigate('/workspace/locations')">Locations</li>
+  <li (click)="navigate('/workspace/suppliers')">Suppliers</li>
+  <li (click)="navigate('/workspace/currencies')">Currencies</li>
+  <li (click)="logout()">Log out</li>
 </menu>

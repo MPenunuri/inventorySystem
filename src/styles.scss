@@ -13,24 +13,22 @@ body {
   @return map-get($font-sizes, $font-size);
 }
 
-[class^="app-"]:not(.disabled) {
+[class^="app-"] {
   animation: setVisible 1s ease 0s;
   animation-fill-mode: forwards;
   transform: scale(0, 0);
 }
 
-.outletContainer:not(*.disabled) {
-  animation: setVisible 1.5s ease 0s;
-  animation-fill-mode: forwards;
-  transform: scale(0, 0);
-}
-
 @keyframes setVisible {
-  from {
+  0% {
+    display: none;
+  }
+
+  1% {
     transform: scale(0, 0);
   }
 
-  to {
+  100% {
     transform: scale(1, 1);
   }
 }

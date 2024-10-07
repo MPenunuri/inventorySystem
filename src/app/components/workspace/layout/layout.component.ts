@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CommonModule } from '@angular/common';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-layout',
@@ -10,13 +11,33 @@ import { CommonModule } from '@angular/common';
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss',
 })
-export class LayoutComponent {
-  isTransitioning = false;
+export class LayoutComponent implements OnInit, AfterViewInit {
+  private outletContainer!: HTMLElement;
 
-  onDeactivate() {
-    this.isTransitioning = true;
-    setTimeout(() => {
-      this.isTransitioning = false;
-    }, 1000);
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.animateOutlet();
+      });
+  }
+
+  ngAfterViewInit() {
+    this.outletContainer = document.getElementById('outletContainer')!;
+    this.animateOutlet();
+  }
+
+  animateOutlet() {
+    if (this.outletContainer) {
+      this.outletContainer.classList.remove('visible');
+      this.outletContainer.classList.add('invisible');
+
+      setTimeout(() => {
+        this.outletContainer.classList.remove('invisible');
+        this.outletContainer.classList.add('visible');
+      }, 50);
+    }
   }
 }

@@ -26,74 +26,74 @@ export class MovementIconComponent {
   ngOnInit() {
     if (this.name && this.productId && this.productName) {
       switch (this.name) {
-        case 'Acquisition':
+        case 'Acquisitions':
           this.srcIcon = 'assets/shopping-cart.png';
           this.url =
-            '/workspace/movement/add-acquisition/' +
+            '/workspace/movement/product/acquisitions/' +
             this.productId +
             '/' +
             this.productName;
           break;
-        case 'Production':
+        case 'Productions':
           this.srcIcon = 'assets/factory.png';
           this.url =
-            '/workspace/movement/add-production/' +
+            '/workspace/movement/product/productions/' +
             this.productId +
             '/' +
             this.productName;
           break;
-        case 'Customer return':
+        case 'Customer returns':
           this.srcIcon = 'assets/returning-customer.png';
           this.url =
-            '/workspace/movement/add-customer-return/' +
+            '/workspace/movement/product/customer-returns/' +
             this.productId +
             '/' +
             this.productName;
           break;
-        case 'Entry adjustment':
+        case 'Entry adjustments':
           this.srcIcon = 'assets/login.png';
           this.url =
-            '/workspace/movement/add-entry-adjustment/' +
+            '/workspace/movement/product/entry-adjustments/' +
             this.productId +
             '/' +
             this.productName;
           break;
-        case 'Sale':
+        case 'Sales':
           this.srcIcon = 'assets/sale-tag.png';
           this.url =
-            '/workspace/movement/add-sale/' +
+            '/workspace/movement/product/sales/' +
             this.productId +
             '/' +
             this.productName;
           break;
-        case 'Internal consumption':
+        case 'Internal consumptions':
           this.srcIcon = 'assets/internal-link.png';
           this.url =
-            '/workspace/movement/add-internal-consumption/' +
+            '/workspace/movement/product/internal-consumptions/' +
             this.productId +
             '/' +
             this.productName;
           break;
-        case 'Supplier return':
+        case 'Supplier returns':
           this.srcIcon = 'assets/packages.png';
           this.url =
-            '/workspace/movement/add-supplier-return/' +
+            '/workspace/movement/product/supplier-returns/' +
             this.productId +
             '/' +
             this.productName;
           break;
-        case 'Output adjustment':
+        case 'Output adjustments':
           this.srcIcon = 'assets/packages.png';
           this.url =
-            '/workspace/movement/output-adjustment/' +
+            '/workspace/movement/product/output-adjustments/' +
             this.productId +
             '/' +
             this.productName;
           break;
-        case 'Transfer':
+        case 'Transfers':
           this.srcIcon = 'assets/transfer.png';
           this.url =
-            '/workspace/movement/add-transfer/' +
+            '/workspace/movement/product/transfers/' +
             this.productId +
             '/' +
             this.productName;

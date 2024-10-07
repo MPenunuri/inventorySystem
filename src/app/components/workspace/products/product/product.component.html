@@ -105,7 +105,10 @@
   (stockRemoved)="setProduct()"
 ></app-locations>
 
-<app-add-movement *ngIf="product" [product]="product"></app-add-movement>
+<app-manage-inventory
+  *ngIf="product"
+  [product]="product"
+></app-manage-inventory>
 
 <app-suppliers
   [productId]="productId"

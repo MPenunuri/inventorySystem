@@ -17,6 +17,7 @@ import { AddSupplierComponent } from './add-supplier/add-supplier.component';
 import { AddMovementComponent } from './add-movement/add-movement.component';
 import { LoadingComponent } from '../../../commons/loading/loading.component';
 import { DeleteProductComponent } from './delete-product/delete-product.component';
+import { ManageInventoryComponent } from './manage-inventory/manage-inventory.component';
 
 @Component({
   selector: 'app-product',
@@ -29,6 +30,7 @@ import { DeleteProductComponent } from './delete-product/delete-product.componen
     EditableNavComponent,
     SuppliersComponent,
     AddSupplierComponent,
+    ManageInventoryComponent,
     AddMovementComponent,
     LocationsComponent,
     LoadingComponent,

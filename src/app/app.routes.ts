@@ -22,6 +22,15 @@ import { AddInternalConsumptionComponent } from './components/workspace/movement
 import { AddSupplierReturnComponent } from './components/workspace/movements/add-movement/add-output/add-supplier-return/add-supplier-return.component';
 import { AddOutputAdjustmentComponent } from './components/workspace/movements/add-movement/add-output/add-output-adjustment/add-output-adjustment.component';
 import { AddProductionComponent } from './components/workspace/movements/add-movement/add-entry/add-production/add-production.component';
+import { AcquisitionsComponent } from './components/workspace/movements/product/entries/acquisitions/acquisitions.component';
+import { CustomerReturnsComponent } from './components/workspace/movements/product/entries/customer-returns/customer-returns.component';
+import { EntryAdjustmentsComponent } from './components/workspace/movements/product/entries/entry-adjustments/entry-adjustments.component';
+import { ProductionsComponent } from './components/workspace/movements/product/entries/productions/productions.component';
+import { InternalConsumptionsComponent } from './components/workspace/movements/product/outputs/internal-consumptions/internal-consumptions.component';
+import { OutputAdjustmentsComponent } from './components/workspace/movements/product/outputs/output-adjustments/output-adjustments.component';
+import { SalesComponent } from './components/workspace/movements/product/outputs/sales/sales.component';
+import { SupplierReturnsComponent } from './components/workspace/movements/product/outputs/supplier-returns/supplier-returns.component';
+import { TransfersComponent } from './components/workspace/movements/product/transfers/transfers.component';
 
 export const routes: Routes = [
   { path: 'signup', component: SignupComponent, canActivate: [authGuard] },
@@ -118,6 +127,42 @@ export const routes: Routes = [
       {
         path: 'movement/add-transfer/:productId/:productName',
         component: AddTransferComponent,
+      },
+      {
+        path: 'movement/product/acquisitions/:productId/:productName',
+        component: AcquisitionsComponent,
+      },
+      {
+        path: 'movement/product/productions/:productId/:productName',
+        component: ProductionsComponent,
+      },
+      {
+        path: 'movement/product/customer-returns/:productId/:productName',
+        component: CustomerReturnsComponent,
+      },
+      {
+        path: 'movement/product/entry-adjustments/:productId/:productName',
+        component: EntryAdjustmentsComponent,
+      },
+      {
+        path: 'movement/product/sales/:productId/:productName',
+        component: SalesComponent,
+      },
+      {
+        path: 'movement/product/internal-consumptions/:productId/:productName',
+        component: InternalConsumptionsComponent,
+      },
+      {
+        path: 'movement/product/supplier-returns/:productId/:productName',
+        component: SupplierReturnsComponent,
+      },
+      {
+        path: 'movement/product/output-adjustments/:productId/:productName',
+        component: OutputAdjustmentsComponent,
+      },
+      {
+        path: 'movement/product/transfers/:productId/:productName',
+        component: TransfersComponent,
       },
     ],
   },

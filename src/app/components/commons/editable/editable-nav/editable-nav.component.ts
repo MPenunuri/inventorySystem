@@ -23,7 +23,12 @@ export class EditableNavComponent {
 
   handleClick() {
     if (this.editRoute) {
-      this.router.navigate([this.editRoute]);
+      const outletContainer = document.getElementById('outletContainer');
+      outletContainer?.classList.add('unstage');
+      setTimeout(() => {
+        this.router.navigate([this.editRoute]);
+        outletContainer?.classList.remove('unstage');
+      }, 510);
     }
   }
 }
