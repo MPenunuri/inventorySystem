@@ -61,6 +61,13 @@
       [name]="'Sales'"
       [productId]="product.id"
       [productName]="product.name"
+      [valid]="
+        product.sellingPrice.currency &&
+        product.sellingPrice.retail > 0 &&
+        product.sellingPrice.wholesale > 0
+          ? true
+          : false
+      "
     ></app-movement-icon>
     <app-movement-icon
       [ariaLabel]="'navigation button'"

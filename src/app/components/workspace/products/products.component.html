@@ -1,7 +1,15 @@
 <h2>Products</h2>
 
 <app-add-product (saved)="setProducts()"></app-add-product>
-
+<div class="filter">
+  <label for="">Filter products</label>
+  <input
+    name="filter"
+    type="text"
+    (input)="onFilterChange($event)"
+    placeholder="Search by any table value"
+  />
+</div>
 <div
   class="tableContainer"
   *ngIf="products && products.length > 0; else noProducts"
@@ -132,7 +140,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let product of products">
+      <tr *ngFor="let product of filteredProducts">
         <td>
           <app-editable-nav
             [text]="product.productName"

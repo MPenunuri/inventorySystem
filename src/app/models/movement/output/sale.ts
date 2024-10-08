@@ -16,8 +16,8 @@ export class CreateSale extends MovementCreate {
     quantity: number,
     fromLocationId: number,
     transactionSubtype: string,
-    transactionValue: number,
-    transactionCurrencyId: number,
+    transactionValue = undefined,
+    transactionCurrencyId = undefined,
     supplierId = undefined,
     toLocationId = undefined
   ) {

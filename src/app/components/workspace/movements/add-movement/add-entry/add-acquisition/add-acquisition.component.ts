@@ -175,7 +175,8 @@ export class AddAcquisitionComponent {
           },
           error: () => {
             alert('No supplier to assign. Register one and come back.');
-            this.router.navigate(['workspace/suppliers']);
+            this.location.back();
+            this.location.back();
           },
         });
     }

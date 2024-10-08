@@ -137,10 +137,10 @@ export class AddSupplierComponent {
   applyFilter(filterText: string) {
     if (this.notRelatedSuppliers) {
       if (!filterText) {
-        this.notRelatedSuppliers = [...this.notRelatedSuppliers];
+        this.filteredSuppliers = [...this.notRelatedSuppliers];
       } else {
         const regex = new RegExp(filterText, 'i');
-        this.notRelatedSuppliers = this.notRelatedSuppliers.filter((supplier) =>
+        this.filteredSuppliers = this.notRelatedSuppliers.filter((supplier) =>
           regex.test(supplier.name)
         );
       }

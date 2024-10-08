@@ -20,9 +20,7 @@ export class PostOutputService {
     comment: string,
     quantity: number,
     fromLocationId: number,
-    sellType: string,
-    sell: number,
-    sellCurrencyId: number
+    sellType: string
   ): Observable<MovementEntityI> {
     const sale = new CreateSale(
       productId,
@@ -31,9 +29,7 @@ export class PostOutputService {
       comment,
       quantity,
       fromLocationId,
-      sellType,
-      sell,
-      sellCurrencyId
+      sellType
     );
     return this.http.post<MovementEntityI>(
       '/api/secure/movement/sale',

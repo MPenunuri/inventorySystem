@@ -112,7 +112,7 @@ export const routes: Routes = [
         component: AddEntryAdjustmentComponent,
       },
       {
-        path: 'movement/add-sale/:productId/:productName',
+        path: 'movement/add-sale/:productId/:productName/:valid',
         component: AddSaleComponent,
       },
       {
@@ -160,7 +160,7 @@ export const routes: Routes = [
         component: EntryAdjustmentsComponent,
       },
       {
-        path: 'movement/product/sales/:productId/:productName',
+        path: 'movement/product/sales/:productId/:productName/:valid',
         component: SalesComponent,
       },
       {

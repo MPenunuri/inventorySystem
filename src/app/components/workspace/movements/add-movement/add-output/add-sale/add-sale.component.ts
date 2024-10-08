@@ -63,19 +63,25 @@ export class AddSaleComponent {
       quantity: ['', [Validators.required], []],
       fromLocationId: ['', [Validators.required], []],
       transactionSubtype: ['', [Validators.required], []],
-      transactionValue: ['', [Validators.required], []],
-      transactionCurrencyId: ['', [Validators.required], []],
     });
   }
 
   ngOnInit() {
     const paramProductId = this.route.snapshot.paramMap.get('productId');
     const paramProductName = this.route.snapshot.paramMap.get('productName');
+    const paramValid = this.route.snapshot.paramMap.get('valid');
     if (paramProductId) {
       this.productId = parseInt(paramProductId);
     }
     if (paramProductName) {
       this.productName = paramProductName;
+    }
+    if (paramValid === 'false') {
+      alert(
+        'There is no currency or price to assign. Please register them and come back.'
+      );
+      this.location.back();
+      this.location.back();
     }
     this.setLocations();
     this.setCurrencies();
@@ -88,8 +94,6 @@ export class AddSaleComponent {
     const quantity = this.form.value.quantity;
     const fromLocationId = this.form.value.fromLocationId;
     const transactionSubtype = this.form.value.transactionSubtype;
-    const transactionValue = this.form.value.transactionValue;
-    const transactionCurrencyId = this.form.value.transactionCurrencyId;
 
     if (dateTime) {
       const localDate = new Date(dateTime);
@@ -101,9 +105,6 @@ export class AddSaleComponent {
     if (transactionSubtype === '') {
       return alert('Select cost type');
     }
-    if (transactionCurrencyId === '') {
-      return alert('Select a currency');
-    }
 
     if (this.productId) {
       this.service
@@ -114,9 +115,7 @@ export class AddSaleComponent {
           comment,
           quantity,
           fromLocationId,
-          transactionSubtype,
-          transactionValue,
-          transactionCurrencyId
+          transactionSubtype
         )
         .subscribe({
           next: (entity) => {

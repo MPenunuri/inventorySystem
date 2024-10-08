@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { CurrencyEntityI } from '../../../../models/currency/currency-entity';
+import { Location } from '@angular/common';
 import { CurrencyService } from '../../../../services/currency/currency.service';
 import {
   ReactiveFormsModule,
@@ -36,6 +36,7 @@ export class AssignCurrencyComponent {
   @Input() currencies: SelectOption[] = [];
 
   constructor(
+    private location: Location,
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
@@ -89,7 +90,7 @@ export class AssignCurrencyComponent {
         .subscribe({
           next: (entity) => {
             this.form.reset();
-            this.router.navigate(['/workspace/products']);
+            this.location.back();
           },
           error: (error) => {
             alert('An error occurred during registry. Please try again.');

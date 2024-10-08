@@ -1,5 +1,13 @@
 <h2>{{ productName }} entry adjustments</h2>
-
+<div class="filter">
+  <label for="">Filter movements</label>
+  <input
+    name="filter"
+    type="text"
+    (input)="onFilterChange($event)"
+    placeholder="Search by any table value"
+  />
+</div>
 <app-button
   *ngIf="addUrl"
   [name]="'New entry adjustment'"
@@ -86,7 +94,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let movement of movements">
+      <tr *ngFor="let movement of filteredMovements">
         <td>
           {{ movement.dateTime }}
         </td>

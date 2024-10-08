@@ -3,7 +3,7 @@ export interface StandardMovementI {
   productId: number;
   productName: string;
   productPresentation: string;
-  dateTime: Date;
+  dateTime: string;
   type: string;
   subtype: string;
   reason: string;

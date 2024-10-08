@@ -16,7 +16,7 @@
       <app-editable-text-area
         [id]="productId"
         [text]="product.productPresentation"
-        [action]="patchService.updateProductPresentation"
+        [action]="patchService.updateProductPresentation.bind(patchService)"
       ></app-editable-text-area>
     </div>
   </div>
@@ -57,13 +57,14 @@
       <h4>Minimum stock</h4>
       <app-editable-number
         [id]="productId"
-        [text]="product.minimumStock.toString()"
-        [action]="patchService.updateMinimumStock"
+        [text]="product.minimumStock.stock.toString()"
+        [action]="patchService.updateMinimumStock.bind(patchService)"
+        [decimals]="0"
       >
       </app-editable-number>
     </div>
     <div aria-label="product currency container">
-      <h4>Currency</h4>
+      <h4>Price currency</h4>
       <app-editable-nav
         [text]="product.sellingPrice.currency"
         [spanText]="'Set product currency'"
@@ -84,7 +85,8 @@
       <app-editable-number
         [id]="productId"
         [text]="product.sellingPrice.retail.toString()"
-        [action]="patchService.updateRetailPrice"
+        [action]="patchService.updateRetailPrice.bind(patchService)"
+        [decimals]="2"
       >
       </app-editable-number>
     </div>
@@ -93,7 +95,8 @@
       <app-editable-number
         [id]="productId"
         [text]="product.sellingPrice.wholesale.toString()"
-        [action]="patchService.updateWholesalePrice"
+        [action]="patchService.updateWholesalePrice.bind(patchService)"
+        [decimals]="2"
       >
       </app-editable-number>
     </div>

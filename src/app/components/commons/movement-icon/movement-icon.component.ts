@@ -12,6 +12,7 @@ export class MovementIconComponent {
   @Input() productId?: number;
   @Input() productName?: string;
   @Input() name?: string;
+  @Input() valid?: boolean;
   srcIcon?: string;
   url?: string;
 
@@ -88,7 +89,9 @@ export class MovementIconComponent {
             '/workspace/movement/product/sales/' +
             this.productId +
             '/' +
-            this.productName;
+            this.productName +
+            '/' +
+            this.valid;
           break;
         case 'Internal consumptions':
           this.srcIcon = 'assets/internal-link.png';

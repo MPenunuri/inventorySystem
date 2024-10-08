@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 import { SubcategoryEntityI } from '../../../../models/subcategory/subcategory-entity';
 import { PatchProductService } from '../../../../services/product/patch-product.service';
 import { CategoryService } from '../../../../services/category/category.service';
@@ -40,6 +41,7 @@ export class AssignCategoryComponent {
   filteredSubcategories: SubcategoryEntityI[] = [];
 
   constructor(
+    private location: Location,
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
@@ -127,7 +129,7 @@ export class AssignCategoryComponent {
         .subscribe({
           next: (entity) => {
             this.form.reset();
-            this.router.navigate(['/workspace/products']);
+            this.location.back();
           },
           error: (error) => {
             alert('An error occurred during registry. Please try again.');

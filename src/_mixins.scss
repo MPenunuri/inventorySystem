@@ -124,6 +124,28 @@
   pointer-events: none;
 }
 
+@mixin standard-filter {
+  @include flex-center(column);
+  gap: 1rem;
+  width: 400px;
+  max-width: 98vw;
+  padding: 1rem 1.5rem;
+  border-radius: 20px;
+  box-shadow: 1px 1px 20px 0px $primary-decorative-color,
+    -1px -1px 5px $primary-decorative-color;
+  background-color: $secondary-background-color;
+
+  label {
+    @include standard-label();
+    font-weight: 600;
+  }
+
+  input {
+    @include standard-input();
+    width: 98%;
+  }
+}
+
 @mixin table-container {
   margin: 1rem;
   max-width: 95vw;

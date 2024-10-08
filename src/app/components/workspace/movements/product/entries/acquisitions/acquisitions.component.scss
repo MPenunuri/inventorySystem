@@ -16,6 +16,10 @@ h2 {
   text-align: center;
 }
 
+.filter {
+  @include standard-filter();
+}
+
 p.noMovements {
   @include standard-plain-message;
 }

@@ -37,17 +37,5 @@
     [label]="'Sell type'"
     [options]="sellTypes"
   ></app-select-input>
-  <app-number-input
-    formControlName="transactionValue"
-    [name]="'sell'"
-    [label]="'Sell'"
-    [decimals]="2"
-  ></app-number-input>
-  <app-select-input
-    formControlName="transactionCurrencyId"
-    [name]="'sellCurrency'"
-    [label]="'Sell currency'"
-    [options]="currencies"
-  ></app-select-input>
   <app-button [name]="'Make movement'"></app-button>
 </app-form>

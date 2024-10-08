@@ -1,5 +1,13 @@
 <h2>{{ productName }} movements</h2>
-
+<div class="filter">
+  <label for="">Filter movements</label>
+  <input
+    name="filter"
+    type="text"
+    (input)="onFilterChange($event)"
+    placeholder="Search by any table value"
+  />
+</div>
 <div
   class="tableContainer"
   *ngIf="movements && movements.length > 0; else noMovements"
@@ -92,7 +100,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let movement of movements">
+      <tr *ngFor="let movement of filteredMovements">
         <td>
           {{ movement.dateTime }}
         </td>
