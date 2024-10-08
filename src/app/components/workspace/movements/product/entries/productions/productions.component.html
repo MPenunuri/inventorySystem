@@ -1,1 +1,165 @@
-<p>productions works!</p>
+<h2>{{ productName }} productions</h2>
+
+<app-button
+  *ngIf="addUrl"
+  [name]="'New production'"
+  [className]="'regular alternativeRegular'"
+  (clicked)="navigate(addUrl)"
+></app-button>
+
+<div
+  class="tableContainer"
+  *ngIf="movements && movements.length > 0; else noMovements"
+>
+  <table
+    aria-live="polite"
+    aria-label="List of registered movements with their respective details"
+  >
+    <thead>
+      <tr>
+        <th scope="col" (click)="sort('dateTime')">
+          Date
+          <img
+            *ngIf="sortService.sortDirection['dateTime'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['dateTime'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('reason')">
+          Reason
+          <img
+            *ngIf="sortService.sortDirection['reason'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['reason'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('comment')">
+          Comment
+          <img
+            *ngIf="sortService.sortDirection['comment'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['comment'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('quantity')">
+          Quantity
+          <img
+            *ngIf="sortService.sortDirection['quantity'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['quantity'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('toLocationName')">
+          Entry location
+          <img
+            *ngIf="sortService.sortDirection['toLocationName'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['toLocationName'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('costType')">
+          Cost type
+          <img
+            *ngIf="sortService.sortDirection['costType'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['costType'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('cost')">
+          Cost
+          <img
+            *ngIf="sortService.sortDirection['cost'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['cost'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('costCurrency')">
+          Cost currency
+          <img
+            *ngIf="sortService.sortDirection['costCurrency'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['costCurrency'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let movement of movements">
+        <td>
+          {{ movement.dateTime }}
+        </td>
+        <td>{{ movement.reason }}</td>
+        <td>{{ movement.comment }}</td>
+        <td>{{ movement.quantity }}</td>
+        <td>{{ movement.toLocationName }}</td>
+        <td>
+          {{ movement.costType === "PER_UNIT" ? "Per unit" : "Wholesale" }}
+        </td>
+        <td>{{ movement.cost | number : "1.2-2" }}</td>
+        <td>{{ movement.costCurrency }}</td>
+        <td>
+          <app-small-delete-button
+            [spanText]="'Undo movement'"
+            [id]="movement.movementId"
+            [deleteFn]="deleteService.deleteMovement.bind(deleteService)"
+            (clicked)="setMovements()"
+          ></app-small-delete-button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #noMovements>
+  <p
+    class="noMovements"
+    *ngIf="movements && movements.length === 0; else undefinedMovements"
+  >
+    There are not any movements registered yet.
+  </p>
+</ng-template>
+
+<ng-template #undefinedMovements>
+  <app-loading></app-loading>
+</ng-template>

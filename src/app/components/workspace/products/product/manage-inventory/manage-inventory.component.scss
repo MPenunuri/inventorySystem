@@ -15,7 +15,7 @@ section {
   transition: max-height 0.5s ease-in-out;
 
   &.show {
-    max-height: 310px;
+    max-height: 393.33px;
   }
 
   div {
@@ -26,5 +26,12 @@ section {
 
   div:first-child {
     min-height: 60px;
+  }
+
+  div:nth-child(3),
+  div:nth-child(4) {
+    app-movement-icon:first-child {
+      border-right: 1px solid $primary-text-color;
+    }
   }
 }

@@ -14,7 +14,6 @@ import { PatchProductService } from '../../../../services/product/patch-product.
 import { EditableNavComponent } from '../../../commons/editable/editable-nav/editable-nav.component';
 import { EditableNumberComponent } from '../../../commons/editable/editable-number/editable-number.component';
 import { AddSupplierComponent } from './add-supplier/add-supplier.component';
-import { AddMovementComponent } from './add-movement/add-movement.component';
 import { LoadingComponent } from '../../../commons/loading/loading.component';
 import { DeleteProductComponent } from './delete-product/delete-product.component';
 import { ManageInventoryComponent } from './manage-inventory/manage-inventory.component';
@@ -31,7 +30,6 @@ import { ManageInventoryComponent } from './manage-inventory/manage-inventory.co
     SuppliersComponent,
     AddSupplierComponent,
     ManageInventoryComponent,
-    AddMovementComponent,
     LocationsComponent,
     LoadingComponent,
     DeleteProductComponent,

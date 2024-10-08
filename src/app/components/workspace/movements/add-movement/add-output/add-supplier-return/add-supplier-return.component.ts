@@ -163,17 +163,19 @@ export class AddSupplierReturnComponent {
   }
 
   setSuppliers() {
-    this.supplierService.getSuppliers().subscribe({
-      next: (data) => {
-        this.suppliers = data.map((s) => {
-          return { id: s.supplierId, name: s.supplierName };
+    if (this.productId) {
+      this.supplierService
+        .getSuppliersWithProductRelation(this.productId)
+        .subscribe({
+          next: (data) => {
+            this.suppliers = data;
+          },
+          error: () => {
+            alert('No supplier to assign. Register one and come back.');
+            this.router.navigate(['workspace/suppliers']);
+          },
         });
-      },
-      error: () => {
-        alert('No supplier to assign. Register one and come back.');
-        this.router.navigate(['workspace/suppliers']);
-      },
-    });
+    }
   }
 
   setCurrencies() {

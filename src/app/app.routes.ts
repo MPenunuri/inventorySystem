@@ -31,6 +31,9 @@ import { OutputAdjustmentsComponent } from './components/workspace/movements/pro
 import { SalesComponent } from './components/workspace/movements/product/outputs/sales/sales.component';
 import { SupplierReturnsComponent } from './components/workspace/movements/product/outputs/supplier-returns/supplier-returns.component';
 import { TransfersComponent } from './components/workspace/movements/product/transfers/transfers.component';
+import { MovementsComponent } from './components/workspace/movements/product/movements/movements.component';
+import { EntriesComponent } from './components/workspace/movements/product/entries/entries.component';
+import { OutputsComponent } from './components/workspace/movements/product/outputs/outputs.component';
 
 export const routes: Routes = [
   { path: 'signup', component: SignupComponent, canActivate: [authGuard] },
@@ -121,12 +124,24 @@ export const routes: Routes = [
         component: AddSupplierReturnComponent,
       },
       {
-        path: 'movement/output-adjustment/:productId/:productName',
+        path: 'movement/add-output-adjustment/:productId/:productName',
         component: AddOutputAdjustmentComponent,
       },
       {
         path: 'movement/add-transfer/:productId/:productName',
         component: AddTransferComponent,
+      },
+      {
+        path: 'movement/product/:productId/:productName',
+        component: MovementsComponent,
+      },
+      {
+        path: 'movement/product/entries/:productId/:productName',
+        component: EntriesComponent,
+      },
+      {
+        path: 'movement/product/outputs/:productId/:productName',
+        component: OutputsComponent,
       },
       {
         path: 'movement/product/acquisitions/:productId/:productName',

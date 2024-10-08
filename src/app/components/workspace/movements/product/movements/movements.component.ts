@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
-import { EntryI } from '../../../../../models/movement/entry/entry';
+import { StandardMovementI } from '../../../../../models/movement/standard-movement';
 import { CommonModule } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DeleteMovementService } from '../../../../../services/movement/delete-movement.service';
 import { GetMovementService } from '../../../../../services/movement/get-movement.service';
 import { SortArrayService } from '../../../../../services/utils/sort-array.service';
 import { SmallDeleteButtonComponent } from '../../../../commons/button/small-delete-button/small-delete-button.component';
-import { EditableNavComponent } from '../../../../commons/editable/editable-nav/editable-nav.component';
 import { LoadingComponent } from '../../../../commons/loading/loading.component';
+import { EditableNavComponent } from '../../../../commons/editable/editable-nav/editable-nav.component';
 
 @Component({
-  selector: 'app-entries',
+  selector: 'app-movements',
   standalone: true,
   imports: [
     CommonModule,
@@ -18,13 +18,13 @@ import { LoadingComponent } from '../../../../commons/loading/loading.component'
     SmallDeleteButtonComponent,
     EditableNavComponent,
   ],
-  templateUrl: './entries.component.html',
-  styleUrl: './entries.component.scss',
+  templateUrl: './movements.component.html',
+  styleUrl: './movements.component.scss',
 })
-export class EntriesComponent {
+export class MovementsComponent {
   productId?: number;
   productName?: string;
-  movements?: EntryI[];
+  movements?: StandardMovementI[];
   arrowDown = 'assets/arrow-down-outline.svg';
   arrowUp = 'assets/arrow-up-outline.svg';
 
@@ -52,7 +52,7 @@ export class EntriesComponent {
 
   setMovements() {
     if (this.productId) {
-      this.service.getEntries(this.productId).subscribe({
+      this.service.getMovements(this.productId).subscribe({
         next: (data) => {
           this.movements = data;
           this.sort('dateTime');
@@ -64,10 +64,26 @@ export class EntriesComponent {
     }
   }
 
-  sort(column: keyof EntryI) {
+  sort(column: keyof StandardMovementI) {
     if (this.movements !== undefined) {
       this.movements = this.sortService.sort(this.movements, column);
     }
+  }
+
+  getEditTypeRoute(type: string) {
+    let route = 'workspace/movement/product/';
+    switch (type) {
+      case 'Entry':
+        route += 'entries';
+        break;
+      case 'Output':
+        route += 'outputs';
+        break;
+      case 'Transfer':
+        route += 'transfers';
+        break;
+    }
+    return route + '/' + this.productId + '/' + this.productName;
   }
 
   getEditSubtypeRoute(type: string, subtype: string) {
@@ -82,8 +98,17 @@ export class EntriesComponent {
       case 'Production':
         route += 'productions';
         break;
+      case 'Sales':
+        route += 'sales';
+        break;
+      case 'Supplier Return':
+        route += 'supplier-returns';
+        break;
+      case 'Internal Consumption':
+        route += 'internal-consumptions';
+        break;
       case 'Inventory adjustment':
-        route += 'entry-adjustments';
+        route += type === 'Entry' ? 'entry-adjustments' : 'output-adjustments';
         break;
     }
     return route + '/' + this.productId + '/' + this.productName;

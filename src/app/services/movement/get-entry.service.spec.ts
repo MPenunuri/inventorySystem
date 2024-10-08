@@ -80,7 +80,7 @@ describe('GetEntryService', () => {
   });
 
   it('should get acquisitions', (done) => {
-    service.getAcquisitions().subscribe({
+    service.getAcquisitions(0).subscribe({
       next: (response) => {
         expect(response).toEqual([mockAcquisition]);
         done();
@@ -96,7 +96,7 @@ describe('GetEntryService', () => {
   });
 
   it('should get productions', (done) => {
-    service.getProductions().subscribe({
+    service.getProductions(0).subscribe({
       next: (response) => {
         expect(response).toEqual([mockProduction]);
         done();

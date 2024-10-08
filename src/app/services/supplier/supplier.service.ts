@@ -18,6 +18,14 @@ export class SupplierService {
     return this.http.get<FullSupplierI[]>('/api/secure/supplier');
   }
 
+  getSuppliersWithProductRelation(
+    productId: number
+  ): Observable<SupplierEntityI[]> {
+    return this.http.get<SupplierEntityI[]>(
+      '/api/secure/supplier/product-relation/' + productId
+    );
+  }
+
   getSuppliersWithNoProductRelation(
     productId: number
   ): Observable<SupplierEntityI[]> {

@@ -26,6 +26,30 @@ export class MovementIconComponent {
   ngOnInit() {
     if (this.name && this.productId && this.productName) {
       switch (this.name) {
+        case 'All movements':
+          this.srcIcon = 'assets/movement.png';
+          this.url =
+            '/workspace/movement/product/' +
+            this.productId +
+            '/' +
+            this.productName;
+          break;
+        case 'All entries':
+          this.srcIcon = 'assets/next.png';
+          this.url =
+            '/workspace/movement/product/entries/' +
+            this.productId +
+            '/' +
+            this.productName;
+          break;
+        case 'All outputs':
+          this.srcIcon = 'assets/log-out.png';
+          this.url =
+            '/workspace/movement/product/outputs/' +
+            this.productId +
+            '/' +
+            this.productName;
+          break;
         case 'Acquisitions':
           this.srcIcon = 'assets/shopping-cart.png';
           this.url =
@@ -83,7 +107,7 @@ export class MovementIconComponent {
             this.productName;
           break;
         case 'Output adjustments':
-          this.srcIcon = 'assets/packages.png';
+          this.srcIcon = 'assets/internal-link.png';
           this.url =
             '/workspace/movement/product/output-adjustments/' +
             this.productId +

@@ -115,7 +115,7 @@ describe('GetOutputService', () => {
   });
 
   it('should get sales', (done) => {
-    service.getSales().subscribe({
+    service.getSales(0).subscribe({
       next: (response) => {
         expect(response).toEqual([mockSale]);
         done();
@@ -131,7 +131,7 @@ describe('GetOutputService', () => {
   });
 
   it('should get supplier returns', (done) => {
-    service.getSupplierReturns().subscribe({
+    service.getSupplierReturns(0).subscribe({
       next: (response) => {
         expect(response).toEqual([mockSupplierReturn]);
         done();
@@ -147,7 +147,7 @@ describe('GetOutputService', () => {
   });
 
   it('should get output inventory adjustments', (done) => {
-    service.getOutputInventoryAdjustments().subscribe({
+    service.getOutputInventoryAdjustments(0).subscribe({
       next: (response) => {
         expect(response).toEqual([mockOutputAdjustment]);
         done();
@@ -163,7 +163,7 @@ describe('GetOutputService', () => {
   });
 
   it('should get internal consumption movements', (done) => {
-    service.getInternalConsumptionMovements().subscribe({
+    service.getInternalConsumptionMovements(0).subscribe({
       next: (response) => {
         expect(response).toEqual([mockInternalConsumption]);
         done();

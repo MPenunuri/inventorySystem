@@ -65,7 +65,7 @@ describe('GetMovementService', () => {
   });
 
   it('should get movements', (done) => {
-    service.getMovements().subscribe({
+    service.getMovements(0).subscribe({
       next: (response) => {
         expect(response).toEqual([mockMovement]);
         done();
@@ -81,7 +81,7 @@ describe('GetMovementService', () => {
   });
 
   it('should get entries', (done) => {
-    service.getEntries().subscribe({
+    service.getEntries(0).subscribe({
       next: (response) => {
         expect(response).toEqual([mockEntry]);
         done();
@@ -97,7 +97,7 @@ describe('GetMovementService', () => {
   });
 
   it('should get outputs', (done) => {
-    service.getOutputs().subscribe({
+    service.getOutputs(0).subscribe({
       next: (response) => {
         expect(response).toEqual([mockOutput]);
         done();
@@ -113,7 +113,7 @@ describe('GetMovementService', () => {
   });
 
   it('should get transfers', (done) => {
-    service.getTransfers().subscribe({
+    service.getTransfers(0).subscribe({
       next: (response) => {
         expect(response).toEqual([mockTransfer]);
         done();
@@ -126,24 +126,5 @@ describe('GetMovementService', () => {
     const req = httpTesting.expectOne('/api/secure/movement/transfer');
     expect(req.request.method).toBe('GET');
     req.flush([mockTransfer]);
-  });
-
-  it('should get movements by product id', (done) => {
-    const productId = 1;
-    service.getMovementsByProductId(productId).subscribe({
-      next: (response) => {
-        expect(response).toEqual([mockMovement]);
-        done();
-      },
-      error: () => {
-        fail('The request should not have failed.');
-      },
-    });
-
-    const req = httpTesting.expectOne(
-      `/api/secure/movement/product/${productId}`
-    );
-    expect(req.request.method).toBe('GET');
-    req.flush([mockMovement]);
   });
 });

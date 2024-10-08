@@ -13,25 +13,29 @@ import { AvgSellProductI } from '../../models/movement/output/avg-sell-product';
 export class GetOutputService {
   constructor(private http: HttpClient) {}
 
-  getSales(): Observable<SaleI[]> {
-    return this.http.get<SaleI[]>('/api/secure/movement/sale');
+  getSales(productId: number): Observable<SaleI[]> {
+    return this.http.get<SaleI[]>('/api/secure/movement/sale/' + productId);
   }
 
-  getSupplierReturns(): Observable<SupplierReturnI[]> {
+  getSupplierReturns(productId: number): Observable<SupplierReturnI[]> {
     return this.http.get<SupplierReturnI[]>(
-      '/api/secure/movement/supplier-return"'
+      '/api/secure/movement/supplier-return/' + productId
     );
   }
 
-  getOutputInventoryAdjustments(): Observable<OutputAdjustmentI[]> {
+  getOutputInventoryAdjustments(
+    productId: number
+  ): Observable<OutputAdjustmentI[]> {
     return this.http.get<OutputAdjustmentI[]>(
-      '/api/secure/movement/output-adjusment"'
+      '/api/secure/movement/output-adjusment/' + productId
     );
   }
 
-  getInternalConsumptionMovements(): Observable<InternalConsumptionI[]> {
+  getInternalConsumptionMovements(
+    productId: number
+  ): Observable<InternalConsumptionI[]> {
     return this.http.get<InternalConsumptionI[]>(
-      '/api/secure/movement/internal-consumption"'
+      '/api/secure/movement/internal-consumption/' + productId
     );
   }
 

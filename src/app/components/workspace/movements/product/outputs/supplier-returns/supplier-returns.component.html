@@ -1,1 +1,179 @@
-<p>supplier-returns works!</p>
+<h2>{{ productName }} supplier returns</h2>
+
+<app-button
+  *ngIf="addUrl"
+  [name]="'New supplier return'"
+  [className]="'regular alternativeRegular'"
+  (clicked)="navigate(addUrl)"
+></app-button>
+
+<div
+  class="tableContainer"
+  *ngIf="movements && movements.length > 0; else noMovements"
+>
+  <table
+    aria-live="polite"
+    aria-label="List of registered movements with their respective details"
+  >
+    <thead>
+      <tr>
+        <th scope="col" (click)="sort('dateTime')">
+          Date
+          <img
+            *ngIf="sortService.sortDirection['dateTime'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['dateTime'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('reason')">
+          Reason
+          <img
+            *ngIf="sortService.sortDirection['reason'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['reason'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('comment')">
+          Comment
+          <img
+            *ngIf="sortService.sortDirection['comment'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['comment'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('quantity')">
+          Quantity
+          <img
+            *ngIf="sortService.sortDirection['quantity'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['quantity'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('fromLocationName')">
+          Departure location
+          <img
+            *ngIf="sortService.sortDirection['fromLocationName'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['fromLocationName'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('supplierName')">
+          Supplier
+          <img
+            *ngIf="sortService.sortDirection['supplierName'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['supplierName'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('refundType')">
+          Refund type
+          <img
+            *ngIf="sortService.sortDirection['refundType'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['refundType'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('refund')">
+          Refund
+          <img
+            *ngIf="sortService.sortDirection['refund'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['refund'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('refundCurrency')">
+          Refund currency
+          <img
+            *ngIf="sortService.sortDirection['refundCurrency'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['refundCurrency'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let movement of movements">
+        <td>
+          {{ movement.dateTime }}
+        </td>
+        <td>{{ movement.reason }}</td>
+        <td>{{ movement.comment }}</td>
+        <td>{{ movement.quantity }}</td>
+        <td>{{ movement.fromLocationName }}</td>
+        <td>{{ movement.supplierName }}</td>
+        <td>
+          {{ movement.refundType === "PER_UNIT" ? "Per unit" : "Wholesale" }}
+        </td>
+        <td>{{ movement.refund | number : "1.2-2" }}</td>
+        <td>{{ movement.refund }}</td>
+        <td>
+          <app-small-delete-button
+            [spanText]="'Undo movement'"
+            [id]="movement.movementId"
+            [deleteFn]="deleteService.deleteMovement.bind(deleteService)"
+            (clicked)="setMovements()"
+          ></app-small-delete-button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #noMovements>
+  <p
+    class="noMovements"
+    *ngIf="movements && movements.length === 0; else undefinedMovements"
+  >
+    There are not any movements registered yet.
+  </p>
+</ng-template>
+
+<ng-template #undefinedMovements>
+  <app-loading></app-loading>
+</ng-template>

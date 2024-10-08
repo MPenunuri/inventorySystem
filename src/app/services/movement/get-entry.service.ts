@@ -13,24 +13,30 @@ import { AvgCostProductI } from '../../models/movement/entry/avg-cost-product';
 export class GetEntryService {
   constructor(private http: HttpClient) {}
 
-  getAcquisitions(): Observable<AcquisitionI[]> {
-    return this.http.get<AcquisitionI[]>('/api/secure/movement/acquisition');
+  getAcquisitions(productId: number): Observable<AcquisitionI[]> {
+    return this.http.get<AcquisitionI[]>(
+      '/api/secure/movement/acquisition/' + productId
+    );
   }
 
-  getCustomerReturns(): Observable<CustomerReturnI[]> {
+  getCustomerReturns(productId: number): Observable<CustomerReturnI[]> {
     return this.http.get<CustomerReturnI[]>(
-      '/api/secure/movement/customer-return'
+      '/api/secure/movement/customer-return/' + productId
     );
   }
 
-  getEntryInventoryAdjustments(): Observable<EntryAdjustmentI[]> {
+  getEntryInventoryAdjustments(
+    productId: number
+  ): Observable<EntryAdjustmentI[]> {
     return this.http.get<EntryAdjustmentI[]>(
-      '/api/secure/movement/entry-adjustment'
+      '/api/secure/movement/entry-adjustment/' + productId
     );
   }
 
-  getProductions(): Observable<ProductionI[]> {
-    return this.http.get<ProductionI[]>('/api/secure/movement/production"');
+  getProductions(productId: number): Observable<ProductionI[]> {
+    return this.http.get<ProductionI[]>(
+      '/api/secure/movement/production/' + productId
+    );
   }
 
   getAcquisitionsBySupplierId(id: number) {

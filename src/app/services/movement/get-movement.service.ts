@@ -12,25 +12,23 @@ import { TransferI } from '../../models/movement/transfer/transfer';
 export class GetMovementService {
   constructor(private http: HttpClient) {}
 
-  getMovements(): Observable<StandardMovementI[]> {
-    return this.http.get<StandardMovementI[]>('/api/secure/movement');
-  }
-
-  getEntries(): Observable<EntryI[]> {
-    return this.http.get<EntryI[]>('/api/secure/movement/entry');
-  }
-
-  getOutputs(): Observable<OutputI[]> {
-    return this.http.get<OutputI[]>('/api/secure/movement/output');
-  }
-
-  getTransfers(): Observable<TransferI[]> {
-    return this.http.get<TransferI[]>('/api/secure/movement/transfer');
-  }
-
-  getMovementsByProductId(id: number): Observable<StandardMovementI[]> {
+  getMovements(productId: number): Observable<StandardMovementI[]> {
     return this.http.get<StandardMovementI[]>(
-      '/api/secure/movement/product/' + id
+      '/api/secure/movement/' + productId
+    );
+  }
+
+  getEntries(productId: number): Observable<EntryI[]> {
+    return this.http.get<EntryI[]>('/api/secure/movement/entry/' + productId);
+  }
+
+  getOutputs(productId: number): Observable<OutputI[]> {
+    return this.http.get<OutputI[]>('/api/secure/movement/output/' + productId);
+  }
+
+  getTransfers(productId: number): Observable<TransferI[]> {
+    return this.http.get<TransferI[]>(
+      '/api/secure/movement/transfer/' + productId
     );
   }
 }

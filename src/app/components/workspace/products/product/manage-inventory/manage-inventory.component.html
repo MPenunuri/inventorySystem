@@ -6,7 +6,21 @@
 
 <section [ngClass]="{ show: open }">
   <div></div>
+  <div>
+    <app-movement-icon
+      [ariaLabel]="'navigation button'"
+      [name]="'All movements'"
+      [productId]="product?.id"
+      [productName]="product?.name"
+    ></app-movement-icon>
+  </div>
   <div class="entryButtonsContainer">
+    <app-movement-icon
+      [ariaLabel]="'navigation button'"
+      [name]="'All entries'"
+      [productId]="product?.id"
+      [productName]="product?.name"
+    ></app-movement-icon>
     <app-movement-icon
       [ariaLabel]="'navigation button'"
       [name]="'Acquisitions'"
@@ -36,6 +50,12 @@
     *ngIf="product && product.stockList && product.stockList.length > 0"
     class="outputButtonsContainer"
   >
+    <app-movement-icon
+      [ariaLabel]="'navigation button'"
+      [name]="'All outputs'"
+      [productId]="product.id"
+      [productName]="product.name"
+    ></app-movement-icon>
     <app-movement-icon
       [ariaLabel]="'navigation button'"
       [name]="'Sales'"

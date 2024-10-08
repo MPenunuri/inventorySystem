@@ -1,11 +1,4 @@
-<h2>{{ productName }} transfers</h2>
-
-<app-button
-  *ngIf="addUrl"
-  [name]="'New transfer'"
-  [className]="'regular alternativeRegular'"
-  (clicked)="navigate(addUrl)"
-></app-button>
+<h2>{{ productName }} movements</h2>
 
 <div
   class="tableContainer"
@@ -26,6 +19,32 @@
           />
           <img
             *ngIf="sortService.sortDirection['dateTime'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('type')">
+          Type
+          <img
+            *ngIf="sortService.sortDirection['type'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['type'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('subtype')">
+          Subtype
+          <img
+            *ngIf="sortService.sortDirection['subtype'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['subtype'] === true"
             [src]="arrowUp"
             alt="Sort descending"
           />
@@ -69,32 +88,6 @@
             alt="Sort descending"
           />
         </th>
-        <th scope="col" (click)="sort('toLocationName')">
-          Entry location
-          <img
-            *ngIf="sortService.sortDirection['toLocationName'] === false"
-            [src]="arrowDown"
-            alt="Sort ascending"
-          />
-          <img
-            *ngIf="sortService.sortDirection['toocationName'] === true"
-            [src]="arrowUp"
-            alt="Sort descending"
-          />
-        </th>
-        <th scope="col" (click)="sort('fromLocationName')">
-          Departure location
-          <img
-            *ngIf="sortService.sortDirection['fromLocationName'] === false"
-            [src]="arrowDown"
-            alt="Sort ascending"
-          />
-          <img
-            *ngIf="sortService.sortDirection['fromLocationName'] === true"
-            [src]="arrowUp"
-            alt="Sort descending"
-          />
-        </th>
         <th scope="col">Action</th>
       </tr>
     </thead>
@@ -103,11 +96,24 @@
         <td>
           {{ movement.dateTime }}
         </td>
+        <td>
+          <app-editable-nav
+            [text]="movement.type"
+            [editRoute]="getEditTypeRoute(movement.type)"
+            [spanText]="'Navigate to ' + movement.type + ' module'"
+          ></app-editable-nav>
+        </td>
+        <td>
+          <app-editable-nav
+            *ngIf="movement.subtype !== 'None'"
+            [text]="movement.subtype"
+            [editRoute]="getEditSubtypeRoute(movement.type, movement.subtype)"
+            [spanText]="'Navigate to ' + movement.subtype + ' module'"
+          ></app-editable-nav>
+        </td>
         <td>{{ movement.reason }}</td>
         <td>{{ movement.comment }}</td>
         <td>{{ movement.quantity }}</td>
-        <td>{{ movement.toLocationName }}</td>
-        <td>{{ movement.fromLocationName }}</td>
         <td>
           <app-small-delete-button
             [spanText]="'Undo movement'"

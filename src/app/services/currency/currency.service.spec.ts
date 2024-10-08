@@ -8,13 +8,15 @@ import {
 } from '@angular/common/http/testing';
 import { NewCurrency, CurrencyUpdate } from '../../models/currency/currency';
 import { CurrencyEntity } from '../../models/currency/currency-entity';
+import { FullCurrency } from '../../models/currency/fullCurrency';
 
 describe('CurrencyService', () => {
   let service: CurrencyService;
   let httpTesting: HttpTestingController;
 
   const mockCurrencyEntity = new CurrencyEntity(1, 1, 'MXN');
-  const mockCurrencyEntityArray = [mockCurrencyEntity];
+  const mockFullCurrency = new FullCurrency(1, 'MXN', 0, 0);
+  const mockCurrencyEntityArray = [mockFullCurrency];
 
   beforeEach(() => {
     TestBed.configureTestingModule({

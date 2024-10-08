@@ -1,1 +1,135 @@
-<p>entries works!</p>
+<h2>{{ productName }} entries</h2>
+
+<div
+  class="tableContainer"
+  *ngIf="movements && movements.length > 0; else noMovements"
+>
+  <table
+    aria-live="polite"
+    aria-label="List of registered movements with their respective details"
+  >
+    <thead>
+      <tr>
+        <th scope="col" (click)="sort('dateTime')">
+          Date
+          <img
+            *ngIf="sortService.sortDirection['dateTime'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['dateTime'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('subtype')">
+          Subtype
+          <img
+            *ngIf="sortService.sortDirection['subtype'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['subtype'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('reason')">
+          Reason
+          <img
+            *ngIf="sortService.sortDirection['reason'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['reason'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('comment')">
+          Comment
+          <img
+            *ngIf="sortService.sortDirection['comment'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['comment'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('toLocationName')">
+          Location entry
+          <img
+            *ngIf="sortService.sortDirection['toLocationName'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['toLocationName'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col" (click)="sort('quantity')">
+          Quantity
+          <img
+            *ngIf="sortService.sortDirection['quantity'] === false"
+            [src]="arrowDown"
+            alt="Sort ascending"
+          />
+          <img
+            *ngIf="sortService.sortDirection['quantity'] === true"
+            [src]="arrowUp"
+            alt="Sort descending"
+          />
+        </th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let movement of movements">
+        <td>
+          {{ movement.dateTime }}
+        </td>
+        <td>
+          <app-editable-nav
+            *ngIf="movement.subtype !== 'None'"
+            [text]="movement.subtype"
+            [editRoute]="getEditSubtypeRoute(movement.type, movement.subtype)"
+            [spanText]="'Navigate to ' + movement.subtype + ' module'"
+          ></app-editable-nav>
+        </td>
+        <td>{{ movement.reason }}</td>
+        <td>{{ movement.comment }}</td>
+        <td>{{ movement.toLocationName }}</td>
+        <td>{{ movement.quantity }}</td>
+        <td>
+          <app-small-delete-button
+            [spanText]="'Undo movement'"
+            [id]="movement.movementId"
+            [deleteFn]="deleteService.deleteMovement.bind(deleteService)"
+            (clicked)="setMovements()"
+          ></app-small-delete-button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #noMovements>
+  <p
+    class="noMovements"
+    *ngIf="movements && movements.length === 0; else undefinedMovements"
+  >
+    There are not any movements registered yet.
+  </p>
+</ng-template>
+
+<ng-template #undefinedMovements>
+  <app-loading></app-loading>
+</ng-template>
