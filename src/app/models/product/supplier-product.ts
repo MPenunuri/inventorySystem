@@ -1,5 +1,3 @@
-import { StandardProductI } from './standard-product';
-
 export interface SupplierProductI {
   productId: number;
   productName: string;
@@ -11,6 +9,7 @@ export interface SupplierProductI {
   minimumStock: number;
   retailPrice: number;
   wholesalePrice: number;
+  priceCurrencyId: number;
   priceCurrency: string;
   supplierId: number;
   supplierName: string;

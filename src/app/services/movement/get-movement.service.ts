@@ -24,6 +24,14 @@ export class GetMovementService {
     );
   }
 
+  getSupplierRelatedMovements(
+    supplierId: number
+  ): Observable<StandardMovementI[]> {
+    return this.http.get<StandardMovementI[]>(
+      '/api/secure/movement/supplier/' + supplierId
+    );
+  }
+
   getEntries(productId: number): Observable<EntryI[]> {
     return this.http.get<EntryI[]>('/api/secure/movement/entry/' + productId);
   }

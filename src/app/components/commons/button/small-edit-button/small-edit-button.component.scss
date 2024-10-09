@@ -4,7 +4,7 @@
   @include flex-center();
   width: 100%;
   position: relative;
-  z-index: 5;
+  z-index: 2;
 }
 
 button {
@@ -36,6 +36,7 @@ button {
     @include standard-span;
     top: -320%;
     right: -125%;
+    z-index: 10;
   }
 
   img {

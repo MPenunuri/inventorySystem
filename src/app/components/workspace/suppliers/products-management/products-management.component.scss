@@ -37,47 +37,55 @@ p.noProducts {
             @include sticky-first-column;
           }
           &:nth-child(4) {
-            width: 250px;
+            width: 300px;
+            min-width: 300px;
+            max-width: 300px;
           }
           img {
             width: 10px;
           }
         }
       }
-
-      border-bottom: 1px solid $primary-decorative-color;
     }
     tbody {
       @include standard-table-tbody;
       tr {
         @include standard-table-tr;
-        border-bottom: 1px solid $primary-decorative-color;
         td {
           @include standard-table-td;
           &:first-child {
             @include sticky-first-column;
           }
           &:nth-child(4) {
-            width: 250px;
+            width: 300px;
+            min-width: 300px;
+            max-width: 300px;
           }
           span {
             font-size: map-get($font-sizes, "light");
           }
+          app-editable-nav {
+            ::ng-deep a {
+              ::ng-deep span {
+                padding: 0.25rem 0;
+                min-width: 120px;
+                top: -50px;
+                z-index: 10;
+              }
+            }
+          }
+          app-small-delete-button {
+            ::ng-deep button {
+              ::ng-deep span {
+                padding: 0.25rem 0;
+                min-width: 120px;
+                top: -50px;
+                z-index: 10;
+              }
+            }
+          }
         }
       }
     }
-  }
-}
-
-a {
-  @include standard-anchor-router-link;
-
-  &:hover {
-    span {
-      opacity: 1;
-    }
-  }
-  span {
-    @include standard-span;
   }
 }

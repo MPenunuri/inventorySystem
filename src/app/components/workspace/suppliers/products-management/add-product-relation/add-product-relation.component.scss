@@ -60,7 +60,6 @@ p.noProducts {
         @include standard-table-tr;
         th {
           @include standard-table-th;
-          width: 100px;
           &:hover {
             cursor: pointer;
           }
@@ -68,29 +67,29 @@ p.noProducts {
             @include sticky-first-column;
           }
           &:last-child {
-            width: 200px;
+            width: 250px;
+            min-width: 250px;
+            max-width: 250px;
           }
           img {
             width: 10px;
           }
         }
       }
-
-      border-bottom: 1px solid $primary-decorative-color;
     }
     tbody {
       @include standard-table-tbody;
       tr {
         @include standard-table-tr;
-        border-bottom: 1px solid $primary-decorative-color;
         td {
           @include standard-table-td;
-          width: 100px;
           &:first-child {
             @include sticky-first-column;
           }
           &:last-child {
-            width: 200px;
+            width: 250px;
+            min-width: 250px;
+            max-width: 250px;
           }
         }
       }

@@ -182,14 +182,73 @@
   max-height: 80vh;
   display: table-row-group;
   position: relative;
+
+  tr:first-child {
+    th,
+    td {
+      app-editable-nav {
+        ::ng-deep a,
+        ::ng-deep button {
+          ::ng-deep span {
+            top: 25px;
+          }
+        }
+      }
+
+      div {
+        app-small-nav-button,
+        app-small-edit-button,
+        app-small-delete-button {
+          z-index: 2;
+          ::ng-deep button {
+            ::ng-deep span {
+              top: 0px;
+              left: -120px;
+              z-index: 4;
+              padding: 0.25rem 0;
+              min-width: 120px;
+            }
+          }
+        }
+      }
+      app-small-delete-button {
+        z-index: 2;
+        ::ng-deep button {
+          ::ng-deep span {
+            top: 0px;
+            left: -120px;
+            z-index: 4;
+            padding: 0.25rem 0;
+            min-width: 120px;
+          }
+        }
+      }
+    }
+  }
 }
 
 @mixin standard-table-tr {
   display: table-row;
   max-width: 100%;
   width: 100%;
-
   border-bottom: 1px solid $primary-decorative-color;
+
+  &:first-child {
+    td {
+      &:first-child {
+        app-editable-nav {
+          ::ng-deep a {
+            color: black;
+            ::ng-deep span {
+              top: -22px;
+              right: -120px;
+              z-index: 20;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 @mixin standard-table-th {
@@ -240,5 +299,11 @@
   border-radius: 20px;
   @include mobile() {
     position: relative;
+  }
+
+  app-editable-nav {
+    ::ng-deep a {
+      color: black;
+    }
   }
 }

@@ -10,43 +10,69 @@
     <thead>
       <tr>
         <th scope="col" (click)="sort('supplierName')">
-          Supplier name
-          <img
-            *ngIf="sortService.sortDirection['supplierName'] === false"
-            [src]="arrowDown"
-            alt="Sort ascending"
-          />
-          <img
-            *ngIf="sortService.sortDirection['supplierName'] === true"
-            [src]="arrowUp"
-            alt="Sort descending"
-          />
+          <div>
+            Supplier name
+            <p
+              *ngIf="sortService.sortDirection['supplierName'] === undefined"
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['supplierName'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['supplierName'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
         </th>
+
         <th scope="col" (click)="sort('products')">
-          Linked products
-          <img
-            *ngIf="sortService.sortDirection['products'] === false"
-            [src]="arrowDown"
-            alt="Sort ascending"
-          />
-          <img
-            *ngIf="sortService.sortDirection['products'] === true"
-            [src]="arrowUp"
-            alt="Sort descending"
-          />
+          <div>
+            Linked products
+            <p
+              *ngIf="sortService.sortDirection['products'] === undefined"
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['products'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['products'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
         </th>
+
         <th scope="col" (click)="sort('movements')">
-          Linked movements
-          <img
-            *ngIf="sortService.sortDirection['movements'] === false"
-            [src]="arrowDown"
-            alt="Sort ascending"
-          />
-          <img
-            *ngIf="sortService.sortDirection['movements'] === true"
-            [src]="arrowUp"
-            alt="Sort descending"
-          />
+          <div>
+            Linked movements
+            <p
+              *ngIf="sortService.sortDirection['movements'] === undefined"
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['movements'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['movements'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
         </th>
         <th scope="col">Actions</th>
       </tr>
@@ -73,7 +99,16 @@
           ></app-editable-nav>
         </td>
         <td>
-          {{ record.movements }}
+          <app-editable-nav
+            [text]="record.movements.toString()"
+            [spanText]="'Show related movements'"
+            [editRoute]="
+              'workspace/suppliers/movements/' +
+              record.supplierId +
+              '/' +
+              record.supplierName
+            "
+          ></app-editable-nav>
         </td>
         <td>
           <ng-container

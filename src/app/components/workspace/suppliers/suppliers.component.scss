@@ -41,18 +41,28 @@ p.noSuppliers {
           }
         }
       }
-
-      border-bottom: 1px solid $primary-decorative-color;
     }
     tbody {
       @include standard-table-tbody;
       tr {
         @include standard-table-tr;
-        border-bottom: 1px solid $primary-decorative-color;
         td {
           @include standard-table-td;
           &:first-child {
             @include sticky-first-column;
+          }
+          span {
+            font-size: map-get($font-sizes, "light");
+          }
+          app-editable-nav {
+            ::ng-deep a {
+              ::ng-deep span {
+                padding: 0.25rem 0;
+                min-width: 120px;
+                top: -50px;
+                z-index: 10;
+              }
+            }
           }
         }
       }

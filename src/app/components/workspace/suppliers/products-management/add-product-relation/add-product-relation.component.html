@@ -14,57 +14,97 @@
       <thead>
         <tr>
           <th scope="col" (click)="sort('productName')">
-            Product name
-            <img
-              *ngIf="sortService.sortDirection['productName'] === false"
-              [src]="arrowDown"
-              alt="Sort ascending"
-            />
-            <img
-              *ngIf="sortService.sortDirection['productName'] === true"
-              [src]="arrowUp"
-              alt="Sort descending"
-            />
+            <div>
+              Product name
+              <p
+                *ngIf="sortService.sortDirection['productName'] === undefined"
+                aria-disabled="true"
+              >
+                &nbsp;
+              </p>
+              <img
+                *ngIf="sortService.sortDirection['productName'] === false"
+                [src]="arrowDown"
+                alt="Sort ascending"
+              />
+              <img
+                *ngIf="sortService.sortDirection['productName'] === true"
+                [src]="arrowUp"
+                alt="Sort descending"
+              />
+            </div>
           </th>
           <th scope="col">Link product</th>
           <th scope="col" (click)="sort('categoryName')">
-            Category name
-            <img
-              *ngIf="sortService.sortDirection['categoryName'] === false"
-              [src]="arrowDown"
-              alt="Sort ascending"
-            />
-            <img
-              *ngIf="sortService.sortDirection['pcategoryName'] === true"
-              [src]="arrowUp"
-              alt="Sort descending"
-            />
+            <div>
+              Category name
+              <p
+                *ngIf="sortService.sortDirection['categoryName'] === undefined"
+                aria-disabled="true"
+              >
+                &nbsp;
+              </p>
+              <img
+                *ngIf="sortService.sortDirection['categoryName'] === false"
+                [src]="arrowDown"
+                alt="Sort ascending"
+              />
+              <img
+                *ngIf="sortService.sortDirection['categoryName'] === true"
+                [src]="arrowUp"
+                alt="Sort descending"
+              />
+            </div>
           </th>
           <th scope="col" (click)="sort('subcategoryName')">
-            Subcategory name
-            <img
-              *ngIf="sortService.sortDirection['subcategoryName'] === false"
-              [src]="arrowDown"
-              alt="Sort ascending"
-            />
-            <img
-              *ngIf="sortService.sortDirection['subcategoryName'] === true"
-              [src]="arrowUp"
-              alt="Sort descending"
-            />
+            <div>
+              Subcategory name
+              <p
+                *ngIf="
+                  sortService.sortDirection['subcategoryName'] === undefined
+                "
+                aria-disabled="true"
+              >
+                &nbsp;
+              </p>
+              <img
+                *ngIf="sortService.sortDirection['subcategoryName'] === false"
+                [src]="arrowDown"
+                alt="Sort ascending"
+              />
+              <img
+                *ngIf="sortService.sortDirection['subcategoryName'] === true"
+                [src]="arrowUp"
+                alt="Sort descending"
+              />
+            </div>
           </th>
           <th scope="col" (click)="sort('productPresentation')">
-            Description
-            <img
-              *ngIf="sortService.sortDirection['productPresentation'] === false"
-              [src]="arrowDown"
-              alt="Sort ascending"
-            />
-            <img
-              *ngIf="sortService.sortDirection['productPresentation'] === true"
-              [src]="arrowUp"
-              alt="Sort descending"
-            />
+            <div>
+              Description
+              <p
+                *ngIf="
+                  sortService.sortDirection['productPresentation'] === undefined
+                "
+                aria-disabled="true"
+              >
+                &nbsp;
+              </p>
+              <img
+                *ngIf="
+                  sortService.sortDirection['productPresentation'] === false
+                "
+                [src]="arrowDown"
+                alt="Sort ascending"
+              />
+              <img
+                *ngIf="
+                  sortService.sortDirection['productPresentation'] === true
+                "
+                [src]="arrowUp"
+                alt="Sort descending"
+              />
+            </div>
           </th>
         </tr>
       </thead>
