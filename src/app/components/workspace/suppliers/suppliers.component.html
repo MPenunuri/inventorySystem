@@ -1,7 +1,15 @@
 <h2>Suppliers</h2>
 
 <app-add-supplier (saved)="setSuppliers()"> </app-add-supplier>
-
+<div class="filter">
+  <label for="">Filter suppliers</label>
+  <input
+    name="filter"
+    type="text"
+    (input)="onFilterChange($event)"
+    placeholder="Search by any table value"
+  />
+</div>
 <div
   class="tableContainer"
   *ngIf="suppliers && suppliers.length > 0; else noSuppliers"
@@ -78,7 +86,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let record of suppliers">
+      <tr *ngFor="let record of filteredSuppliers">
         <td>
           <app-editable-text
             [id]="record.supplierId"
@@ -134,5 +142,14 @@
 </div>
 
 <ng-template #noSuppliers>
-  <p class="noSuppliers">There are not any suppliers registered yet.</p>
+  <p
+    class="noSuppliers"
+    *ngIf="suppliers && suppliers.length === 0; else undefinedSuppliers"
+  >
+    There are not any suppliers registered yet.
+  </p>
+</ng-template>
+
+<ng-template #undefinedSuppliers>
+  <app-loading></app-loading>
 </ng-template>

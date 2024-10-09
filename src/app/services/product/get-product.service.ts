@@ -61,6 +61,12 @@ export class GetProductService {
     return this.http.get<StockProductI[]>('/api/secure/product/stock/' + id);
   }
 
+  getProductsByPriceCurrency(id: number): Observable<StandardProductI[]> {
+    return this.http.get<StandardProductI[]>(
+      '/api/secure/product/currency/' + id
+    );
+  }
+
   getProductsBySellingRetailPrice(
     currencyId: number,
     min: number,

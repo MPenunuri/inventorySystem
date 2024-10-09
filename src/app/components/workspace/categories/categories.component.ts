@@ -14,6 +14,7 @@ import { SmallEditButtonComponent } from '../../commons/button/small-edit-button
 import { EditableNavComponent } from '../../commons/editable/editable-nav/editable-nav.component';
 import { LoadingComponent } from '../../commons/loading/loading.component';
 import { SmallNavButtonComponent } from '../../commons/button/small-nav-button/small-nav-button.component';
+import { Subject, debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-categories',
@@ -36,14 +37,21 @@ import { SmallNavButtonComponent } from '../../commons/button/small-nav-button/s
 export class CategoriesComponent {
   categories?: CategoryEntityI[];
   categoriesAndSubcategories?: CategorieAndSubcategorie[];
+  filteredCategoriesAndSubcategories?: CategorieAndSubcategorie[];
   arrowDown = 'assets/arrow-down-outline.svg';
   arrowUp = 'assets/arrow-up-outline.svg';
+
+  filterSubject: Subject<string> = new Subject<string>();
 
   constructor(
     public service: CategoryService,
     public subService: SubcategoryService,
     public sortService: SortArrayService
-  ) {}
+  ) {
+    this.filterSubject.pipe(debounceTime(500)).subscribe((filterText) => {
+      this.applyFilter(filterText);
+    });
+  }
 
   setCategories() {
     this.service.getCategories().subscribe({
@@ -58,8 +66,13 @@ export class CategoriesComponent {
     this.service.getCategoriesAndSubcategories().subscribe({
       next: (data: CategorieAndSubcategorie[]) => {
         this.categoriesAndSubcategories = data;
+        this.filteredCategoriesAndSubcategories = data;
         this.sort('categoryName');
         this.sort('subcategoryName');
+      },
+      error: () => {
+        this.categoriesAndSubcategories = [];
+        this.filteredCategoriesAndSubcategories = [];
       },
     });
   }
@@ -70,11 +83,36 @@ export class CategoriesComponent {
   }
 
   sort(column: keyof CategorieAndSubcategorie) {
-    if (this.categoriesAndSubcategories !== undefined) {
-      this.categoriesAndSubcategories = this.sortService.sort(
-        this.categoriesAndSubcategories,
+    if (this.filteredCategoriesAndSubcategories !== undefined) {
+      this.filteredCategoriesAndSubcategories = this.sortService.sort(
+        this.filteredCategoriesAndSubcategories,
         column
       );
     }
+  }
+
+  applyFilter(filterText: string) {
+    if (this.categoriesAndSubcategories) {
+      if (!filterText) {
+        this.filteredCategoriesAndSubcategories = [
+          ...this.categoriesAndSubcategories,
+        ];
+      } else {
+        const regex = new RegExp(filterText, 'i');
+        this.filteredCategoriesAndSubcategories =
+          this.categoriesAndSubcategories.filter((i) => {
+            return (
+              regex.test(i.categoryName) ||
+              regex.test(i.subcategoryName) ||
+              regex.test(i.products.toString())
+            );
+          });
+      }
+    }
+  }
+
+  onFilterChange(event: Event) {
+    const input = event.target as HTMLInputElement;
+    this.filterSubject.next(input.value);
   }
 }

@@ -1,7 +1,15 @@
 <h2>Currencies</h2>
 
 <app-add-currency (saved)="setCurrencies()"></app-add-currency>
-
+<div class="filter">
+  <label for="">Filter currencies</label>
+  <input
+    name="filter"
+    type="text"
+    (input)="onFilterChange($event)"
+    placeholder="Search by any table value"
+  />
+</div>
 <div
   class="tableContainer"
   *ngIf="currencies && currencies.length > 0; else noCurrencies"
@@ -10,57 +18,111 @@
     <thead>
       <tr>
         <th scope="col" (click)="sort('currencyName')">
-          Currency name
-          <img
-            *ngIf="sortService.sortDirection['currencyName'] === false"
-            [src]="arrowDown"
-            alt="Sort ascending"
-          />
-          <img
-            *ngIf="sortService.sortDirection['currencyName'] === true"
-            [src]="arrowUp"
-            alt="Sort descending"
-          />
+          <div>
+            Currency name
+            <p
+              *ngIf="sortService.sortDirection['currencyName'] === undefined"
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['currencyName'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['currencyName'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
         </th>
         <th scope="col" (click)="sort('products')">
-          Related products
-          <img
-            *ngIf="sortService.sortDirection['products'] === false"
-            [src]="arrowDown"
-            alt="Sort ascending"
-          />
-          <img
-            *ngIf="sortService.sortDirection['products'] === true"
-            [src]="arrowUp"
-            alt="Sort descending"
-          />
+          <div>
+            Related products
+            <p
+              *ngIf="sortService.sortDirection['products'] === undefined"
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['products'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['products'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
         </th>
         <th scope="col" (click)="sort('movements')">
-          Related movements
-          <img
-            *ngIf="sortService.sortDirection['movements'] === false"
-            [src]="arrowDown"
-            alt="Sort ascending"
-          />
-          <img
-            *ngIf="sortService.sortDirection['movements'] === true"
-            [src]="arrowUp"
-            alt="Sort descending"
-          />
+          <div>
+            Related movements
+            <p
+              *ngIf="sortService.sortDirection['movements'] === undefined"
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['movements'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['movements'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
         </th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let record of currencies">
+      <tr *ngFor="let record of filteredCurrencies">
         <td>
           {{ record.currencyName }}
         </td>
         <td>
-          {{ record.products }}
+          <app-editable-nav
+            *ngIf="record.products > 0; else noCurrencyProducts"
+            [text]="record.products.toString()"
+            [spanText]="'Show related products'"
+            [editRoute]="
+              '/workspace/currencies/currency/' +
+              record.currencyId +
+              '/' +
+              record.currencyName +
+              '/products'
+            "
+          >
+          </app-editable-nav>
+          <ng-template #noCurrencyProducts>
+            {{ record.products }}
+          </ng-template>
         </td>
         <td>
-          {{ record.movements }}
+          <app-editable-nav
+            *ngIf="record.movements > 0; else noCurrencyMovements"
+            [text]="record.movements.toString()"
+            [spanText]="'Show related movements'"
+            [editRoute]="
+              '/workspace/currencies/currency/' +
+              record.currencyId +
+              '/' +
+              record.currencyName +
+              '/movements'
+            "
+          >
+          </app-editable-nav>
+          <ng-template #noCurrencyMovements>
+            {{ record.movements }}
+          </ng-template>
         </td>
         <td>
           <ng-container
@@ -86,5 +148,14 @@
 </div>
 
 <ng-template #noCurrencies>
-  <p class="noCurrencies">There are not any currencies registered yet.</p>
+  <p
+    class="noCurrencies"
+    *ngIf="currencies && currencies.length === 0; else undefinedCurrencies"
+  >
+    There are not any currencies registered yet.
+  </p>
+</ng-template>
+
+<ng-template #undefinedCurrencies>
+  <app-loading></app-loading>
 </ng-template>

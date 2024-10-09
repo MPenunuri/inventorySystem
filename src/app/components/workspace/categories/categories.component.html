@@ -7,7 +7,15 @@
   *ngIf="categories && categories.length > 0"
   [categories]="categories"
 ></app-add-subcategory>
-
+<div class="filter">
+  <label for="">Filter categories</label>
+  <input
+    name="filter"
+    type="text"
+    (input)="onFilterChange($event)"
+    placeholder="Search by any table value"
+  />
+</div>
 <div
   class="tableContainer"
   *ngIf="
@@ -88,7 +96,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let record of categoriesAndSubcategories">
+      <tr *ngFor="let record of filteredCategoriesAndSubcategories">
         <td>
           <app-editable-text
             [id]="record.categoryId"

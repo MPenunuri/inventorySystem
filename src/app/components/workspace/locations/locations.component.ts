@@ -9,6 +9,7 @@ import { EditableTextAreaComponent } from '../../commons/editable/editable-text-
 import { EditableTextComponent } from '../../commons/editable/editable-text/editable-text.component';
 import { LoadingComponent } from '../../commons/loading/loading.component';
 import { EditableNavComponent } from '../../commons/editable/editable-nav/editable-nav.component';
+import { Subject, debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-locations',
@@ -27,22 +28,31 @@ import { EditableNavComponent } from '../../commons/editable/editable-nav/editab
 })
 export class LocationsComponent {
   locations?: FullLocationI[];
+  filteredLocations?: FullLocationI[];
   arrowDown = 'assets/arrow-down-outline.svg';
   arrowUp = 'assets/arrow-up-outline.svg';
+
+  filterSubject: Subject<string> = new Subject<string>();
 
   constructor(
     public service: LocationService,
     public sortService: SortArrayService
-  ) {}
+  ) {
+    this.filterSubject.pipe(debounceTime(500)).subscribe((filterText) => {
+      this.applyFilter(filterText);
+    });
+  }
 
   setLocations() {
     this.service.getLocations().subscribe({
       next: (data) => {
         this.locations = data;
+        this.filteredLocations = data;
         this.sort('locationName');
       },
       error: () => {
-        this.locations = undefined;
+        this.locations = [];
+        this.filteredLocations = [];
       },
     });
   }
@@ -52,8 +62,34 @@ export class LocationsComponent {
   }
 
   sort(column: keyof FullLocationI) {
-    if (this.locations !== undefined) {
-      this.locations = this.sortService.sort(this.locations, column);
+    if (this.filteredLocations !== undefined) {
+      this.filteredLocations = this.sortService.sort(
+        this.filteredLocations,
+        column
+      );
     }
+  }
+
+  applyFilter(filterText: string) {
+    if (this.locations) {
+      if (!filterText) {
+        this.filteredLocations = [...this.locations];
+      } else {
+        const regex = new RegExp(filterText, 'i');
+        this.filteredLocations = this.locations.filter((i) => {
+          return (
+            regex.test(i.locationName) ||
+            regex.test(i.locationAddress || '') ||
+            regex.test(i.products.toString()) ||
+            regex.test(i.movements.toString())
+          );
+        });
+      }
+    }
+  }
+
+  onFilterChange(event: Event) {
+    const input = event.target as HTMLInputElement;
+    this.filterSubject.next(input.value);
   }
 }

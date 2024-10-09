@@ -1,4 +1,4 @@
-@use "../../../../styles.scss" as *;
+@use "../../../../../styles.scss" as *;
 
 :host {
   @include full-view();
@@ -16,12 +16,12 @@ h2 {
   text-align: center;
 }
 
-p.noCategories {
-  @include standard-plain-message;
-}
-
 .filter {
   @include standard-filter();
+}
+
+p.noMovements {
+  @include standard-plain-message;
 }
 
 .tableContainer {
@@ -40,16 +40,10 @@ p.noCategories {
           &:first-child {
             @include sticky-first-column;
           }
-          &:first-child,
-          &:nth-child(2) {
-            min-width: 220px;
-            width: 220px;
-            max-width: 220px;
-          }
-          &:last-child {
-            min-width: 300px;
-            width: 300px;
-            max-width: 300px;
+          &:nth-child(7) {
+            min-width: 350px;
+            width: 350px;
+            max-width: 350px;
           }
         }
       }
@@ -63,23 +57,10 @@ p.noCategories {
           &:first-child {
             @include sticky-first-column;
           }
-          &:first-child,
-          &:nth-child(2) {
-            min-width: 220px;
-            width: 220px;
-            max-width: 220px;
-          }
-          &:last-child {
-            min-width: 300px;
-            width: 300px;
-            max-width: 300px;
-            div {
-              @include flex-center();
-            }
-            span {
-              font-size: map-get($font-sizes, "light");
-              width: 100%;
-            }
+          &:nth-child(7) {
+            min-width: 350px;
+            width: 350px;
+            max-width: 350px;
           }
         }
       }

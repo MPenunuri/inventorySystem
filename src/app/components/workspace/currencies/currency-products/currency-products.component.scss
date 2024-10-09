@@ -11,17 +11,16 @@
 h2 {
   @include standard-h2;
   overflow: hidden;
-  width: 250px;
-  max-width: 95vw;
+  width: 200px;
+  max-width: 98vw;
   text-align: center;
+}
+.filter {
+  @include standard-filter();
 }
 
 p.noProducts {
   @include standard-plain-message;
-}
-
-.filter {
-  @include standard-filter();
 }
 
 .tableContainer {
@@ -41,12 +40,9 @@ p.noProducts {
             @include sticky-first-column;
           }
           &:nth-child(4) {
-            width: 300px;
             min-width: 300px;
+            width: 300px;
             max-width: 300px;
-          }
-          img {
-            width: 10px;
           }
         }
       }
@@ -59,32 +55,25 @@ p.noProducts {
           @include standard-table-td;
           &:first-child {
             @include sticky-first-column;
-          }
-          &:nth-child(4) {
-            width: 300px;
-            min-width: 300px;
-            max-width: 300px;
-          }
-          span {
-            font-size: map-get($font-sizes, "light");
-          }
-          app-editable-nav {
-            ::ng-deep a {
-              ::ng-deep span {
-                padding: 0.25rem 0;
-                min-width: 120px;
-                top: -50px;
-                z-index: 10;
+            app-editable-nav {
+              ::ng-deep a {
+                color: black;
+                ::ng-deep span {
+                  top: -70px;
+                }
               }
             }
           }
-          app-small-delete-button {
-            ::ng-deep button {
+          &:nth-child(4) {
+            min-width: 300px;
+            width: 300px;
+            max-width: 300px;
+          }
+
+          app-editable-nav {
+            ::ng-deep a {
               ::ng-deep span {
-                padding: 0.25rem 0;
-                min-width: 120px;
                 top: -50px;
-                z-index: 10;
               }
             }
           }

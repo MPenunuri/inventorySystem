@@ -20,6 +20,10 @@ p.noLocations {
   @include standard-plain-message;
 }
 
+.filter {
+  @include standard-filter();
+}
+
 .tableContainer {
   @include table-container;
   table {

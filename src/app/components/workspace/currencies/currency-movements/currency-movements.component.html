@@ -1,0 +1,237 @@
+<h2>{{ currencyName }} Movements</h2>
+<div class="filter">
+  <label for="">Filter movements</label>
+  <input
+    name="filter"
+    type="text"
+    (input)="onFilterChange($event)"
+    placeholder="Search by any table value"
+  />
+</div>
+<div
+  class="tableContainer"
+  *ngIf="movements && movements.length > 0; else noMovements"
+>
+  <table
+    aria-live="polite"
+    aria-label="List of registered movements with their respective details"
+  >
+    <thead>
+      <tr>
+        <th scope="col" (click)="sort('dateTime')">
+          <div>
+            Date
+            <p
+              *ngIf="sortService.sortDirection['dateTime'] === undefined"
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['dateTime'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['dateTime'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
+        </th>
+
+        <th scope="col" (click)="sort('type')">
+          <div>
+            Type
+            <p
+              *ngIf="sortService.sortDirection['type'] === undefined"
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['type'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['type'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
+        </th>
+
+        <th scope="col" (click)="sort('subtype')">
+          <div>
+            Subtype
+            <p
+              *ngIf="sortService.sortDirection['subtype'] === undefined"
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['subtype'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['subtype'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
+        </th>
+
+        <th scope="col" (click)="sort('reason')">
+          <div>
+            Reason
+            <p
+              *ngIf="sortService.sortDirection['reason'] === undefined"
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['reason'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['reason'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
+        </th>
+
+        <th scope="col" (click)="sort('quantity')">
+          <div>
+            Quantity
+            <p
+              *ngIf="sortService.sortDirection['quantity'] === undefined"
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['quantity'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['quantity'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
+        </th>
+        <th scope="col" (click)="sort('productName')">
+          <div>
+            Product
+            <p
+              *ngIf="sortService.sortDirection['productName'] === undefined"
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['productName'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['productName'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
+        </th>
+
+        <th scope="col" (click)="sort('comment')">
+          <div>
+            Comment
+            <p
+              *ngIf="sortService.sortDirection['comment'] === undefined"
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['comment'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['comment'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
+        </th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let movement of filteredMovements">
+        <td>
+          {{ movement.dateTime }}
+        </td>
+        <td>
+          <app-editable-nav
+            [text]="movement.type"
+            [editRoute]="
+              getEditTypeRoute(
+                movement.type,
+                movement.productId,
+                movement.productName
+              )
+            "
+            [spanText]="'Navigate to ' + movement.type + ' module'"
+          ></app-editable-nav>
+        </td>
+        <td>
+          <app-editable-nav
+            *ngIf="movement.subtype !== 'None'"
+            [text]="movement.subtype"
+            [editRoute]="
+              getEditSubtypeRoute(
+                movement.type,
+                movement.subtype,
+                movement.productId,
+                movement.productName
+              )
+            "
+            [spanText]="'Navigate to ' + movement.subtype + ' module'"
+          ></app-editable-nav>
+        </td>
+        <td>{{ movement.reason }}</td>
+        <td>{{ movement.quantity }}</td>
+        <td>{{ movement.productName }}</td>
+        <td>{{ movement.comment }}</td>
+        <td>
+          <app-small-delete-button
+            [spanText]="'Undo movement'"
+            [id]="movement.movementId"
+            [deleteFn]="deleteService.deleteMovement.bind(deleteService)"
+            (clicked)="setMovements()"
+          ></app-small-delete-button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #noMovements>
+  <p
+    class="noMovements"
+    *ngIf="movements && movements.length === 0; else undefinedMovements"
+  >
+    There are not any movements registered yet.
+  </p>
+</ng-template>
+
+<ng-template #undefinedMovements>
+  <app-loading></app-loading>
+</ng-template>

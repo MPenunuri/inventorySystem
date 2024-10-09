@@ -7,6 +7,8 @@ import { SmallDeleteButtonComponent } from '../../commons/button/small-delete-bu
 import { EditableTextComponent } from '../../commons/editable/editable-text/editable-text.component';
 import { FullSupplierI } from '../../../models/supplier/fullSupplier';
 import { EditableNavComponent } from '../../commons/editable/editable-nav/editable-nav.component';
+import { LoadingComponent } from '../../commons/loading/loading.component';
+import { Subject, debounceTime } from 'rxjs';
 
 @Component({
   selector: 'app-suppliers',
@@ -17,28 +19,38 @@ import { EditableNavComponent } from '../../commons/editable/editable-nav/editab
     AddSupplierComponent,
     EditableTextComponent,
     EditableNavComponent,
+    LoadingComponent,
   ],
   templateUrl: './suppliers.component.html',
   styleUrl: './suppliers.component.scss',
 })
 export class SuppliersComponent {
   suppliers?: FullSupplierI[];
+  filteredSuppliers?: FullSupplierI[];
   arrowDown = 'assets/arrow-down-outline.svg';
   arrowUp = 'assets/arrow-up-outline.svg';
+
+  filterSubject: Subject<string> = new Subject<string>();
 
   constructor(
     public service: SupplierService,
     public sortService: SortArrayService
-  ) {}
+  ) {
+    this.filterSubject.pipe(debounceTime(500)).subscribe((filterText) => {
+      this.applyFilter(filterText);
+    });
+  }
 
   setSuppliers() {
     this.service.getSuppliers().subscribe({
       next: (data) => {
         this.suppliers = data;
+        this.filteredSuppliers = data;
         this.sort('supplierName');
       },
       error: () => {
-        this.suppliers = undefined;
+        this.suppliers = [];
+        this.filteredSuppliers = [];
       },
     });
   }
@@ -48,8 +60,33 @@ export class SuppliersComponent {
   }
 
   sort(column: keyof FullSupplierI) {
-    if (this.suppliers !== undefined) {
-      this.suppliers = this.sortService.sort(this.suppliers, column);
+    if (this.filteredSuppliers !== undefined) {
+      this.filteredSuppliers = this.sortService.sort(
+        this.filteredSuppliers,
+        column
+      );
     }
+  }
+
+  applyFilter(filterText: string) {
+    if (this.suppliers) {
+      if (!filterText) {
+        this.filteredSuppliers = [...this.suppliers];
+      } else {
+        const regex = new RegExp(filterText, 'i');
+        this.filteredSuppliers = this.suppliers.filter((i) => {
+          return (
+            regex.test(i.supplierName) ||
+            regex.test(i.products.toString()) ||
+            regex.test(i.movements.toString())
+          );
+        });
+      }
+    }
+  }
+
+  onFilterChange(event: Event) {
+    const input = event.target as HTMLInputElement;
+    this.filterSubject.next(input.value);
   }
 }

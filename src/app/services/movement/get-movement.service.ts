@@ -32,6 +32,14 @@ export class GetMovementService {
     );
   }
 
+  getCurrencyRelatedMovements(
+    currencyId: number
+  ): Observable<StandardMovementI[]> {
+    return this.http.get<StandardMovementI[]>(
+      '/api/secure/movement/currency/' + currencyId
+    );
+  }
+
   getEntries(productId: number): Observable<EntryI[]> {
     return this.http.get<EntryI[]>('/api/secure/movement/entry/' + productId);
   }

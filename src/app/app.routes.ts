@@ -39,6 +39,8 @@ import { CategoryProductsComponent } from './components/workspace/categories/cat
 import { LocationProductsComponent } from './components/workspace/locations/location-products/location-products.component';
 import { LocationMovementsComponent } from './components/workspace/locations/location-movements/location-movements.component';
 import { SupplierMovementsComponent } from './components/workspace/suppliers/supplier-movements/supplier-movements.component';
+import { CurrencyProductsComponent } from './components/workspace/currencies/currency-products/currency-products.component';
+import { CurrencyMovementsComponent } from './components/workspace/currencies/currency-movements/currency-movements.component';
 
 export const routes: Routes = [
   { path: 'signup', component: SignupComponent, canActivate: [authGuard] },
@@ -123,6 +125,14 @@ export const routes: Routes = [
       {
         path: 'currencies',
         component: CurrenciesComponent,
+      },
+      {
+        path: 'currencies/currency/:currencyId/:currencyName/products',
+        component: CurrencyProductsComponent,
+      },
+      {
+        path: 'currencies/currency/:currencyId/:currencyName/movements',
+        component: CurrencyMovementsComponent,
       },
       {
         path: 'movement/add-acquisition/:productId/:productName',

@@ -20,6 +20,10 @@ p.noCurrencies {
   @include standard-plain-message;
 }
 
+.filter {
+  @include standard-filter();
+}
+
 .tableContainer {
   @include table-container;
   table {
@@ -41,14 +45,11 @@ p.noCurrencies {
           }
         }
       }
-
-      border-bottom: 1px solid $primary-decorative-color;
     }
     tbody {
       @include standard-table-tbody;
       tr {
         @include standard-table-tr;
-        border-bottom: 1px solid $primary-decorative-color;
         td {
           @include standard-table-td;
           &:first-child {
@@ -56,6 +57,16 @@ p.noCurrencies {
           }
           span {
             font-size: map-get($font-sizes, "light");
+          }
+          app-editable-nav {
+            ::ng-deep a {
+              ::ng-deep span {
+                padding: 0.25rem 0;
+                min-width: 120px;
+                top: -40px;
+                z-index: 10;
+              }
+            }
           }
         }
       }
