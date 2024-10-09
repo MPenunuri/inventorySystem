@@ -61,6 +61,8 @@ p.noProducts {
         th {
           @include standard-table-th;
           width: 100px;
+          min-width: 100px;
+          max-width: 100px;
           &:hover {
             cursor: pointer;
           }
@@ -68,29 +70,29 @@ p.noProducts {
             @include sticky-first-column;
           }
           &:last-child {
+            min-width: 200px;
             width: 200px;
-          }
-          img {
-            width: 10px;
+            max-width: 200px;
           }
         }
       }
-
-      border-bottom: 1px solid $primary-decorative-color;
     }
     tbody {
       @include standard-table-tbody;
       tr {
         @include standard-table-tr;
-        border-bottom: 1px solid $primary-decorative-color;
         td {
           @include standard-table-td;
           width: 100px;
+          min-width: 100px;
+          max-width: 100px;
           &:first-child {
             @include sticky-first-column;
           }
           &:last-child {
+            min-width: 200px;
             width: 200px;
+            max-width: 200px;
           }
         }
       }

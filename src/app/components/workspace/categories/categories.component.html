@@ -22,43 +22,67 @@
     <thead>
       <tr>
         <th scope="col" (click)="sort('categoryName')">
-          Category name
-          <img
-            *ngIf="sortService.sortDirection['categoryName'] === false"
-            [src]="arrowDown"
-            alt="Sort ascending"
-          />
-          <img
-            *ngIf="sortService.sortDirection['categoryName'] === true"
-            [src]="arrowUp"
-            alt="Sort descending"
-          />
+          <div>
+            Category name
+            <p
+              *ngIf="sortService.sortDirection['categoryName'] === undefined"
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['categoryName'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['categoryName'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
         </th>
         <th scope="col" (click)="sort('subcategoryName')">
-          Subcategory name
-          <img
-            *ngIf="sortService.sortDirection['subcategoryName'] === false"
-            [src]="arrowDown"
-            alt="Sort ascending"
-          />
-          <img
-            *ngIf="sortService.sortDirection['subcategoryName'] === true"
-            [src]="arrowUp"
-            alt="Sort descending"
-          />
+          <div>
+            Subcategory name
+            <p
+              *ngIf="sortService.sortDirection['subcategoryName'] === undefined"
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['subcategoryName'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['subcategoryName'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
         </th>
         <th scope="col" (click)="sort('products')">
-          Products
-          <img
-            *ngIf="sortService.sortDirection['products'] === false"
-            [src]="arrowDown"
-            alt="Sort ascending"
-          />
-          <img
-            *ngIf="sortService.sortDirection['products'] === true"
-            [src]="arrowUp"
-            alt="Sort descending"
-          />
+          <div>
+            Products
+            <p
+              *ngIf="sortService.sortDirection['products'] === undefined"
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['products'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['products'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
         </th>
         <th scope="col">Actions</th>
       </tr>
@@ -80,55 +104,64 @@
           ></app-editable-text>
         </td>
         <td>
-          <ng-container *ngIf="record.products === 0; else showLink">
+          <app-editable-nav
+            *ngIf="record.products > 0; else noSubcategoryProducts"
+            [text]="record.products.toString()"
+            [spanText]="'Show subcategory products'"
+            [editRoute]="
+              '/workspace/categories/subcategory/' +
+              record.subcategoryId +
+              '/products'
+            "
+          >
+          </app-editable-nav>
+          <ng-template #noSubcategoryProducts>
             {{ record.products }}
-          </ng-container>
-          <ng-template #showLink>
-            <a
-              [routerLink]="[
-                '/workspace/categories/subcategory/' +
-                  record.subcategoryId +
-                  '/products'
-              ]"
-            >
-              {{ record.products }}
-              <span class="tooltip">Show subcategory products</span>
-            </a>
           </ng-template>
         </td>
         <td>
-          <ng-container *ngIf="record.subcategoryId; else deleteCategory">
-            <ng-container *ngIf="record.products === 0; else noDeletion">
+          <div>
+            <app-small-nav-button
+              [spanText]="'Show category products'"
+              [editRoute]="
+                '/workspace/categories/category/' +
+                record.categoryId +
+                '/products'
+              "
+            ></app-small-nav-button>
+            <app-small-edit-button
+              [spanText]="'Change subcategory category'"
+              [editRoute]="
+                '/workspace/subcategory/category/change/' +
+                record.subcategoryId +
+                '/' +
+                record.subcategoryName +
+                '/' +
+                record.categoryId
+              "
+            ></app-small-edit-button>
+            <ng-container *ngIf="record.subcategoryId; else deleteCategory">
+              <ng-container *ngIf="record.products === 0; else noDeletion">
+                <app-small-delete-button
+                  [spanText]="'Delete subcategory'"
+                  [id]="record.subcategoryId"
+                  [deleteFn]="subService.deleteSubcategory.bind(subService)"
+                  (clicked)="setCategoriesAndSubcategories()"
+                ></app-small-delete-button>
+              </ng-container>
+              <ng-template #noDeletion>
+                <span>No deletion available</span>
+              </ng-template>
+            </ng-container>
+            <ng-template #deleteCategory>
               <app-small-delete-button
-                [spanText]="'Delete subcategory'"
-                [id]="record.subcategoryId"
-                [deleteFn]="subService.deleteSubcategory.bind(subService)"
+                [spanText]="'Delete category'"
+                [id]="record.categoryId"
+                [deleteFn]="service.deleteCategory.bind(service)"
                 (clicked)="setCategoriesAndSubcategories()"
               ></app-small-delete-button>
-            </ng-container>
-            <ng-template #noDeletion>
-              <span>No deletion available</span>
             </ng-template>
-          </ng-container>
-          <ng-template #deleteCategory>
-            <app-small-delete-button
-              [spanText]="'Delete category'"
-              [id]="record.categoryId"
-              [deleteFn]="service.deleteCategory.bind(service)"
-              (clicked)="setCategoriesAndSubcategories()"
-            ></app-small-delete-button>
-          </ng-template>
-          <app-small-edit-button
-            [spanText]="'Change subcategory category'"
-            [editRoute]="
-              '/workspace/subcategory/category/change/' +
-              record.subcategoryId +
-              '/' +
-              record.subcategoryName +
-              '/' +
-              record.categoryId
-            "
-          ></app-small-edit-button>
+          </div>
         </td>
       </tr>
     </tbody>
@@ -136,5 +169,14 @@
 </div>
 
 <ng-template #noCategories>
-  <p class="noCategories">There are not any categories registered yet.</p>
+  <p
+    class="noCategories"
+    *ngIf="categories && categories.length === 0; else undefinedCategories"
+  >
+    There are not any categories registered yet.
+  </p>
+</ng-template>
+
+<ng-template #undefinedCategories>
+  <app-loading></app-loading>
 </ng-template>

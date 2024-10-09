@@ -32,9 +32,6 @@ p.noSuppliers {
           &:first-child {
             @include sticky-first-column;
           }
-          img {
-            width: 10px;
-          }
         }
       }
     }

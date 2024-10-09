@@ -11,6 +11,9 @@ import { SubcategoryService } from '../../../services/subcategory/subcategory.se
 import { RouterLink } from '@angular/router';
 import { SmallDeleteButtonComponent } from '../../commons/button/small-delete-button/small-delete-button.component';
 import { SmallEditButtonComponent } from '../../commons/button/small-edit-button/small-edit-button.component';
+import { EditableNavComponent } from '../../commons/editable/editable-nav/editable-nav.component';
+import { LoadingComponent } from '../../commons/loading/loading.component';
+import { SmallNavButtonComponent } from '../../commons/button/small-nav-button/small-nav-button.component';
 
 @Component({
   selector: 'app-categories',
@@ -20,9 +23,12 @@ import { SmallEditButtonComponent } from '../../commons/button/small-edit-button
     AddCategoryComponent,
     AddSubcategoryComponent,
     EditableTextComponent,
+    EditableNavComponent,
     RouterLink,
     SmallDeleteButtonComponent,
     SmallEditButtonComponent,
+    SmallNavButtonComponent,
+    LoadingComponent,
   ],
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.scss',

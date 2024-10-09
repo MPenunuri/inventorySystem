@@ -1,4 +1,4 @@
-@use "../../../../styles.scss" as *;
+@use "../../../../../styles.scss" as *;
 
 :host {
   @include full-view();
@@ -15,8 +15,11 @@ h2 {
   max-width: 98vw;
   text-align: center;
 }
+.filter {
+  @include standard-filter();
+}
 
-p.noCategories {
+p.noProducts {
   @include standard-plain-message;
 }
 
@@ -36,13 +39,7 @@ p.noCategories {
           &:first-child {
             @include sticky-first-column;
           }
-          &:first-child,
-          &:nth-child(2) {
-            min-width: 220px;
-            width: 220px;
-            max-width: 220px;
-          }
-          &:last-child {
+          &:nth-child(3) {
             min-width: 300px;
             width: 300px;
             max-width: 300px;
@@ -58,23 +55,26 @@ p.noCategories {
           @include standard-table-td;
           &:first-child {
             @include sticky-first-column;
+            app-editable-nav {
+              ::ng-deep a {
+                color: black;
+                ::ng-deep span {
+                  top: -70px;
+                }
+              }
+            }
           }
-          &:first-child,
-          &:nth-child(2) {
-            min-width: 220px;
-            width: 220px;
-            max-width: 220px;
-          }
-          &:last-child {
+          &:nth-child(3) {
             min-width: 300px;
             width: 300px;
             max-width: 300px;
-            div {
-              @include flex-center();
-            }
-            span {
-              font-size: map-get($font-sizes, "light");
-              width: 100%;
+          }
+
+          app-editable-nav {
+            ::ng-deep a {
+              ::ng-deep span {
+                top: -50px;
+              }
             }
           }
         }

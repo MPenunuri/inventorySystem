@@ -34,6 +34,8 @@ import { TransfersComponent } from './components/workspace/movements/product/tra
 import { MovementsComponent } from './components/workspace/movements/product/movements/movements.component';
 import { EntriesComponent } from './components/workspace/movements/product/entries/entries.component';
 import { OutputsComponent } from './components/workspace/movements/product/outputs/outputs.component';
+import { SubcategoryProductsComponent } from './components/workspace/categories/subcategory-products/subcategory-products.component';
+import { CategoryProductsComponent } from './components/workspace/categories/category-products/category-products.component';
 
 export const routes: Routes = [
   { path: 'signup', component: SignupComponent, canActivate: [authGuard] },
@@ -74,6 +76,18 @@ export const routes: Routes = [
       {
         path: 'categories',
         component: CategoriesComponent,
+      },
+      {
+        path: 'categories/category/:categoryId/products',
+        component: CategoryProductsComponent,
+      },
+      {
+        path: 'categories/subcategory/:subcategoryId/products',
+        component: SubcategoryProductsComponent,
+      },
+      {
+        path: 'subcategory/category/change/:subcategoryId/:subcategoryName/:currentCategoryId',
+        component: ChangeSubcategoryCategoryComponent,
       },
       {
         path: 'subcategory/category/change/:subcategoryId/:subcategoryName/:currentCategoryId',

@@ -1,0 +1,284 @@
+<h2>{{ " Products in the " + categoryName + " category" }}</h2>
+
+<div class="filter">
+  <label for="">Filter products</label>
+  <input
+    name="filter"
+    type="text"
+    (input)="onFilterChange($event)"
+    placeholder="Search by any table value"
+  />
+</div>
+<div
+  class="tableContainer"
+  *ngIf="products && products.length > 0; else noProducts"
+>
+  <table
+    aria-live="polite"
+    aria-label="List of registered products with their respective details"
+  >
+    <thead>
+      <tr>
+        <th scope="col" (click)="sort('productName')">
+          <div>
+            Name
+            <p
+              *ngIf="sortService.sortDirection['productName'] === undefined"
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['productName'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['productName'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
+        </th>
+        <th scope="col" (click)="sort('subcategoryName')">
+          <div>
+            Subcategory
+            <p
+              *ngIf="sortService.sortDirection['subcategoryName'] === undefined"
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['subcategoryName'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['subcategoryName'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
+        </th>
+        <th scope="col" (click)="sort('productPresentation')">
+          <div>
+            Description
+            <p
+              *ngIf="
+                sortService.sortDirection['productPresentation'] === undefined
+              "
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['productPresentation'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['productPresentation'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
+        </th>
+        <th scope="col" (click)="sort('minimumStock')">
+          <div>
+            Minimum stock
+            <p
+              *ngIf="sortService.sortDirection['minimumStock'] === undefined"
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['minimumStock'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['minimumStock'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
+        </th>
+        <th scope="col" (click)="sort('totalStock')">
+          <div>
+            Current stock
+            <p
+              *ngIf="sortService.sortDirection['totalStock'] === undefined"
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['totalStock'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['totalStock'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
+        </th>
+        <th scope="col" (click)="sort('retailPrice')">
+          <div>
+            Retail price
+            <p
+              *ngIf="sortService.sortDirection['retailPrice'] === undefined"
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['retailPrice'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['retailPrice'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
+        </th>
+        <th scope="col" (click)="sort('wholesalePrice')">
+          <div>
+            Wholesale price
+            <p
+              *ngIf="sortService.sortDirection['wholesalePrice'] === undefined"
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['wholesalePrice'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['wholesalePrice'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
+        </th>
+        <th scope="col" (click)="sort('priceCurrency')">
+          <div>
+            Price currency
+            <p
+              *ngIf="sortService.sortDirection['priceCurrency'] === undefined"
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['priceCurrency'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['priceCurrency'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of filteredProducts">
+        <td>
+          <app-editable-nav
+            [text]="product.productName"
+            [spanText]="'View product details'"
+            [editRoute]="
+              'workspace/product/' +
+              product.productId +
+              (product.priceCurrencyId ? '/' + product.priceCurrencyId : '')
+            "
+          ></app-editable-nav>
+        </td>
+
+        <td>
+          <app-editable-nav
+            [text]="product.subcategoryName"
+            [spanText]="'Set product category'"
+            [editRoute]="
+              'workspace/product/' +
+              product.productId +
+              '/' +
+              product.productName +
+              '/assign-subcategory' +
+              (product.subcategoryId ? '/' + product.subcategoryId : '')
+            "
+          ></app-editable-nav>
+        </td>
+        <td>
+          <app-editable-text-area
+            [id]="product.productId"
+            [text]="product.productPresentation"
+            [action]="patchService.updateProductPresentation.bind(patchService)"
+          ></app-editable-text-area>
+        </td>
+        <td>
+          <app-editable-number
+            [decimals]="0"
+            [id]="product.productId"
+            [text]="product.minimumStock.toString()"
+            [action]="patchService.updateMinimumStock.bind(patchService)"
+          ></app-editable-number>
+        </td>
+        <td>{{ product.totalStock }}</td>
+        <td>
+          <app-editable-number
+            [decimals]="2"
+            [id]="product.productId"
+            [text]="product.retailPrice.toString()"
+            [action]="patchService.updateRetailPrice.bind(patchService)"
+          ></app-editable-number>
+        </td>
+        <td>
+          <app-editable-number
+            [decimals]="2"
+            [id]="product.productId"
+            [text]="product.wholesalePrice.toString()"
+            [action]="patchService.updateWholesalePrice.bind(patchService)"
+          ></app-editable-number>
+        </td>
+        <td>
+          <app-editable-nav
+            [text]="product.priceCurrency"
+            [spanText]="'Set product currency'"
+            [editRoute]="
+              'workspace/product/' +
+              product.productId +
+              '/' +
+              product.productName +
+              '/assign-currency' +
+              (product.priceCurrencyId ? '/' + product.priceCurrencyId : '')
+            "
+          ></app-editable-nav>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #noProducts>
+  <p
+    class="noProducts"
+    *ngIf="products && products.length === 0; else undefinedProducts"
+  >
+    There are not any products registered yet.
+  </p>
+</ng-template>
+
+<ng-template #undefinedProducts>
+  <app-loading></app-loading>
+</ng-template>

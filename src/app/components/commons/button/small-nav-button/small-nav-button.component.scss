@@ -4,27 +4,7 @@
   @include flex-center();
   width: 100%;
   position: relative;
-  z-index: 2;
-}
-
-a {
-  @include standard-anchor-router-link;
-  cursor: pointer;
-  text-decoration: underline;
-  color: blue;
-  width: 150px;
-
-  &:hover {
-    span {
-      opacity: 1;
-      z-index: 10;
-    }
-  }
-  span {
-    @include standard-span;
-    top: -75px;
-    right: 10px;
-  }
+  z-index: 5;
 }
 
 button {
@@ -40,12 +20,6 @@ button {
   color: $primary-text-color;
   border-style: none;
   filter: drop-shadow(4px 4px 10px $secondary-decorative-color);
-  opacity: 0;
-
-  &.showing,
-  &:hover {
-    opacity: 1;
-  }
 
   &:hover {
     cursor: pointer;
@@ -60,12 +34,11 @@ button {
 
   span {
     @include standard-span;
-    top: -65px;
-    right: -40px;
+    top: -320%;
+    right: -125%;
   }
 
   img {
-    position: absolute;
     width: 20px;
     height: auto;
     filter: brightness(0) saturate(100%) invert(35%) sepia(100%) saturate(700%)
