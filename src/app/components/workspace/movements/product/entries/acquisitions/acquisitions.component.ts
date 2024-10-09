@@ -81,8 +81,11 @@ export class AcquisitionsComponent {
   }
 
   sort(column: keyof AcquisitionI) {
-    if (this.movements !== undefined) {
-      this.movements = this.sortService.sort(this.movements, column);
+    if (this.filteredMovements !== undefined) {
+      this.filteredMovements = this.sortService.sort(
+        this.filteredMovements,
+        column
+      );
     }
   }
 

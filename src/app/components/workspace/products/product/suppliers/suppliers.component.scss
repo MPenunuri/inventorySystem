@@ -37,14 +37,11 @@ p.noSuppliers {
           }
         }
       }
-
-      border-bottom: 1px solid $primary-decorative-color;
     }
     tbody {
       @include standard-table-tbody;
       tr {
         @include standard-table-tr;
-        border-bottom: 1px solid $primary-decorative-color;
         td {
           @include standard-table-td;
           &:first-child {

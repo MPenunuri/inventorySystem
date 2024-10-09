@@ -4,7 +4,7 @@
   @include flex-center();
   width: 100%;
   position: relative;
-  z-index: 5;
+  z-index: 3;
 }
 
 a {
@@ -17,10 +17,13 @@ a {
   &:hover {
     span {
       opacity: 1;
+      z-index: 10;
     }
   }
   span {
     @include standard-span;
+    top: -75px;
+    right: 5px;
   }
 }
 
@@ -57,11 +60,12 @@ button {
 
   span {
     @include standard-span;
-    top: -320%;
-    right: -130%;
+    top: -65px;
+    right: -40px;
   }
 
   img {
+    position: absolute;
     width: 20px;
     height: auto;
     filter: brightness(0) saturate(100%) invert(35%) sepia(100%) saturate(700%)

@@ -26,121 +26,203 @@
     <thead>
       <tr>
         <th scope="col" (click)="sort('dateTime')">
-          Date
-          <img
-            *ngIf="sortService.sortDirection['dateTime'] === false"
-            [src]="arrowDown"
-            alt="Sort ascending"
-          />
-          <img
-            *ngIf="sortService.sortDirection['dateTime'] === true"
-            [src]="arrowUp"
-            alt="Sort descending"
-          />
+          <div>
+            Date
+            <p
+              *ngIf="sortService.sortDirection['dateTime'] === undefined"
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['dateTime'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['dateTime'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
         </th>
+
         <th scope="col" (click)="sort('reason')">
-          Reason
-          <img
-            *ngIf="sortService.sortDirection['reason'] === false"
-            [src]="arrowDown"
-            alt="Sort ascending"
-          />
-          <img
-            *ngIf="sortService.sortDirection['reason'] === true"
-            [src]="arrowUp"
-            alt="Sort descending"
-          />
+          <div>
+            Reason
+            <p
+              *ngIf="sortService.sortDirection['reason'] === undefined"
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['reason'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['reason'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
         </th>
+
         <th scope="col" (click)="sort('comment')">
-          Comment
-          <img
-            *ngIf="sortService.sortDirection['comment'] === false"
-            [src]="arrowDown"
-            alt="Sort ascending"
-          />
-          <img
-            *ngIf="sortService.sortDirection['comment'] === true"
-            [src]="arrowUp"
-            alt="Sort descending"
-          />
+          <div>
+            Comment
+            <p
+              *ngIf="sortService.sortDirection['comment'] === undefined"
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['comment'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['comment'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
         </th>
+
         <th scope="col" (click)="sort('quantity')">
-          Quantity
-          <img
-            *ngIf="sortService.sortDirection['quantity'] === false"
-            [src]="arrowDown"
-            alt="Sort ascending"
-          />
-          <img
-            *ngIf="sortService.sortDirection['quantity'] === true"
-            [src]="arrowUp"
-            alt="Sort descending"
-          />
+          <div>
+            Quantity
+            <p
+              *ngIf="sortService.sortDirection['quantity'] === undefined"
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['quantity'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['quantity'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
         </th>
+
         <th scope="col" (click)="sort('fromLocationName')">
-          Departure location
-          <img
-            *ngIf="sortService.sortDirection['fromLocationName'] === false"
-            [src]="arrowDown"
-            alt="Sort ascending"
-          />
-          <img
-            *ngIf="sortService.sortDirection['fromLocationName'] === true"
-            [src]="arrowUp"
-            alt="Sort descending"
-          />
+          <div>
+            Departure location
+            <p
+              *ngIf="
+                sortService.sortDirection['fromLocationName'] === undefined
+              "
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['fromLocationName'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['fromLocationName'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
         </th>
+
         <th scope="col" (click)="sort('supplierName')">
-          Supplier
-          <img
-            *ngIf="sortService.sortDirection['supplierName'] === false"
-            [src]="arrowDown"
-            alt="Sort ascending"
-          />
-          <img
-            *ngIf="sortService.sortDirection['supplierName'] === true"
-            [src]="arrowUp"
-            alt="Sort descending"
-          />
+          <div>
+            Supplier
+            <p
+              *ngIf="sortService.sortDirection['supplierName'] === undefined"
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['supplierName'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['supplierName'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
         </th>
+
         <th scope="col" (click)="sort('refundType')">
-          Refund type
-          <img
-            *ngIf="sortService.sortDirection['refundType'] === false"
-            [src]="arrowDown"
-            alt="Sort ascending"
-          />
-          <img
-            *ngIf="sortService.sortDirection['refundType'] === true"
-            [src]="arrowUp"
-            alt="Sort descending"
-          />
+          <div>
+            Refund type
+            <p
+              *ngIf="sortService.sortDirection['refundType'] === undefined"
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['refundType'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['refundType'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
         </th>
+
         <th scope="col" (click)="sort('refund')">
-          Refund
-          <img
-            *ngIf="sortService.sortDirection['refund'] === false"
-            [src]="arrowDown"
-            alt="Sort ascending"
-          />
-          <img
-            *ngIf="sortService.sortDirection['refund'] === true"
-            [src]="arrowUp"
-            alt="Sort descending"
-          />
+          <div>
+            Refund
+            <p
+              *ngIf="sortService.sortDirection['refund'] === undefined"
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['refund'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['refund'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
         </th>
+
         <th scope="col" (click)="sort('refundCurrency')">
-          Refund currency
-          <img
-            *ngIf="sortService.sortDirection['refundCurrency'] === false"
-            [src]="arrowDown"
-            alt="Sort ascending"
-          />
-          <img
-            *ngIf="sortService.sortDirection['refundCurrency'] === true"
-            [src]="arrowUp"
-            alt="Sort descending"
-          />
+          <div>
+            Refund currency
+            <p
+              *ngIf="sortService.sortDirection['refundCurrency'] === undefined"
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['refundCurrency'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['refundCurrency'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
         </th>
         <th scope="col">Action</th>
       </tr>

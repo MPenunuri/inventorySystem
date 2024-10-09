@@ -7,19 +7,29 @@
   <table aria-live="polite" aria-label="List of registered suppliers">
     <thead>
       <tr>
-        <th scope="col" (click)="sort('name')">
-          Supplier name
-          <img
-            *ngIf="sortService.sortDirection['name'] === false"
-            [src]="arrowDown"
-            alt="Sort ascending"
-          />
-          <img
-            *ngIf="sortService.sortDirection['name'] === true"
-            [src]="arrowUp"
-            alt="Sort descending"
-          />
-        </th>
+        <div>
+          <th scope="col" (click)="sort('name')">
+            <div>
+              Supplier name
+              <p
+                *ngIf="sortService.sortDirection['name'] === undefined"
+                aria-disabled="true"
+              >
+                &nbsp;
+              </p>
+              <img
+                *ngIf="sortService.sortDirection['name'] === false"
+                [src]="arrowDown"
+                alt="Sort ascending"
+              />
+              <img
+                *ngIf="sortService.sortDirection['name'] === true"
+                [src]="arrowUp"
+                alt="Sort descending"
+              />
+            </div>
+          </th>
+        </div>
 
         <th scope="col">Actions</th>
       </tr>

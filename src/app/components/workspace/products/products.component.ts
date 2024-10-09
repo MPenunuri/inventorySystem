@@ -64,8 +64,11 @@ export class ProductsComponent implements OnInit {
   }
 
   sort(column: keyof StandardProductI) {
-    if (this.products !== undefined) {
-      this.products = this.sortService.sort(this.products, column);
+    if (this.filteredProducts !== undefined) {
+      this.filteredProducts = this.sortService.sort(
+        this.filteredProducts,
+        column
+      );
     }
   }
 

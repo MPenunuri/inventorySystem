@@ -8,56 +8,90 @@
     <thead>
       <tr>
         <th scope="col" (click)="sortStockList('location.name')">
-          Location name
-          <img
-            *ngIf="sortService.sortDirection['location.name'] === false"
-            [src]="arrowDown"
-            alt="Sort ascending"
-          />
-          <img
-            *ngIf="sortService.sortDirection['location.name'] === true"
-            [src]="arrowUp"
-            alt="Sort descending"
-          />
+          <div>
+            Location name
+            <p
+              *ngIf="sortService.sortDirection['location.name'] === undefined"
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['location.name'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['location.name'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
         </th>
         <th scope="col" (click)="sortStockList('quantity')">
-          Stock
-          <img
-            *ngIf="sortService.sortDirection['quantity'] === false"
-            [src]="arrowDown"
-            alt="Sort ascending"
-          />
-          <img
-            *ngIf="sortService.sortDirection['quantity'] === true"
-            [src]="arrowUp"
-            alt="Sort descending"
-          />
+          <div>
+            Stock
+            <p
+              *ngIf="sortService.sortDirection['quantity'] === undefined"
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['quantity'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['quantity'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
         </th>
         <th scope="col" (click)="sortStockList('maximumStorage')">
-          Maximum storage
-          <img
-            *ngIf="sortService.sortDirection['maximumStorage'] === false"
-            [src]="arrowDown"
-            alt="Sort ascending"
-          />
-          <img
-            *ngIf="sortService.sortDirection['maximumStorage'] === true"
-            [src]="arrowUp"
-            alt="Sort descending"
-          />
+          <div>
+            Maximum storage
+            <p
+              *ngIf="sortService.sortDirection['maximumStorage'] === undefined"
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['maximumStorage'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['maximumStorage'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
         </th>
         <th scope="col" (click)="sortStockList('location.address')">
-          Location address
-          <img
-            *ngIf="sortService.sortDirection['locationAddress'] === false"
-            [src]="arrowDown"
-            alt="Sort ascending"
-          />
-          <img
-            *ngIf="sortService.sortDirection['locationAddresse'] === true"
-            [src]="arrowUp"
-            alt="Sort descending"
-          />
+          <div>
+            Location address
+            <p
+              *ngIf="
+                sortService.sortDirection['location.address'] === undefined
+              "
+              aria-disabled="true"
+            >
+              &nbsp;
+            </p>
+            <img
+              *ngIf="sortService.sortDirection['location.address'] === false"
+              [src]="arrowDown"
+              alt="Sort ascending"
+            />
+            <img
+              *ngIf="sortService.sortDirection['location.address'] === true"
+              [src]="arrowUp"
+              alt="Sort descending"
+            />
+          </div>
         </th>
         <th scope="col">Actions</th>
       </tr>

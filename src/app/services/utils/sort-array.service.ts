@@ -22,6 +22,10 @@ export class SortArrayService {
       const aValue = this.getValueByPath(a, column as string);
       const bValue = this.getValueByPath(b, column as string);
 
+      if (aValue === null && bValue === null) return 0;
+      if (aValue === null) return isAscending ? 1 : -1;
+      if (bValue === null) return isAscending ? -1 : 1;
+
       if (aValue < bValue) {
         return isAscending ? -1 : 1;
       }

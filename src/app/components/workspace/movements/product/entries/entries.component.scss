@@ -40,23 +40,27 @@ p.noMovements {
           &:first-child {
             @include sticky-first-column;
           }
-          img {
-            width: 10px;
+          &:nth-child(4) {
+            min-width: 350px;
+            width: 350px;
+            max-width: 350px;
           }
         }
       }
-
-      border-bottom: 1px solid $primary-decorative-color;
     }
     tbody {
       @include standard-table-tbody;
       tr {
         @include standard-table-tr;
-        border-bottom: 1px solid $primary-decorative-color;
         td {
           @include standard-table-td;
           &:first-child {
             @include sticky-first-column;
+          }
+          &:nth-child(4) {
+            min-width: 350px;
+            width: 350px;
+            max-width: 350px;
           }
         }
       }
