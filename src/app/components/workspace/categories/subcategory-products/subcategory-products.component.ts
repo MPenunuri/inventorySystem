@@ -92,7 +92,6 @@ export class SubcategoryProductsComponent {
         this.filteredProducts = this.products.filter((product) => {
           return (
             regex.test(product.productName) ||
-            regex.test(product.categoryName) ||
             regex.test(product.subcategoryName) ||
             regex.test(product.productPresentation) ||
             regex.test(product.priceCurrency) ||

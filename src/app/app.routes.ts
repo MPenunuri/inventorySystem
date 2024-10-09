@@ -36,6 +36,8 @@ import { EntriesComponent } from './components/workspace/movements/product/entri
 import { OutputsComponent } from './components/workspace/movements/product/outputs/outputs.component';
 import { SubcategoryProductsComponent } from './components/workspace/categories/subcategory-products/subcategory-products.component';
 import { CategoryProductsComponent } from './components/workspace/categories/category-products/category-products.component';
+import { LocationProductsComponent } from './components/workspace/locations/location-products/location-products.component';
+import { LocationMovementsComponent } from './components/workspace/locations/location-movements/location-movements.component';
 
 export const routes: Routes = [
   { path: 'signup', component: SignupComponent, canActivate: [authGuard] },
@@ -96,6 +98,14 @@ export const routes: Routes = [
       {
         path: 'locations',
         component: LocationsComponent,
+      },
+      {
+        path: 'locations/location/:locationId/products',
+        component: LocationProductsComponent,
+      },
+      {
+        path: 'locations/location/:locationId/:locationName/movements',
+        component: LocationMovementsComponent,
       },
       {
         path: 'suppliers',

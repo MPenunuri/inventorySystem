@@ -11,6 +11,7 @@ export interface LocationProductI {
   minimumStock: number;
   retailPrice: number;
   wholesalePrice: number;
+  priceCurrencyId: number;
   priceCurrency: string;
   stockLocationId: number;
   stockLocationName: string;

@@ -6,9 +6,10 @@
     <div aria-label="product editable name container" class="firstSubcontainer">
       <h4 class="irregularh4">Name &nbsp;</h4>
       <app-editable-text
+        (textEdited)="delayedSetProduct()"
         [id]="productId"
         [text]="product.name"
-        [action]="patchService.updateProductName"
+        [action]="patchService.updateProductName.bind(patchService)"
       ></app-editable-text>
     </div>
     <div>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { InventoryProductI } from '../../../../models/product/inventory-product';
 import { GetProductService } from '../../../../services/product/get-product.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { StockI } from '../../../../models/stock/stock';
 import { SortArrayService } from '../../../../services/utils/sort-array.service';
@@ -52,6 +52,7 @@ export class ProductComponent {
     private getService: GetProductService,
     public patchService: PatchProductService,
     private route: ActivatedRoute,
+    public router: Router,
     public sortService: SortArrayService
   ) {}
 
@@ -88,5 +89,11 @@ export class ProductComponent {
     if (this.stockList !== undefined) {
       this.stockList = this.sortService.sort(this.stockList, column);
     }
+  }
+
+  delayedSetProduct() {
+    setTimeout(() => {
+      this.setProduct();
+    }, 500);
   }
 }

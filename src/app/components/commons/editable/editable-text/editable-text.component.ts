@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
 
@@ -17,6 +23,7 @@ export class EditableTextComponent {
   @Input() text: string = '';
   private prev: string = '';
   @Input() action?: (id: number, text: string) => Observable<any>;
+  @Output() textEdited: EventEmitter<void> = new EventEmitter();
 
   ngOnChanges(changes: SimpleChanges): void {
     if ('text' in changes && this.prev === '') {
@@ -33,6 +40,7 @@ export class EditableTextComponent {
     this.isEditing = !this.isEditing;
     if (!this.isEditing) {
       this.saveChanges();
+      this.textEditedEmit();
     }
   }
 
@@ -46,5 +54,9 @@ export class EditableTextComponent {
         },
       });
     }
+  }
+
+  textEditedEmit() {
+    this.textEdited.emit();
   }
 }

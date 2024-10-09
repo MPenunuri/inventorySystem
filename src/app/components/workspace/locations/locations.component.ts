@@ -7,6 +7,8 @@ import { SmallDeleteButtonComponent } from '../../commons/button/small-delete-bu
 import { AddLocationComponent } from './add-location/add-location.component';
 import { EditableTextAreaComponent } from '../../commons/editable/editable-text-area/editable-text-area.component';
 import { EditableTextComponent } from '../../commons/editable/editable-text/editable-text.component';
+import { LoadingComponent } from '../../commons/loading/loading.component';
+import { EditableNavComponent } from '../../commons/editable/editable-nav/editable-nav.component';
 
 @Component({
   selector: 'app-locations',
@@ -17,6 +19,8 @@ import { EditableTextComponent } from '../../commons/editable/editable-text/edit
     AddLocationComponent,
     EditableTextComponent,
     EditableTextAreaComponent,
+    EditableNavComponent,
+    LoadingComponent,
   ],
   templateUrl: './locations.component.html',
   styleUrl: './locations.component.scss',

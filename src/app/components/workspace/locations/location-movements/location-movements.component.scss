@@ -1,4 +1,4 @@
-@use "../../../../styles.scss" as *;
+@use "../../../../../styles.scss" as *;
 
 :host {
   @include full-view();
@@ -16,7 +16,11 @@ h2 {
   text-align: center;
 }
 
-p.noLocations {
+.filter {
+  @include standard-filter();
+}
+
+p.noMovements {
   @include standard-plain-message;
 }
 
@@ -35,17 +39,11 @@ p.noLocations {
           }
           &:first-child {
             @include sticky-first-column;
-            min-width: 250px;
-            width: 250px;
-            max-width: 250px;
           }
-          &:nth-child(2) {
-            min-width: 250px;
-            width: 250px;
-            max-width: 250px;
-          }
-          img {
-            width: 10px;
+          &:nth-child(6) {
+            min-width: 350px;
+            width: 350px;
+            max-width: 350px;
           }
         }
       }
@@ -58,17 +56,11 @@ p.noLocations {
           @include standard-table-td;
           &:first-child {
             @include sticky-first-column;
-            min-width: 250px;
-            width: 250px;
-            max-width: 250px;
           }
-          &:nth-child(2) {
-            min-width: 250px;
-            width: 250px;
-            max-width: 250px;
-          }
-          span {
-            font-size: map-get($font-sizes, "light");
+          &:nth-child(6) {
+            min-width: 350px;
+            width: 350px;
+            max-width: 350px;
           }
         }
       }

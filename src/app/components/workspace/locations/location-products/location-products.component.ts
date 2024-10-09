@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subject, debounceTime } from 'rxjs';
-import { StandardProductI } from '../../../../models/product/standard-product';
 import { GetProductService } from '../../../../services/product/get-product.service';
 import { PatchProductService } from '../../../../services/product/patch-product.service';
 import { SortArrayService } from '../../../../services/utils/sort-array.service';
@@ -11,9 +10,11 @@ import { EditableNumberComponent } from '../../../commons/editable/editable-numb
 import { EditableTextAreaComponent } from '../../../commons/editable/editable-text-area/editable-text-area.component';
 import { EditableTextComponent } from '../../../commons/editable/editable-text/editable-text.component';
 import { LoadingComponent } from '../../../commons/loading/loading.component';
+import { LocationProductI } from '../../../../models/product/location-product';
+import { LocationService } from '../../../../services/location/location.service';
 
 @Component({
-  selector: 'app-category-products',
+  selector: 'app-location-products',
   standalone: true,
   imports: [
     CommonModule,
@@ -23,14 +24,14 @@ import { LoadingComponent } from '../../../commons/loading/loading.component';
     EditableTextAreaComponent,
     LoadingComponent,
   ],
-  templateUrl: './category-products.component.html',
-  styleUrl: './category-products.component.scss',
+  templateUrl: './location-products.component.html',
+  styleUrl: './location-products.component.scss',
 })
-export class CategoryProductsComponent {
-  @Input() categoryId?: number;
-  categoryName?: string;
-  products?: StandardProductI[];
-  filteredProducts?: StandardProductI[];
+export class LocationProductsComponent {
+  @Input() locationId?: number;
+  locationName?: string;
+  products?: LocationProductI[];
+  filteredProducts?: LocationProductI[];
   arrowDown = 'assets/arrow-down-outline.svg';
   arrowUp = 'assets/arrow-up-outline.svg';
 
@@ -40,6 +41,7 @@ export class CategoryProductsComponent {
     private route: ActivatedRoute,
     private getService: GetProductService,
     public patchService: PatchProductService,
+    public locationService: LocationService,
     public sortService: SortArrayService
   ) {
     this.filterSubject.pipe(debounceTime(500)).subscribe((filterText) => {
@@ -48,12 +50,12 @@ export class CategoryProductsComponent {
   }
 
   setProducts() {
-    if (this.categoryId) {
-      this.getService.getProductsByCategoryId(this.categoryId).subscribe({
-        next: (data: StandardProductI[]) => {
+    if (this.locationId) {
+      this.getService.getProductsByLocationId(this.locationId).subscribe({
+        next: (data: LocationProductI[]) => {
           this.products = data;
           this.filteredProducts = [...data];
-          this.categoryName = data[0].categoryName;
+          this.locationName = data[0].stockLocationName;
           this.sort('productName');
         },
         error: () => {
@@ -65,14 +67,14 @@ export class CategoryProductsComponent {
   }
 
   ngOnInit(): void {
-    const paramCategoryId = this.route.snapshot.paramMap.get('categoryId');
-    if (paramCategoryId !== null) {
-      this.categoryId = parseInt(paramCategoryId);
+    const paramLocationId = this.route.snapshot.paramMap.get('locationId');
+    if (paramLocationId !== null) {
+      this.locationId = parseInt(paramLocationId);
       this.setProducts();
     }
   }
 
-  sort(column: keyof StandardProductI) {
+  sort(column: keyof LocationProductI) {
     if (this.filteredProducts !== undefined) {
       this.filteredProducts = this.sortService.sort(
         this.filteredProducts,
@@ -90,13 +92,15 @@ export class CategoryProductsComponent {
         this.filteredProducts = this.products.filter((product) => {
           return (
             regex.test(product.productName) ||
+            regex.test(product.categoryName) ||
             regex.test(product.subcategoryName) ||
             regex.test(product.productPresentation) ||
             regex.test(product.priceCurrency) ||
             regex.test(product.minimumStock.toString()) ||
-            regex.test(product.totalStock.toString()) ||
             regex.test(product.retailPrice.toString()) ||
-            regex.test(product.wholesalePrice.toString())
+            regex.test(product.wholesalePrice.toString()) ||
+            regex.test(product.stockLocationQuantity.toString()) ||
+            regex.test(product.stockLocationMaximumStorage.toString())
           );
         });
       }

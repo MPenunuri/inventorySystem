@@ -1,4 +1,4 @@
-@use "../../../../styles.scss" as *;
+@use "../../../../../styles.scss" as *;
 
 :host {
   @include full-view();
@@ -15,8 +15,11 @@ h2 {
   max-width: 98vw;
   text-align: center;
 }
+.filter {
+  @include standard-filter();
+}
 
-p.noLocations {
+p.noProducts {
   @include standard-plain-message;
 }
 
@@ -35,17 +38,11 @@ p.noLocations {
           }
           &:first-child {
             @include sticky-first-column;
-            min-width: 250px;
-            width: 250px;
-            max-width: 250px;
           }
-          &:nth-child(2) {
-            min-width: 250px;
-            width: 250px;
-            max-width: 250px;
-          }
-          img {
-            width: 10px;
+          &:nth-child(4) {
+            min-width: 300px;
+            width: 300px;
+            max-width: 300px;
           }
         }
       }
@@ -58,17 +55,27 @@ p.noLocations {
           @include standard-table-td;
           &:first-child {
             @include sticky-first-column;
-            min-width: 250px;
-            width: 250px;
-            max-width: 250px;
+            app-editable-nav {
+              ::ng-deep a {
+                color: black;
+                ::ng-deep span {
+                  top: -70px;
+                }
+              }
+            }
           }
-          &:nth-child(2) {
-            min-width: 250px;
-            width: 250px;
-            max-width: 250px;
+          &:nth-child(4) {
+            min-width: 300px;
+            width: 300px;
+            max-width: 300px;
           }
-          span {
-            font-size: map-get($font-sizes, "light");
+
+          app-editable-nav {
+            ::ng-deep a {
+              ::ng-deep span {
+                top: -50px;
+              }
+            }
           }
         }
       }
