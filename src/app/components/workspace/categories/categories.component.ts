@@ -53,11 +53,19 @@ export class CategoriesComponent {
     });
   }
 
+  setData() {
+    this.setCategories();
+    this.setCategoriesAndSubcategories();
+  }
+
   setCategories() {
     this.service.getCategories().subscribe({
       next: (data: CategoryEntityI[]) => {
         this.categories = data;
         this.sortService.sort(this.categories, 'name');
+      },
+      error: () => {
+        this.categories = [];
       },
     });
   }
@@ -78,8 +86,7 @@ export class CategoriesComponent {
   }
 
   ngOnInit(): void {
-    this.setCategories();
-    this.setCategoriesAndSubcategories();
+    this.setData();
   }
 
   sort(column: keyof CategorieAndSubcategorie) {

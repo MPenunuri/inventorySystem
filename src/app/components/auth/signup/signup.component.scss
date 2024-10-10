@@ -4,6 +4,48 @@
   @include full-view();
 }
 
+.imgContainer {
+  @include standard-img-container();
+}
+
 a {
   @include standard-router-link;
+}
+
+app-form {
+  opacity: 0;
+  transform: scale(0);
+  animation: setVisible 0.5s ease-in-out forwards;
+
+  @keyframes setVisible {
+    0% {
+      opacity: 0;
+      transform: scale(0);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
+
+app-form {
+  &.unstage {
+    animation: setInvisible 0.5s ease 0s;
+    animation-fill-mode: forwards;
+    transform: scale(1, 1);
+    opacity: 1;
+  }
+
+  @keyframes setInvisible {
+    0% {
+      transform: scale(1, 1);
+      opacity: 1;
+    }
+
+    100% {
+      transform: scale(0, 0);
+      opacity: 0;
+    }
+  }
 }

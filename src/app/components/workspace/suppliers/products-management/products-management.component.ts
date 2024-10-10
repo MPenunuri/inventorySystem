@@ -52,7 +52,7 @@ export class ProductsManagementComponent {
           this.refreshNotRelatedProducts = !this.refreshNotRelatedProducts;
         },
         error: () => {
-          this.relatedProducts = undefined;
+          this.relatedProducts = [];
           this.refreshNotRelatedProducts = !this.refreshNotRelatedProducts;
         },
       });

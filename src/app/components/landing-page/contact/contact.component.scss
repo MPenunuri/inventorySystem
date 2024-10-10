@@ -1,0 +1,46 @@
+@use "../../../../styles.scss" as *;
+
+:host {
+  position: relative;
+  @include full-view();
+  padding-bottom: 4rem;
+  flex-direction: column;
+  background-color: $secondary-background-color;
+  width: 100%;
+  min-height: 0;
+  @media (max-width: 1000px) {
+    flex-direction: column;
+  }
+
+  transform: translate(100vw, 0);
+  transition: transform 1s ease-in-out 0s;
+  &.show {
+    transform: translate(0, 0);
+  }
+}
+
+h4 {
+  padding: 4rem;
+  font-weight: 700;
+  font-size: map-get($font-sizes, "big");
+  opacity: 1;
+  transition: opacity 2s ease-in-out;
+  color: $secondary-text-color;
+}
+
+p {
+  max-width: 600px;
+  font-weight: 500;
+  font-size: map-get($font-sizes, "small");
+  color: $secondary-text-color;
+  padding: 0.25rem;
+  text-align: center;
+
+  @media (max-width: 1000px) {
+    font-size: map-get($font-sizes, "light");
+  }
+
+  b {
+    font-weight: 700;
+  }
+}

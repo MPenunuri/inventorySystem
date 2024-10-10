@@ -48,7 +48,14 @@ export class AddSubcategoryComponent {
 
   onSubmit() {
     const categoryId = this.sanitizer.sanitize(this.form.value.categoryId);
+    if (!categoryId) {
+      return alert('Select a category');
+    }
     const name = this.sanitizer.sanitize(this.form.value.name);
+    if (name.length === 0) {
+      return alert('Register a subcategory');
+    }
+
     this.service.registerSubcategory(parseInt(categoryId), name).subscribe({
       next: (entity) => {
         this.saved.emit();

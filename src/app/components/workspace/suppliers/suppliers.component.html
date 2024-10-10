@@ -96,6 +96,7 @@
         </td>
         <td>
           <app-editable-nav
+            *ngIf="record.products > 0; else noSupplierProducts"
             [text]="record.products.toString()"
             [spanText]="'Manage supplier relations'"
             [editRoute]="
@@ -105,9 +106,13 @@
               record.supplierName
             "
           ></app-editable-nav>
+          <ng-template #noSupplierProducts>
+            {{ record.products }}
+          </ng-template>
         </td>
         <td>
           <app-editable-nav
+            *ngIf="record.movements > 0; else noSupplierMovements"
             [text]="record.movements.toString()"
             [spanText]="'Show related movements'"
             [editRoute]="
@@ -117,6 +122,9 @@
               record.supplierName
             "
           ></app-editable-nav>
+          <ng-template #noSupplierMovements>
+            {{ record.movements }}
+          </ng-template>
         </td>
         <td>
           <ng-container

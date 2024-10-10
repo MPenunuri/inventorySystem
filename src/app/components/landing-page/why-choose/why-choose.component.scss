@@ -1,0 +1,81 @@
+@use "../../../../styles.scss" as *;
+
+:host {
+  @include full-view();
+  min-height: 0;
+  flex-direction: column;
+  color: $primary-text-color;
+  text-align: center;
+
+  &.show {
+    h4 {
+      opacity: 1;
+    }
+    ul {
+      transform: translate(0, 0);
+      opacity: 1;
+    }
+  }
+}
+
+h4 {
+  padding-top: 4rem;
+  font-weight: 700;
+  font-size: map-get($font-sizes, "big");
+
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+}
+
+section {
+  @include flex-center();
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    padding-left: 2rem;
+  }
+}
+
+ul {
+  @include card-grid();
+  padding: 4rem;
+  width: 90vw;
+  max-width: 1200px;
+  font-size: map-get($font-sizes, "small");
+
+  opacity: 0;
+  transform: translate(-100vw, 0);
+  transition: opacity 1s ease, transform 1s ease;
+  li {
+    margin: 1rem 4rem;
+    height: 200px;
+    width: 300px;
+    font-weight: 300;
+    list-style-type: none;
+    position: relative;
+    @include flex-center(column);
+    gap: 1rem;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+
+    strong {
+      font-size: map-get($font-sizes, "regular");
+      font-weight: 700;
+    }
+
+    @media (max-width: 400px) {
+      width: 200px;
+
+      height: auto;
+    }
+  }
+
+  li::before {
+    margin: 0rem;
+    content: "•";
+    color: $primary-text-color;
+    font-size: 50px;
+    position: absolute;
+    left: -40px;
+  }
+}

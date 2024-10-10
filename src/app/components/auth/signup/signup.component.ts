@@ -66,4 +66,14 @@ export class SignupComponent {
       },
     });
   }
+
+  handleClick() {
+    const imgContainer = document.querySelector('.imgContainer');
+    const formContainer = document.querySelector('.signupForm');
+    imgContainer?.classList.add('unstage');
+    formContainer?.classList.add('unstage');
+    setTimeout(() => {
+      this.router.navigate(['/login']);
+    }, 510);
+  }
 }

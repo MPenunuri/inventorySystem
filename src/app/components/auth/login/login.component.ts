@@ -11,7 +11,6 @@ import { FormComponent } from '../../components/../commons/form/form.component';
 import { PasswordInputComponent } from '../../../components/commons/form/password-input/password-input.component';
 import { RouterLink, Router } from '@angular/router';
 import { AuthService } from '../../../services/security/auth/auth.service';
-import { InputSanitizerService } from '../../../services/input-sanitizer/input-sanitizer.service';
 
 @Component({
   selector: 'app-login',
@@ -58,5 +57,15 @@ export class LoginComponent {
         this.authService.isAuthenticated = false;
       },
     });
+  }
+
+  handleClick() {
+    const imgContainer = document.querySelector('.imgContainer');
+    const formContainer = document.querySelector('.loginForm');
+    imgContainer?.classList.add('unstage');
+    formContainer?.classList.add('unstage');
+    setTimeout(() => {
+      this.router.navigate(['/signup']);
+    }, 510);
   }
 }

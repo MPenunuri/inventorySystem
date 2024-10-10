@@ -41,8 +41,10 @@ import { LocationMovementsComponent } from './components/workspace/locations/loc
 import { SupplierMovementsComponent } from './components/workspace/suppliers/supplier-movements/supplier-movements.component';
 import { CurrencyProductsComponent } from './components/workspace/currencies/currency-products/currency-products.component';
 import { CurrencyMovementsComponent } from './components/workspace/currencies/currency-movements/currency-movements.component';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
 
 export const routes: Routes = [
+  { path: '', component: LandingPageComponent },
   { path: 'signup', component: SignupComponent, canActivate: [authGuard] },
   { path: 'login', component: LoginComponent, canActivate: [authGuard] },
   {
@@ -50,6 +52,11 @@ export const routes: Routes = [
     component: WorkspaceComponent,
     canActivate: [authGuard],
     children: [
+      {
+        path: '',
+        redirectTo: 'products',
+        pathMatch: 'full',
+      },
       {
         path: 'products',
         component: ProductsComponent,
@@ -220,6 +227,5 @@ export const routes: Routes = [
       },
     ],
   },
-  { path: '', redirectTo: '/workspace', pathMatch: 'full' },
   { path: '**', redirectTo: '/workspace', pathMatch: 'full' },
 ];

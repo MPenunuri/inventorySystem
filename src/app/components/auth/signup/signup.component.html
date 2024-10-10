@@ -1,4 +1,10 @@
+<div class="imgContainer">
+  <h1 class="text-overlay">Inventory manager</h1>
+  <img src="assets/warehouse.jpg" alt="warehouse photo" />
+</div>
+
 <app-form
+  class="signupForm"
   [title]="'Start managing your inventory today!'"
   [formGroup]="signupForm"
   (ngSubmit)="onSubmit()"
@@ -18,7 +24,7 @@
     formControlName="passwordConfirmation"
   ></app-confirm-password-input>
   <app-button [name]="'Sign up'"></app-button>
-  <a routerLink="/login"
+  <a (click)="handleClick()"
     >Already have an account?<span class="highlight">Log in</span></a
   >
 </app-form>

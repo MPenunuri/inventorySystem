@@ -1,0 +1,73 @@
+@use "../../../../styles.scss" as *;
+
+:host {
+  @include full-view();
+  gap: 1rem;
+  min-height: 0;
+  flex-direction: column;
+  color: $primary-text-color;
+  text-align: center;
+  padding: 4rem 0;
+
+  &.show {
+    h4 {
+      opacity: 1;
+    }
+    ul {
+      transform: translate(0, 0);
+      opacity: 1;
+    }
+  }
+}
+
+h4 {
+  font-weight: 700;
+  font-size: map-get($font-sizes, "big");
+
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+}
+
+ul {
+  @include flex-center(column);
+  width: 90vw;
+  max-width: 400px;
+  font-size: map-get($font-sizes, "small");
+
+  opacity: 0;
+  transform: translate(-100vw, 0);
+  transition: opacity 1s ease, transform 1s ease;
+  li {
+    margin: 1rem 4rem;
+    height: auto;
+    font-weight: 300;
+    list-style-type: none;
+    position: relative;
+    @include flex-center(column);
+    gap: 1rem;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+
+    strong {
+      cursor: pointer;
+      font-size: map-get($font-sizes, "regular");
+      font-weight: 700;
+    }
+
+    @media (max-width: 400px) {
+      width: 200px;
+
+      height: auto;
+    }
+  }
+
+  li::before {
+    margin: 0rem;
+    content: "•";
+    color: $primary-text-color;
+    font-size: 50px;
+    position: absolute;
+    left: -40px;
+  }
+}

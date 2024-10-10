@@ -4,6 +4,8 @@
   @include flex-center(column);
   gap: 0;
   max-width: 98vw;
+  width: auto;
+  min-width: 400px;
 }
 
 h3 {
@@ -32,6 +34,19 @@ p.noSuppliers {
           &:first-child {
             @include sticky-first-column;
           }
+
+          &:nth-child(1) {
+            min-width: 250px;
+            width: 250px;
+            max-width: 250px;
+          }
+
+          &:nth-child(2) {
+            min-width: 250px;
+            width: 250px;
+            max-width: 250px;
+            padding-left: 5rem;
+          }
         }
       }
     }
@@ -44,24 +59,30 @@ p.noSuppliers {
           &:first-child {
             @include sticky-first-column;
           }
+
+          &:nth-child(1) {
+            min-width: 250px;
+            width: 250px;
+            max-width: 250px;
+          }
+
+          &:nth-child(2) {
+            min-width: 250px;
+            width: 250px;
+            max-width: 250px;
+          }
+
+          app-small-delete-button {
+            ::ng-deep button {
+              margin-left: 5rem;
+            }
+          }
+
           span {
             font-size: map-get($font-sizes, "light");
           }
         }
       }
     }
-  }
-}
-
-a {
-  @include standard-anchor-router-link;
-
-  &:hover {
-    span {
-      opacity: 1;
-    }
-  }
-  span {
-    @include standard-span;
   }
 }

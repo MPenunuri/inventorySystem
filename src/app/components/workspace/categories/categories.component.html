@@ -1,12 +1,13 @@
 <h2>Categories</h2>
 
-<app-add-category (saved)="setCategoriesAndSubcategories()"></app-add-category>
+<app-add-category (saved)="setData()"></app-add-category>
 
 <app-add-subcategory
-  (saved)="setCategoriesAndSubcategories()"
+  (saved)="setData()"
   *ngIf="categories && categories.length > 0"
   [categories]="categories"
 ></app-add-subcategory>
+
 <div class="filter">
   <label for="">Filter categories</label>
   <input
@@ -154,7 +155,7 @@
                   [spanText]="'Delete subcategory'"
                   [id]="record.subcategoryId"
                   [deleteFn]="subService.deleteSubcategory.bind(subService)"
-                  (clicked)="setCategoriesAndSubcategories()"
+                  (clicked)="setData()"
                 ></app-small-delete-button>
               </ng-container>
               <ng-template #noDeletion>
@@ -166,7 +167,7 @@
                 [spanText]="'Delete category'"
                 [id]="record.categoryId"
                 [deleteFn]="service.deleteCategory.bind(service)"
-                (clicked)="setCategoriesAndSubcategories()"
+                (clicked)="setData()"
               ></app-small-delete-button>
             </ng-template>
           </div>
@@ -179,7 +180,10 @@
 <ng-template #noCategories>
   <p
     class="noCategories"
-    *ngIf="categories && categories.length === 0; else undefinedCategories"
+    *ngIf="
+      categoriesAndSubcategories && categoriesAndSubcategories.length === 0;
+      else undefinedCategories
+    "
   >
     There are not any categories registered yet.
   </p>

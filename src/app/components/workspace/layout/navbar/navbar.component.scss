@@ -25,13 +25,15 @@ nav {
   img {
     width: 30px;
     padding-right: 0.5rem;
-    filter: drop-shadow(1px 1px 10px $primary-background-color);
+    filter: invert(32%) sepia(100%) saturate(650%) hue-rotate(209deg)
+      brightness(100%) contrast(100%);
   }
 
   h1 {
     font-weight: 800;
     font-size: text-size("regular");
     flex-shrink: 0;
+    color: $secondary-text-color;
 
     filter: drop-shadow(1px 1px 15px $primary-background-color);
 
