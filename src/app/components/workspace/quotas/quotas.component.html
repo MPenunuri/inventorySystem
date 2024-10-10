@@ -1,0 +1,35 @@
+<h2>User records</h2>
+<div class="tableContainer" *ngIf="data; else noData">
+  <table aria-live="polite" aria-label="User Data">
+    <thead>
+      <tr>
+        <th scope="col">Categories</th>
+        <th scope="col">Subcategories</th>
+        <th scope="col">Products</th>
+        <th scope="col">Movements</th>
+        <th scope="col">Locations</th>
+        <th scope="col">Stocks</th>
+        <th scope="col">Suppliers</th>
+        <th scope="col">Product Supplier Relations</th>
+        <th scope="col">Currencies</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{ data.registeredCategories }}</td>
+        <td>{{ data.registeredSubcategories }}</td>
+        <td>{{ data.registeredProducts }}</td>
+        <td>{{ data.registeredMovements }}</td>
+        <td>{{ data.registeredLocations }}</td>
+        <td>{{ data.registeredStocks }}</td>
+        <td>{{ data.registeredSuppliers }}</td>
+        <td>{{ data.registeredProductSupplierRelations }}</td>
+        <td>{{ data.registeredCurrencies }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #noData>
+  <p class="noQuotas">No data.</p>
+</ng-template>

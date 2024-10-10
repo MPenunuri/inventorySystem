@@ -42,6 +42,7 @@ import { SupplierMovementsComponent } from './components/workspace/suppliers/sup
 import { CurrencyProductsComponent } from './components/workspace/currencies/currency-products/currency-products.component';
 import { CurrencyMovementsComponent } from './components/workspace/currencies/currency-movements/currency-movements.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { QuotasComponent } from './components/workspace/quotas/quotas.component';
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -224,6 +225,10 @@ export const routes: Routes = [
       {
         path: 'movement/product/transfers/:productId/:productName',
         component: TransfersComponent,
+      },
+      {
+        path: 'quotas',
+        component: QuotasComponent,
       },
     ],
   },
