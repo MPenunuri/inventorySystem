@@ -43,10 +43,12 @@ import { CurrencyProductsComponent } from './components/workspace/currencies/cur
 import { CurrencyMovementsComponent } from './components/workspace/currencies/currency-movements/currency-movements.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { QuotasComponent } from './components/workspace/quotas/quotas.component';
+import { TermsAndConditionsComponent } from './components/auth/signup/terms-and-conditions/terms-and-conditions.component';
 
 export const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'signup', component: SignupComponent, canActivate: [authGuard] },
+  { path: 'signup/terms', component: TermsAndConditionsComponent },
   { path: 'login', component: LoginComponent, canActivate: [authGuard] },
   {
     path: 'workspace',
