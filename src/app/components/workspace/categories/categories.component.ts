@@ -5,7 +5,7 @@ import { SortArrayService } from '../../../services/utils/sort-array.service';
 import { AddCategoryComponent } from './add-category/add-category.component';
 import { CommonModule } from '@angular/common';
 import { AddSubcategoryComponent } from './add-subcategory/add-subcategory.component';
-import { CategorieAndSubcategorie } from '../../../models/category/categorieAndSubcategorie';
+import { CategorieAndSubcategorie } from '../../../models/category/fullCategorie';
 import { EditableTextComponent } from '../../commons/editable/editable-text/editable-text.component';
 import { SubcategoryService } from '../../../services/subcategory/subcategory.service';
 import { RouterLink } from '@angular/router';

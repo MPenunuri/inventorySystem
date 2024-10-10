@@ -7,7 +7,7 @@ import {
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { CategoryEntityI } from '../../models/category/category-entity';
-import { CategorieAndSubcategorie } from '../../models/category/categorieAndSubcategorie';
+import { CategorieAndSubcategorie } from '../../models/category/fullCategorie';
 
 @Injectable({
   providedIn: 'root',
