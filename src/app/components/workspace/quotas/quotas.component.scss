@@ -3,6 +3,8 @@
 :host {
   @include full-view();
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   gap: 1rem;
   max-width: 98vw;
 }
@@ -32,9 +34,6 @@ p.noQuotas {
           &:hover {
             cursor: pointer;
           }
-          &:first-child {
-            @include sticky-first-column;
-          }
         }
       }
     }
@@ -44,9 +43,6 @@ p.noQuotas {
         @include standard-table-tr;
         td {
           @include standard-table-td;
-          &:first-child {
-            @include sticky-first-column;
-          }
         }
       }
     }
