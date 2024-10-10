@@ -76,4 +76,8 @@ export class SignupComponent {
       this.router.navigate(['/login']);
     }, 510);
   }
+
+  handleClick2() {
+    this.router.navigate(['/signup/terms']);
+  }
 }
