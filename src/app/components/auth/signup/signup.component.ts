@@ -79,6 +79,12 @@ export class SignupComponent {
   }
 
   handleClick2() {
-    this.router.navigate(['/signup/terms']);
+    const imgContainer = document.querySelector('.imgContainer');
+    const formContainer = document.querySelector('.signupForm');
+    imgContainer?.classList.add('unstage');
+    formContainer?.classList.add('unstage');
+    setTimeout(() => {
+      this.router.navigate(['/signup/terms']);
+    }, 510);
   }
 }
