@@ -27,6 +27,7 @@ import { InputSanitizerService } from '../../../services/input-sanitizer/input-s
     PasswordInputComponent,
     ConfirmPasswordInputComponent,
     ButtonComponent,
+    RouterLink,
   ],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss',
