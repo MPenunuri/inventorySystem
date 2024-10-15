@@ -26,6 +26,9 @@ h4 {
   opacity: 1;
   transition: opacity 2s ease-in-out;
   color: $secondary-text-color;
+  @media (max-width: 1000px) {
+    text-align: center;
+  }
 }
 
 p {
